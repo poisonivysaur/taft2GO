@@ -5,50 +5,66 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-  <link rel="stylesheet" href="signup.css" type="text/css"> </head>
+  <link rel="stylesheet" href="style.css" type="text/css"> </head>
 
 <body>
-  <nav class="navbar navbar-expand-md navbar-dark m-0 style transparent">
-    <a href="homepage.html">
-      <img src="T2G Logo.png" width="" height="50" class="d-inline-block align-top m-0" alt=""> </a>
-    <input class="form-control mr-sm-2 baloo" type="text" placeholder="Find the right place...">
-    <a href="search-results.html" class="btn btn-outline-primary baloo">Search
-      <br> </a>
-    <div class="container" style="opacity: 0.2;">
-      <a class="navbar-brand m-0" href="#"></a>
+  <nav class="navbar navbar-expand-md navbar-dark bg-light m-0 style">
+    <div class="container">
+      <a class="navbar-brand m-0" href="#">
+        <img src="T2G Logo.png" width="" height="50" class="d-inline-block align-top m-0" alt=""> </a>
+      <!--
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+      -->
       <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
         <ul class="navbar-nav"></ul>
       </div>
     </div>
-    <a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="why-host.html">Become a Host</a>
-    <a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="help.html">Help
+    <a class="btn navbar-btn ml-2 btn-light text-primary body baloo">Get Hosting Help</a>
+    <a class="btn navbar-btn ml-2 btn-light text-primary body baloo">Host
       <br> </a>
-    <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="signup.html">Sign Up</a>
-    <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="login.html">Log In</a>
+    <a class="btn navbar-btn ml-2 btn-light text-primary baloo">Trips</a>
+    <a class="btn navbar-btn ml-2 btn-light text-primary baloo">Messages</a>
+    <a class="btn navbar-btn ml-2 btn-light text-primary baloo">Help</a>
   </nav>
-  <div class="py-5 text-white opaque-overlay w-100 h-100" style="background-image: url(&quot;homepage bg.jpg&quot;);">
+  <nav class="navbar navbar-expand-md bg-primary navbar-dark">
+    <a class="btn navbar-btn ml-2 text-white btn-link baloo">Dashboard
+      <br> </a>
+    <a class="btn navbar-btn ml-2 text-white btn-link baloo">Inbox
+      <br> </a>
+    <a class="btn navbar-btn ml-2 btn-link baloo text-secondary">Listings
+      <br> </a>
+    <a class="btn navbar-btn ml-2 text-white btn-link baloo">Trips
+      <br> </a>
+    <a class="btn navbar-btn ml-2 text-white btn-link baloo">Profile
+      <br> </a>
+    <a class="btn navbar-btn ml-2 text-white btn-link baloo">Account </a>
     <div class="container">
-      <div class="row h-100">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-          <img class="img-fluid d-block mx-auto" src="T2GO Logo.png" width="350">
-          <h1 class="text-gray-dark baloo">Log In</h1>
-          <form class="" method="post" action="https://formspree.io/">
-            <div class="form-group baloo"> <label class="baloo">Email address</label>
-              <input type="email" name="email" class="form-control" placeholder="Enter email"> </div>
-            <div class="form-group baloo"> <label class="baloo">Password</label>
-              <input type="password" name="password" class="form-control" placeholder="Password"> </div>
-          </form>
-          <a class="btn btn-primary baloo" href="dashboard.html">Log in</a>
-          <p class="">&nbsp;</p>
-          <p class="">Don't have an account?</p>
-          <a href="signup.html" class="btn btn-outline-primary baloo">Sign up</a>
-          <h1 class="display-1">&nbsp; &nbsp; &nbsp;&nbsp;</h1>
-        </div>
+      <a class="navbar-brand" href="#"></a>
+      <!--
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+      -->
+      <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
+        <ul class="navbar-nav"></ul>
       </div>
+    </div>
+  </nav>
+  <div class="py-5">
+    <div class="container">
       <div class="row">
-        <div class="col-md-12"></div>
+        <div class="col-md-4 text-secondary">
+          <a class="btn navbar-btn ml-2 btn-link baloo ml-auto text-secondary text-left menu">Listings</a>
+          <a class="btn navbar-btn ml-2 btn-link baloo text-dark text-left ml-auto menu">Reservations</a>
+          <a class="btn navbar-btn ml-2 btn-link baloo text-dark ml-auto menu text-left">Reservation Requirements</a>
+          <a class="btn navbar-btn ml-2 btn-link baloo text-dark ml-auto menu text-left">Listings Page</a>
+          <a class="btn btn-primary baloo" href="">Add New Listing
+            <br> </a>
+        </div>
+        <div class="col-md-6">
+          <p class="lead">&nbsp; &nbsp; &nbsp;&nbsp;</p>
+          <p class="lead">You don't have any listings yet.</p>
+          <p class="">Make money by renting out your extra space on taft2GO. You’ll also get to meet interesting people from around the country!</p>
+          <a href="#" class="btn btn-outline-primary baloo">Post a new listing</a>
+        </div>
       </div>
     </div>
   </div>
