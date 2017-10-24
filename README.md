@@ -4,6 +4,8 @@ To run the web application, simply start a web server such as XAMPP, and in the 
 
 Another crude alternative would be to open the html files themselves from the zip folder.
 
+Happy navigating taft2GO! :)
+
 
 
 WEBTECH S16 The Sixters
