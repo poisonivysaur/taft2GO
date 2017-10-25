@@ -10,36 +10,35 @@
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-light m-0 style">
     <div class="container">
-      <a class="navbar-brand m-0" href="#">
-        <img src="T2G Logo.png" width="" height="50" class="d-inline-block align-top m-0" alt=""> </a>
-      <!--
+      <a class="navbar-brand m-0" href="#"></a>
+      <img src="T2G Logo.png" width="" height="50" class="d-inline-block align-top m-0" alt="">
+      <input class="form-control mr-sm-2 baloo" type="text" placeholder="Find the right place...">
+      <a href="search-results.html" class="btn btn-outline-primary baloo">Search
+        <br> </a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-      -->
       <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
         <ul class="navbar-nav"></ul>
       </div>
     </div>
-    <!--
     <a class="btn navbar-btn ml-2 btn-light text-primary body baloo">Get Hosting Help</a>
-		-->
     <a class="btn navbar-btn ml-2 btn-light text-primary body baloo">Host
       <br> </a>
     <a class="btn navbar-btn ml-2 btn-light text-primary baloo">Stays</a>
     <a class="btn navbar-btn ml-2 btn-light text-primary baloo">Messages</a>
-    <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="help.html">Help</a>
-  </nav>
+    <a class="btn navbar-btn ml-2 btn-light text-primary baloo">Help</a>
+    <img src="https://poorishaadi.com/user-icon-png-pnglogocom.png" width="" height="50" class="d-inline-block align-top m-0" alt=""> </nav>
   <nav class="navbar navbar-expand-md bg-primary navbar-dark">
     <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
       <ul class="navbar-nav"></ul>
-      <a class="btn navbar-btn ml-2 btn-link baloo text-white">Dashboard
+      <a class="btn navbar-btn ml-2 btn-link baloo text-white" href="dashboard.html">Dashboard
         <br> </a>
-      <a class="btn navbar-btn ml-2 btn-link baloo text-secondary" href="inbox.html">Inbox
+      <a class="btn navbar-btn ml-2 text-white btn-link baloo" href="inbox.html">Inbox
         <br> </a>
       <a class="btn navbar-btn ml-2 btn-link baloo text-white" href="listing.html">Listings
         <br> </a>
       <a class="btn navbar-btn ml-2 text-white btn-link baloo" href="stays.html">Stays
         <br> </a>
-      <a class="btn navbar-btn ml-2 text-white btn-link baloo" href="profile.html">Profile
+      <a class="btn navbar-btn ml-2 btn-link baloo text-secondary" href="profile.html">Profile
         <br> </a>
       <a class="btn navbar-btn ml-2 text-white btn-link baloo" href="account.html">Account </a>
     </div>
@@ -51,22 +50,67 @@
   <div class="py-5">
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          <p class="lead">&nbsp; &nbsp; &nbsp;&nbsp;</p>
-          <div class="btn-group mr-auto text-right baloo">
-            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> All Messages</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Separated link</a>
-            </div>
-          </div>
+        <div class="col-md-4 text-secondary">
+          <a class="btn navbar-btn ml-2 btn-link baloo ml-auto text-left menu text-dark" href="profile.html">Edit Profile</a>
+          <a class="btn navbar-btn ml-2 btn-link baloo text-dark text-left ml-auto menu" href="profile-photo.html">Photos and Videos</a>
+          <a class="btn navbar-btn ml-2 btn-link baloo ml-auto menu text-left text-secondary" href="profile-trust.html">Trust and Verification</a>
+          <a class="btn navbar-btn ml-2 btn-link baloo text-dark ml-auto menu text-left" href="profile-reviews.html">Reviews</a>
+          <a class="btn navbar-btn ml-2 btn-link baloo text-dark ml-auto menu text-left" href="profile-references.html">References</a>
+          <a class="btn btn-primary baloo" href="view-profile.html">View Profile
+            <br> </a>
+        </div>
+        <div class="col-md-8">
+          <p class="lead">&nbsp;</p>
           <div class="card">
             <div class="card-body">
-              <p class="lead">No messages yet.</p>
-              <p class="">When guests contact you or send you reservation requests, you’ll see their messages here.</p>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4" style="transition: all 0.25s;">
+                    <p class="lead text-right">School</p>
+                  </div>
+                  <div class="col-md-8" style="transition: all 0.25s;">
+                    <input class="form-control mr-sm-2 baloo" type="text" placeholder=""> </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4" style="transition: all 0.25s;">
+                    <p class="lead text-right">Work</p>
+                  </div>
+                  <div class="col-md-8" style="transition: all 0.25s;">
+                    <input class="form-control mr-sm-2 baloo" type="text" placeholder="Company name or job title"> </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4" style="transition: all 0.25s;">
+                    <p class="lead text-right">Emergency Contact</p>
+                  </div>
+                  <div class="col-md-8" style="transition: all 0.25s;">
+                    <p class="text-secondary">Give our Customer Experience team a trusted contact we can alert in an urgent situation.</p>
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="text-secondary">Name</h5>
+                        <input class="form-control mr-sm-2 baloo" type="text" placeholder="First Name">
+                        <h5 class="text-secondary">&nbsp;</h5>
+                        <h5 class="text-secondary">Phone</h5>
+                        <input class="form-control mr-sm-2 baloo" type="number" placeholder="+63">
+                        <h5 class="text-secondary">&nbsp;</h5>
+                        <h5 class="text-secondary">Email
+                          <br> </h5>
+                        <input class="form-control mr-sm-2 baloo" type="email" placeholder="juan_delaacruz@gmail.com">
+                        <h5 class="text-secondary">&nbsp;</h5>
+                        <h5 class="text-secondary">Relationship</h5>
+                        <input class="form-control mr-sm-2 baloo" type="text" placeholder=""> </div>
+                    </div>
+                    <p class="p-y-1 text-secondary">&nbsp;This is only shared once you have a confirmed booking with another taft2GO user. This is how we can all get in touch.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+          <h5 class="text-secondary">&nbsp; </h5>
+          <a class="btn btn-primary baloo" href="">Save</a>
         </div>
       </div>
     </div>
