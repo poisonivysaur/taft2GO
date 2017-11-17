@@ -1,6 +1,5 @@
-<!DOCTYPE html>
 <?php include 'base.php' ?>
-
+<?php header('Access-Control-Allow-Origin: *'); ?>
 
 <?php startblock('content') ?>
 
@@ -68,12 +67,14 @@
         var isAdmin = 0;
         var profilePic = "";
 
-        var postData = '{"fname":"'+ fname + ', "lname:"'+ lname + ', "email:"'+ email + ', "password:"'+ password + 
+        var postData = '{"fname":"'+ fname + ', "lname:"'+ lname + ', "email:"'+ email + ', "username:"'+ username + ', "password:"'+ password + 
                         ', "isActive:"'+ isActive + ', "isAdmin:"'+ isAdmin + ', "profilePic:"'+ profilePic + '"}';
+        
+        
         
         $.ajax({
           type: "POST",
-          url: "http://127.0.0.1:8080/browser/taft2GO/account",
+          url: "http://localhost:8080/taft2GO/account", 
           processData: false,
           contentType: "application/json",
           data: postData,
@@ -98,6 +99,8 @@
           }
 
         });
+        
+
         
     }
 

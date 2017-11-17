@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php require_once 'ti.php' ?>
+<?php header('Access-Control-Allow-Origin: *'); ?>
 
 
 <html>
