@@ -18,10 +18,10 @@
       </div>
     </div>
     <a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="why-host.html">Become a Host</a>
-    <a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="help.html">Help
+    <a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="/taft2GO/Help">Help
       <br> </a>
-    <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="signup.html">Sign Up</a>
-    <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="login.html">Log In</a>
+    <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Signup">Sign Up</a>
+    <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Login">Log In</a>
   </nav>
   <div class="py-5 text-center opaque-overlay" style="background-image: url(&quot;homepage bg.jpg&quot;);">
     <div class="container py-5">

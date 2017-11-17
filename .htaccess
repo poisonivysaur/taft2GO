@@ -1,0 +1,7 @@
+RewriteEngine On
+
+RewriteRule ^Login?$ login.php
+RewriteRule ^Signup?$ signup.php
+RewriteRule ^Help?$ help.php
+RewriteRule ^Host?$ why-host.php
+RewriteRule ^Search?$ search-results.php

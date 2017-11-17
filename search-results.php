@@ -23,8 +23,8 @@
     <a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="why-host.html">Become a Host</a>
     <a class="btn navbar-btn ml-2 btn-light text-primary body baloo">Help
       <br> </a>
-    <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="signup.html">Sign Up</a>
-    <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="login.html">Log In</a>
+    <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Signup">Sign Up</a>
+    <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Login">Log In</a>
   </nav>
   <div class="py-5 gradient-overlay" style="background-image: url(&quot;https://pingendo.github.io/templates/sections/assets/cover_event.jpg&quot;);">
     <div class="container py-5">
