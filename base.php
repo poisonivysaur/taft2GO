@@ -29,7 +29,7 @@
             </a>
             <?php startblock('searchbar') ?>
             <?php endblock() ?>
-
+            <!--
             <div class="container" style="opacity: 0.2;">
 			  <a class="navbar-brand m-0" href="#"></a>
 			  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
@@ -37,7 +37,7 @@
 			    <ul class="navbar-nav"></ul>
 			  </div>
 			</div>
-
+            -->
             <?php
             session_start();
             if (!isset($_SESSION['isLoggedIn'])){

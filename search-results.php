@@ -5,7 +5,6 @@
     <a href="/taft2GO/Search" class="btn btn-outline-primary baloo">Search</a>
 <?php endblock() ?>
 
-
 <?php startblock('content')?>
   <div class="py-5 gradient-overlay" style="background-image: url(&quot;https://pingendo.github.io/templates/sections/assets/cover_event.jpg&quot;);">
     <div class="container py-5">
@@ -157,7 +156,7 @@
   </div>
   -->
 
-<script>
+    <script>
     $(document).ready(function(){
         $.ajax({
             type: "GET",
@@ -173,9 +172,10 @@
                 for(var i = 0; i < studentJsonArray.length; i++){
                     if(studentJsonArray[i].type == 'condo'){
                         condos += '<div class="col-md-3">'
-                                + '<a href="room-page.php">'
+                                + '<a href="room-page.php?objID='+ studentJsonArray[i].objID +'">'
+                                //+ '<a href="/taft2GO/Listings/'+ studentJsonArray[i].objID +'">'
                                 + '<img class="img-fluid d-block" src="'+ studentJsonArray[i].photo +'">'
-                                + '<p>'+ studentJsonArray[i].description +'</p>'
+                                + '<p>'+ studentJsonArray[i].title +'</p>'
                                 + '<p>Monthy Rate of Php'+ studentJsonArray[i].monthlyRate +'</p>'
                                 + '<p>User Rating: '+ studentJsonArray[i].aveRating +'</p>'
                                 + '</a>'
@@ -185,7 +185,7 @@
                         dorms += '<div class="col-md-3">'
                             + '<a href="room-page.php">'
                             + '<img class="img-fluid d-block" src="'+ studentJsonArray[i].photo +'">'
-                            + '<p>'+ studentJsonArray[i].description +'</p>'
+                            + '<p>'+ studentJsonArray[i].title +'</p>'
                             + '<p>Monthy Rate of Php'+ studentJsonArray[i].monthlyRate +'</p>'
                             + '<p>User Rating: '+ studentJsonArray[i].aveRating +'</p>'
                             + '</a>'
@@ -201,5 +201,5 @@
             }
         });
     });
-</script>
+    </script>
 <?php endblock() ?>
