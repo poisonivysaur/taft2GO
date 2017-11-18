@@ -82,7 +82,7 @@
               console.log(jqXHR.responseText);
 
               if(jqXHR.status == 201){ // created
-                  $('#feedback').html('<h3>Successfully Registered! Please <a href="/taft2GO/Login">Login</a> to continue</h3>');
+                  $('#feedback').html('<h4>Successfully Registered! Please <a href="/taft2GO/Login">Login</a> to continue</h4>');
                   $('#email').val('');
                   $('#fname').val('');
                   $('#lname').val('');
@@ -90,10 +90,10 @@
                   $('#confirm_password').val('');
               }
               else if(jqXHR.status == 409){ // conflict
-                $('#feedback').html('<h3>Successfully Registered! Please <a href="/taft2GO/Login">Login</a> to continue</h3>');
+                $('#feedback').html('<h4>Successfully Registered! Please <a href="/taft2GO/Login">Login</a> to continue</h4>');
               }
               else{
-                $('#feedback').html('<h3>Error procesing request.</h3>');
+                $('#feedback').html('<h4>Error procesing request.</h4>');
               }
           }
 
