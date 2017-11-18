@@ -107,7 +107,7 @@
                     var capacity = parseInt(response._embedded[0].capacity);
                     var rules = response._embedded[0].rules;
                     var beds = parseInt(response._embedded[0].beds);
-                    var bathrooms = parseInt(response._embedded[0].bathrooms);
+                    var bathrooms = parseFloat(response._embedded[0].bathrooms);
                     var amenities = response._embedded[0].amenities;
                     var monthlyRate = parseFloat(response._embedded[0].monthlyRate);
                     var status = response._embedded[0].status;

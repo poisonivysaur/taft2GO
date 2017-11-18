@@ -18,7 +18,7 @@
           <a class="btn navbar-btn ml-2 btn-link baloo text-dark text-left ml-auto menu" href="listing-reservation.html">Reservations</a>
           <a class="btn navbar-btn ml-2 btn-link baloo text-dark ml-auto menu text-left" href="listing-requirements.html">Reservation Requirements</a>
           <a class="btn navbar-btn ml-2 btn-link baloo text-dark ml-auto menu text-left" href="listing-page.html">Listings Page</a>
-          <a class="btn btn-primary baloo" href="addlisting.html">Add New Listing
+          <a class="btn btn-primary baloo" href="/taft2GO/AddListing">Add New Listing
             <br> </a>
         </div>
             <?php endblock() ?>
@@ -30,7 +30,7 @@
             <div class="card-body">
               <p class="lead">You don't have any listings yet.</p>
               <p class="">Make money by renting out your extra space on taft2GO. You’ll also get to meet interesting people from around the country!</p>
-              <a href="addlisting.html" class="btn btn-outline-primary baloo">Post a new listing</a>
+              <a href="/taft2GO/AddListing" class="btn btn-outline-primary baloo">Post a new listing</a>
             </div>
           </div>
         </div>

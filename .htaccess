@@ -13,6 +13,10 @@ RewriteRule ^Session?$ session.php
 
 RewriteRule ^Listings?$ listing.php
 RewriteRule ^Listings/([0-9a-zA-Z]+)?$ room-page.php?objID=$1
+RewriteRule ^AddListings?$ addlisting.php
+
+
+
 RewriteRule ^Book?$ bookroom.php
 
 RewriteRule ^Stays?$ stays.php

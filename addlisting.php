@@ -1,126 +1,216 @@
-<!DOCTYPE html>
-<html>
+<?php include 'search-results.php' ?>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-  <link rel="stylesheet" href="style.css" type="text/css"> </head>
+<?php startblock('content') ?>
 
-<body>
-  <nav class="navbar navbar-expand-md navbar-dark bg-light m-0 style">
-    <div class="container">
-      <a class="navbar-brand m-0" href="#"></a>
-      <img src="T2G Logo.png" width="" height="50" class="d-inline-block align-top m-0" alt="">
-      <input class="form-control mr-sm-2 baloo" type="text" placeholder="Find the right place...">
-      <a href="search-results.html" class="btn btn-outline-primary baloo">Search</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-      <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
-        <ul class="navbar-nav"></ul>
-      </div>
-    </div>
-    <a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="addlisting.html">Host
-      <br> </a>
-    <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="stays.html">Stays</a>
-    <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="inbox.html">Messages</a>
-    <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="help.html">Help</a>
-    <img src="https://poorishaadi.com/user-icon-png-pnglogocom.png" width="" height="50" class="d-inline-block align-top m-0" alt=""> </nav>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-  </div>
-  <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 text-secondary">
-          <h1 class="text-dark">Hi, Olie! Let's get started listing your space.</h1>
-          <p class="text-secondary">STEP 1 </p>
-          <h4 class="text-info">Start with the basics.</h4>
-          <h6 class="text-muted">Beds, bathrooms, amenities and more</h6>
-          <p class="p-y-1 text-dark">Where is your place located?</p>
-          <input class="form-control  w-75" type="text" placeholder="Full address">
-          <br>
-          <p class="p-y-1 text-dark">Street Address</p>
-          <input class="form-control  w-75" type="text" placeholder="Full address">
-          <br>
-          <p class="p-y-1 text-dark">What type of property is this?</p>
-          <div class="btn-group w-50">
-            <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown"> Select One </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Condominium</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Dormitory</a>
+        <div id="changeable">
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+          </div>
+          <div class="py-5">
+            <div class="container">
+              <div class="row">
+                  <div class="col-md-6 text-secondary">
+
+                      <h1 id="greeting" class="text-dark"></h1>
+                      <p class="text-secondary">STEP 1 </p>
+                      <h4 class="text-info">Start with the basics.</h4>
+                      <h6 class="text-muted">Address, capacity, type of place.</h6>
+                      <p class="p-y-1 text-dark">Where is your place located?</p>
+                      <input class="form-control  w-75" type="text" id="address" placeholder="Full address">
+                      <br>
+                      <!--
+                      <p class="p-y-1 text-dark">Street Address</p>
+                      <input class="form-control  w-75" type="text" placeholder="Full address">-->
+                      <br>
+                      <p class="p-y-1 text-dark">What type of property is this?</p>
+                      <div class="btn-group w-50">
+                          <select id="type">
+                              <option value="condo" selected>Condominium</option>
+                              <option value="dorm">Dormitory</option>
+                              <!--<option value="apartment">Apartment</option>-->
+                              <!--<option value="transient">Transient</option>-->
+                          </select>
+                          <!--
+                          <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown"> Select One </button>
+                          <div class="dropdown-menu">
+                              <a class="dropdown-item" href="#">Condominium</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="#">Dormitory</a>
+                          </div>
+                          -->
+                      </div>
+                      <br><br>
+                      <p class="p-y-1 text-dark">Capacity:</p>
+                      <div class="btn-group w-50">
+                          <select id="capacity">
+                              <?php
+                                for($i = 1; $i < 16; $i++){
+                                    echo "<option value=\"{$i}\">for {$i} guest</option>";
+                                }
+                              ?>
+
+                          </select>
+                      </div>
+                  </div>
+
+
+                <div class="col-md-4">
+                  <div class="alert alert-success" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                    <h4>Your exact address will only be shared with confirmed guests.</h4>
+                  </div>
+                </div>
+
+
+              </div>
+
+                <br>
+
+              <div class="row">
+                <div class="col-md-3">
+                  <button class="btn btn-primary w-100" id="addlisting1" onclick="goNextTo2()">Continue </button>
+                </div>
+              </div>
+              <br>
             </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="alert alert-success" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-            <h4>Your exact address will only be shared with confirmed guests.</h4>
-          </div>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-md-3">
-          <a href="listing.html" class="btn btn-outline-primary w-100">Back</a>
-        </div>
-        <div class="col-md-3">
-          <a class="btn btn-primary w-100" href="addlisting2.html">Next </a>
-        </div>
-      </div>
-      <br> </div>
-    <div class="bg-dark text-white">
-      <div class="container">
-        <div class="row">
-          <div class="p-4 col-md-3">
-            <img src="T2GO Logo.png" width="" height="50" class="d-inline-block align-top m-0" alt="">
-            <p class="text-white">A website where you can find the right place for you to stay.</p>
-          </div>
-          <div class="p-4 col-md-3">
-            <h2 class="mb-4 baloo">Mapsite</h2>
-            <ul class="list-unstyled">
-              <a href="#" class="text-white">Home</a>
-              <br>
-              <a href="#" class="text-white">About us</a>
-              <br>
-              <a href="#" class="text-white">Our services</a>
-              <br>
-              <a href="#" class="text-white">Stories</a>
-            </ul>
-          </div>
-          <div class="p-4 col-md-3">
-            <h2 class="mb-4 baloo">Contact</h2>
-            <p>
-              <a href="tel:+246 - 542 550 5462" class="text-white"><i class="fa d-inline mr-3 text-secondary fa-phone"></i>+63 - 999 550 5462</a>
-            </p>
-            <p>
-              <a href="mailto:info@pingendo.com" class="text-white"><i class="fa d-inline mr-3 text-secondary fa-envelope-o"></i>info@taft2GO.com</a>
-            </p>
-            <p>
-              <a href="https://goo.gl/maps/AUq7b9W7yYJ2" class="text-white" target="_blank"><i class="fa d-inline mr-3 fa-map-marker text-secondary"></i>2401 Taft Ave., MNL</a>
-            </p>
-          </div>
-          <div class="p-4 col-md-3">
-            <h2 class="mb-4 text-light baloo">Subscribe</h2><i class="fa fa-fw fa-facebook fa-3x text-white"></i><i class="fa fa-fw fa-twitter fa-3x text-white"></i><i class="fa fa-fw fa-instagram text-white fa-3x"></i> </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 mt-3"> </div>
-        </div>
-      </div>
-    </div>
-    <div class="py-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <p class="text-center text-white">© Copyright 2017 Taft2GO - All rights reserved. </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-  </div>
-</body>
+            </div>
+        </div>  <!-- CHANGEABLE -->
 
-</html>
+
+
+    <script>
+        // variables to be inserted to listing collection later
+            var accountID = '<?php echo $_SESSION['objID']  ?>';
+            var title = '';
+            var description = '';
+            var address = '';
+            var aveRating = 0.0;
+            var monthlyRate = 0.0;
+
+            var type = '';
+            var photo = '';
+            var capacity = 0;
+            var rules = '';
+            var beds = 0;
+            var bathrooms = 0;
+            var amenities = '';
+            var status = '';
+
+
+          //$(document).ready(function(){
+
+              function getName(){
+                  $.ajax({  // get the first name of the user that is logged in
+                      type: "GET",
+                      url: "http://localhost:8080/taft2GO/account/?filter={'_id': {'$oid': '<?php echo $_SESSION['objID']  ?>'}}",
+                      dataType: "json",
+                      success: function(response){
+                          console.log(response);
+                          var fname = response._embedded[0].fname;
+
+                          $('#greeting').html("Hi, "+ fname +"! Let's get started listing your space.");
+
+                      },
+
+                      error: function(jqXHR, exception){
+                          console.log(jqXHR);
+                      }
+                  });
+              }
+
+                getName();
+
+          //});
+            function goNextTo2(){   // gets address and type
+                address = document.getElementById("address").value;
+                type = document.getElementById("type");
+                capacity = document.getElementById("capacity");
+                console.log(address);
+                console.log(type.options[type.selectedIndex].value);
+                console.log(capacity.options[type.selectedIndex].value);
+
+
+                 $.ajax({
+                     type: "POST",
+                     url: 'addlisting2.php',
+                     dataType: "html",
+                     success: function(result){
+                     $('#changeable').html(result);
+                     // $('#ajaxPostal').html(result);
+                     }
+                 });
+            }
+
+            function goBackTo1(){
+                $.ajax({
+                    type: "POST",
+                    url: 'addlisting1.php',
+                    dataType: "html",
+                    success: function(result){
+                        $('#changeable').html(result);
+                        // $('#ajaxPostal').html(result);
+                    }
+                });
+                getName();
+            }
+            function goNextTo3(){
+                beds = parseInt(document.getElementById("beds").value);
+                bathrooms = parseFloat(document.getElementById("bathrooms").value);
+                amenities = document.getElementById("amenities").value;
+                console.log("address: "+address);
+                console.log("type: " +type.options[type.selectedIndex].value);
+                console.log("capacity: "+capacity.options[type.selectedIndex].value);
+                console.log("beds: "+beds);
+                console.log("bathrooms: "+bathrooms);
+                console.log("amenitites: "+amenities);
+
+                $.ajax({
+                    type: "POST",
+                    url: 'addlisting3.php',
+                    dataType: "html",
+                    success: function(result){
+                        $('#changeable').html(result);
+                        // $('#ajaxPostal').html(result);
+                    }
+                });
+            }
+
+
+            function goBackTo2(){
+                $.ajax({
+                    type: "POST",
+                    url: 'addlisting2.php',
+                    dataType: "html",
+                    success: function(result){
+                        $('#changeable').html(result);
+                        // $('#ajaxPostal').html(result);
+                    }
+                });
+                getName();
+            }
+            function goNextTo4(){
+                title = document.getElementById("title").value;
+                description = document.getElementById("description").value;
+                rules = document.getElementById("rules").value;
+                console.log("address: "+address);
+                console.log("type: " +type.options[type.selectedIndex].value);
+                console.log("capacity: "+capacity.options[type.selectedIndex].value);
+                console.log("beds: "+beds);
+                console.log("bathrooms: "+bathrooms);
+                console.log("amenitites: "+amenities);
+                console.log("title: "+title);
+                console.log("description: "+description);
+                console.log("rules: "+rules);
+
+                $.ajax({
+                    type: "POST",
+                    url: 'addlisting4.php',
+                    dataType: "html",
+                    success: function(result){
+                        $('#changeable').html(result);
+                        // $('#ajaxPostal').html(result);
+                    }
+                });
+            }
+      </script>
+<?php  endblock() ?>
