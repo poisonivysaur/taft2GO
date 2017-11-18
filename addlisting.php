@@ -6,6 +6,7 @@
           <div class="progress">
             <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
           </div>
+            <div id="feedback"></div>
           <div class="py-5">
             <div class="container">
               <div class="row">
@@ -94,7 +95,7 @@
             var beds = 0;
             var bathrooms = 0;
             var amenities = '';
-            var status = '';
+            var status = 'available';
 
 
           //$(document).ready(function(){
@@ -212,5 +213,72 @@
                     }
                 });
             }
+
+            function goBackTo3(){
+                $.ajax({
+                    type: "POST",
+                    url: 'addlisting3.php',
+                    dataType: "html",
+                    success: function(result){
+                        $('#changeable').html(result);
+                        // $('#ajaxPostal').html(result);
+                    }
+                });
+                getName();
+            }
+
+            function finish() {
+                monthlyRate = parseFloat(document.getElementById("monthlyRate").value);
+                console.log("address: "+address);
+                console.log("type: " +type.options[type.selectedIndex].value);
+                console.log("capacity: "+capacity.options[type.selectedIndex].value);
+                console.log("beds: "+beds);
+                console.log("bathrooms: "+bathrooms);
+                console.log("amenitites: "+amenities);
+                console.log("title: "+title);
+                console.log("description: "+description);
+                console.log("rules: "+rules);
+                console.log("monthly rate: "+monthlyRate);
+
+                // POSTING TIME
+
+                var postData = '{"accountID":"'+ accountID + '"address:"'+ address + '"type:"'+ type + '"photo:"'+ photo +
+                    '"capacity:"'+ capacity + '"rules:"'+ rules + '"beds:"'+ beds + '"bathrooms:"'+ bathrooms +
+                    '"amenities:"'+ amenities + '"monthlyRate:"'+ monthlyRate + '"status:"'+ status + '"title:"'+ title +
+                    '"description:"'+ description + '"aveRating:"'+ aveRating + '"}';
+
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8080/taft2GO/listing",
+                    processData: false,
+                    contentType: "application/json",
+                    data: postData,
+                    complete: function(jqXHR, exception){
+                        console.log(jqXHR.status);
+                        console.log(jqXHR.responseText);
+
+                        if(jqXHR.status == 201){ // created
+                            $('#feedback').html('<div class="col-md-12">'
+                                    + '<div class="alert alert-success" role="alert">'
+                                    + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>'
+                                    + '<h4 class="alert-heading">New Listing Added! </h4>'
+                                    + '<p class="mb-0">ou can view your listings in the Listings tab of your account.</p>'
+                                    + '</div>'
+                                    + '</div>');
+                            $('#monthlyRate').val('');
+                        }
+                        else if(jqXHR.status == 409){ // conflict
+                            $('#feedback').html('<h4>Successfully Registered! Please <a href="/taft2GO/Login">Login</a> to continue</h4>');
+                        }
+                        else{
+                            $('#feedback').html('<h4>Error procesing request.</h4>');
+                        }
+                    }
+
+                });
+            }
+
       </script>
 <?php  endblock() ?>

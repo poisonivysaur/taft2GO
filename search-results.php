@@ -164,13 +164,17 @@
             dataType: "json",
             success: function(response){
 
-
                 const studentJsonArray = response._embedded;
+                console.log(studentJsonArray);
+                console.log(studentJsonArray.length);
                 var condos = '';
                 var dorms = '';
 
                 for(var i = 0; i < studentJsonArray.length; i++){
+                    console.log("looped");
+                    console.log(studentJsonArray[i].type);
                     if(studentJsonArray[i].type == 'condo'){
+                        console.log("added condo");
                         condos += '<div class="col-md-3">'
                                 + '<a href="room-page.php?listingID='+ studentJsonArray[i]._id.$oid +'">'
                                 //+ '<a href="/taft2GO/Listings/'+ studentJsonArray[i].objID +'">'
@@ -182,6 +186,7 @@
                                 + '</div>';
                     }
                     else if(studentJsonArray[i].type == 'dorm'){
+                        console.log("added dorm");
                         dorms += '<div class="col-md-3">'
                             + '<a href="room-page.php?listingID='+ studentJsonArray[i]._id.$oid +'">'
                             //+ '<a href="/taft2GO/Listings/'+ studentJsonArray[i].objID +'">'

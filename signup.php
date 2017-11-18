@@ -67,7 +67,7 @@
         var profilePic = "";
 
         var postData = '{"fname":"'+ fname + '"lname:"'+ lname + '"email:"'+ email + '"username:"'+ username + '"password:"'+ password +
-                        '"isActive:"'+ isActive + ', "isAdmin:"'+ isAdmin + ', "profilePic:"'+ profilePic + '"}';
+                        '"isActive:"'+ isActive + '"isAdmin:"'+ isAdmin + '"profilePic:"'+ profilePic + '"}';
         
         
         

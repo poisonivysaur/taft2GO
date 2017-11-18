@@ -29,11 +29,11 @@
           </div>
             <br>
             <p class="p-y-1 text-dark">Name your place</p>
-            <input id="title" class="form-control  w-75" type="text" placeholder="2">
+            <input id="title" class="form-control  w-75" type="text" placeholder="The Amazing Domicile">
             <br>
 
             <p class="p-y-1 text-dark">Edit your description</p>
-            <textarea id="description" rows="5" cols="50" placeholder="Smoking not allowed, suitable for pets,  events or parties allowed, etc."></textarea>
+            <textarea id="description" rows="5" cols="50" placeholder="Describe the decor light, what's nearby, etc."></textarea>
             <br>
 
             <p class="p-y-1 text-dark">Set your house rules</p>

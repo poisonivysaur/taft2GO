@@ -93,7 +93,7 @@ if (!isset($_SESSION['isLoggedIn']))
         <div class="col-md-12">
           <div class="alert alert-success" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
-            <h4 class="alert-heading">Welcom to taft2GO!</h4>
+            <h4 class="alert-heading">Welcome to taft2GO!</h4>
             <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
             <a class="btn btn-primary baloo" href="">Get started
               <br> </a>
