@@ -89,7 +89,7 @@
             var monthlyRate = 0.0;
 
             var type = '';
-            var photo = '';
+            var photo = 'https://d38dwrpoohadw1.cloudfront.net/public/preselling/project_1437462310_7978_3844.jpg'; // TO DO
             var capacity = 0;
             var rules = '';
             var beds = 0;
@@ -128,8 +128,9 @@
                 capacity = document.getElementById("capacity");
                 console.log(address);
                 console.log(type.options[type.selectedIndex].value);
-                console.log(capacity.options[type.selectedIndex].value);
-
+                console.log(capacity.options[capacity.selectedIndex].value);
+                type = type.options[type.selectedIndex].value;
+                capacity = capacity.options[capacity.selectedIndex].value;
 
                  $.ajax({
                      type: "POST",
@@ -159,8 +160,8 @@
                 bathrooms = parseFloat(document.getElementById("bathrooms").value);
                 amenities = document.getElementById("amenities").value;
                 console.log("address: "+address);
-                console.log("type: " +type.options[type.selectedIndex].value);
-                console.log("capacity: "+capacity.options[type.selectedIndex].value);
+                console.log("type: " +type);
+                console.log("capacity: "+capacity);
                 console.log("beds: "+beds);
                 console.log("bathrooms: "+bathrooms);
                 console.log("amenitites: "+amenities);
@@ -194,8 +195,8 @@
                 description = document.getElementById("description").value;
                 rules = document.getElementById("rules").value;
                 console.log("address: "+address);
-                console.log("type: " +type.options[type.selectedIndex].value);
-                console.log("capacity: "+capacity.options[type.selectedIndex].value);
+                console.log("type: " +type);
+                console.log("capacity: "+capacity);
                 console.log("beds: "+beds);
                 console.log("bathrooms: "+bathrooms);
                 console.log("amenitites: "+amenities);
@@ -230,8 +231,8 @@
             function finish() {
                 monthlyRate = parseFloat(document.getElementById("monthlyRate").value);
                 console.log("address: "+address);
-                console.log("type: " +type.options[type.selectedIndex].value);
-                console.log("capacity: "+capacity.options[type.selectedIndex].value);
+                console.log("type: " +type);
+                console.log("capacity: "+capacity);
                 console.log("beds: "+beds);
                 console.log("bathrooms: "+bathrooms);
                 console.log("amenitites: "+amenities);
