@@ -47,7 +47,7 @@
                                     <input type="date" class="form-control"> </div>
                                 <div class="form-group"> <label>People</label>
                                     <input type="number" class="form-control" placeholder="2"> </div>
-                                <a class="btn btn-primary baloo" href="bookroom.html">Request to Book</a>
+                                <a class="btn btn-primary baloo" href="/taft2GO/Book">Request to Book</a>
                             </form>
                         </div>
                         <h6 class="text-muted">You won't be charged yet.</h6>
@@ -57,9 +57,14 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <h1 class="baloo">Reviews</h1>
+                <h1 class="baloo" style="width: 500px; display: inline">Reviews</h1>
+                <!--<a class="btn btn-primary baloo" href="">Add Review</a>-->
+
             </div>
         </div>
+        <div id="disqus_thread"></div>
+
+        <!--
         <div class="row">
             <div class="col-md-12">
                 <h2 class="text-primary pt-3 baloo"><i class="fa fa-user fa-fw"></i>Person 1</h2>
@@ -72,6 +77,7 @@
                     irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
         </div>
+        -->
     </div>
     </div>
 
@@ -126,7 +132,27 @@
                     console.log(jqXHR.responseText);
                 }
             });
+            var disqus_config = function () {
+                this.page.url = "localhost/taft2GO/room-page.php?listingID=";  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = listingID; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://taft2go.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
         });
 
+
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+
     </script>
+    <script id="dsq-count-scr" src="//taft2go.disqus.com/count.js" async></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
 <?php endblock() ?>
