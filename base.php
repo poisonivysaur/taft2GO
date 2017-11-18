@@ -72,11 +72,11 @@
                           </div>
                       </div>";
 
-                echo '<a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="addlisting.php">Host
+                echo '<!--<a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="addlisting.php">Host-->
                       <br> </a>
                   <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="stays.php">Stays</a>
-                  <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="inbox.php">Messages</a>
-                  <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="help.php">Help</a>';
+                  <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Listings">Listings</a>
+                  <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Help">Help</a>';
             }
             ?>
 		</nav>

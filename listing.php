@@ -38,4 +38,26 @@
       </div>
     </div>
   </div>
+
+<script>
+    $(document).ready(function(){
+        console.log('<?php echo "objID: ".$_SESSION['objID'] ?>');
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/taft2GO/listing/?filter={'accountID': '<?php echo $_SESSION['objID'] ?>'}",
+            dataType: "json",
+            success: function(response){
+
+                const studentJsonArray = response._embedded;
+                console.log(studentJsonArray);
+                console.log(studentJsonArray.length);
+
+            },
+            error: function(jqXHR, exception){
+                console.log("Error");
+                console.log(jqXHR.responseText);
+            }
+        });
+    });
+</script>
 <?php endblock() ?>

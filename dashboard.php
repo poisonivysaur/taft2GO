@@ -13,6 +13,10 @@ if (!isset($_SESSION['isLoggedIn']))
   <link rel="stylesheet" href="style.css" type="text/css"> </head>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
 <body>
     <?php startblock('navbar') ?>
       <nav class="navbar navbar-expand-md navbar-dark bg-light m-0 style">
@@ -48,11 +52,11 @@ if (!isset($_SESSION['isLoggedIn']))
               </div>
           </div>
         <!--</a>-->
-          <a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="addlisting.html">Host
+          <!--<a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="addlisting.html">Host-->
               <br> </a>
           <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="stays.php">Stays</a>
-          <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="inbox.php">Messages</a>
-          <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="help.php">Help</a>
+          <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Listings">Listings</a>
+          <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Help">Help</a>
       </nav>
 
       <nav class="navbar navbar-expand-md bg-primary navbar-dark">
@@ -168,9 +172,7 @@ if (!isset($_SESSION['isLoggedIn']))
     </div>
   </div>
     <?php endblock() ?>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
