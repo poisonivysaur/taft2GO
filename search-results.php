@@ -172,7 +172,7 @@
                 for(var i = 0; i < studentJsonArray.length; i++){
                     if(studentJsonArray[i].type == 'condo'){
                         condos += '<div class="col-md-3">'
-                                + '<a href="room-page.php?objID='+ studentJsonArray[i].objID +'">'
+                                + '<a href="room-page.php?listingID='+ studentJsonArray[i]._id.$oid +'">'
                                 //+ '<a href="/taft2GO/Listings/'+ studentJsonArray[i].objID +'">'
                                 + '<img class="img-fluid d-block" src="'+ studentJsonArray[i].photo +'">'
                                 + '<p>'+ studentJsonArray[i].title +'</p>'
@@ -183,7 +183,8 @@
                     }
                     else if(studentJsonArray[i].type == 'dorm'){
                         dorms += '<div class="col-md-3">'
-                            + '<a href="room-page.php">'
+                            + '<a href="room-page.php?listingID='+ studentJsonArray[i]._id.$oid +'">'
+                            //+ '<a href="/taft2GO/Listings/'+ studentJsonArray[i].objID +'">'
                             + '<img class="img-fluid d-block" src="'+ studentJsonArray[i].photo +'">'
                             + '<p>'+ studentJsonArray[i].title +'</p>'
                             + '<p>Monthy Rate of Php'+ studentJsonArray[i].monthlyRate +'</p>'

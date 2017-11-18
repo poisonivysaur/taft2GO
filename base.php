@@ -27,8 +27,10 @@
             <a href="/taft2GO/Homepage">
 			<img src="T2G Logo.png" width="" height="50" class="d-inline-block align-top m-0" alt="">
             </a>
+
             <?php startblock('searchbar') ?>
             <?php endblock() ?>
+            <div style="width: 50px;"></div>
             <!--
             <div class="container" style="opacity: 0.2;">
 			  <a class="navbar-brand m-0" href="#"></a>

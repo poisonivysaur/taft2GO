@@ -6,11 +6,11 @@
 <?php endblock() ?>
 
 <?php startblock('content')?>
-    <div class="py-5 gradient-overlay" style="background-image: url(&quot;coverphoto.jpg&quot;);">
+    <div id="coverphoto" class="py-5 gradient-overlay" style="background-image: url(&quot;coverphoto.jpg&quot;);">
     <div class="container py-5">
         <div class="row">
             <div class="col-md-3 text-white">
-                <a class="btn btn-primary baloo" href="">View Photos</a>
+                <!--<a class="btn btn-primary baloo" href="">View Photos</a>-->
             </div>
             <div class="col-md-9 text-white align-self-center"></div>
         </div>
@@ -20,50 +20,22 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-md-6">
-                <h2 class="text-primary">Condo Unit at Green Residences Taft Avenue Malate</h2>
-                <p class="">My place is close to De La Salle University and other top universities in the City of (URL HIDDEN) is also very close to restaurants,malls,coffee shops,parks,LRT station and along the public transport. You’ll love my place because of its good
-                    (URL HIDDEN) place is good for big groups.
-                    <br>
-                    <br>
-                    <br>The space Unit 19-63 Room features:&nbsp;
-                    <br>1. Studio type 20.12 sq.mtr&nbsp;</p>
-                <div>2. Split type air-conditioning unit&nbsp;</div>
-                <div>3. Bunk bed with mattress&nbsp;</div>
-                <div>4. Sofa bed&nbsp;</div>
-                <div>5. Side table with drawer</div>
-                <div>6. Refrigerator&nbsp;</div>
-                <div>7. kitchen sink with buitl-in electric stove,overhead cabinets and rangehood&nbsp;</div>
-                <div>8.Dining table with 2 chairs&nbsp;</div>
-                <div>9. Wardrobe cabinet with hangers&nbsp;</div>
-                <div>10.Fast internet connection with telephone&nbsp;</div>
-                <div>11.Microwave oven&nbsp;</div>
-                <div>12.Rice cooker&nbsp;</div>
-                <div>13.Kitchen utensils&nbsp;</div>
-                <div>14.Toilet &amp; bath- shower with hot and cold water supply,towel holder,bidet pray&nbsp;
-                    <br>Kindly check the picture for your references.&nbsp;
-                    <br>
-                    <br>
-                    <div>Condominium basic features:&nbsp;</div>
-                    <div>1. 24-hour security Fire alarm and sprinkler system&nbsp;</div>
-                    <div>3.Conducive lobby area&nbsp;</div>
-                    <div>4.Dedicated electric and water meter for each unit&nbsp;</div>
-                    <div>5.Central garbage management ( located at the corrider )&nbsp;</div>
-                    <div>6.High speed elevators&nbsp;</div>
-                    <div>7.Swimming pool&nbsp;</div>
-                    <div>8.Gym&nbsp;</div>
-                    <div>9.Game room&nbsp;</div>
-                    <br>
-                    <div>Guest access Within walking distance:&nbsp;</div>
-                    <div>1. De La Salle University- Taft Campus&nbsp;</div>
-                    <div>2. Green Mall&nbsp;</div>
-                    <div>3. Savemore Supermarket&nbsp;</div>
-                    <div>4. Restaurants&nbsp;</div>
-                    <div>5. Coffee Shops&nbsp;</div>
-                    <div>6. LRT Quirino and Vito Cruz station&nbsp;
-                        <br>
-                        <br>Interaction with guests Guests may contact the host 24/7 via email.Host representative may be reached thru mobile number upon confirmation of booking. &nbsp;&nbsp;</div>
-                </div>
+                <h2 id="title" class="text-primary"></h2>
+                <p id="description" class=""></p>
+                <p id="aveRating"></p><br>
+                <p id="type"></p>
+                <p id="capacity"></p>
+                <p id="rules"></p>
+                <p id="beds"></p>
+                <p id="bathrooms"></p>
+                <p id="monthlyRate"></p>
+                <p id="amenities"></p>
+
+
+
+
             </div>
+
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header bg-primary text-white"> From&nbsp;₱1,185 per night&nbsp;</div>
@@ -104,4 +76,57 @@
         </div>
     </div>
     </div>
+
+    <script>
+        function getURLParameter(name) {
+            return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+        }
+
+
+
+        $(document).ready(function(){
+            var listingID = getURLParameter('listingID');
+            console.log(listingID);
+
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:8080/taft2GO/listing/?filter={'_id': {'$oid': '" + listingID +"'}}",
+                dataType: "json",
+                success: function(response){
+                    // get the object in listing
+                    console.log(response._embedded);
+                    var title = response._embedded[0].title;
+                    var description = response._embedded[0].description;
+                    var address = response._embedded[0].address;
+                    var type = response._embedded[0].type;
+                    var photo = response._embedded[0].photo;
+                    var capacity = parseInt(response._embedded[0].capacity);
+                    var rules = response._embedded[0].rules;
+                    var beds = parseInt(response._embedded[0].beds);
+                    var bathrooms = parseInt(response._embedded[0].bathrooms);
+                    var amenities = response._embedded[0].amenities;
+                    var monthlyRate = parseFloat(response._embedded[0].monthlyRate);
+                    var status = response._embedded[0].status;
+                    var aveRating = response._embedded[0].aveRating;
+
+
+                    $('#title').html(title);
+                    $('#description').html(description);
+                    $('#type').html('Listing Type: '+type);
+                    $('#capacity').html('Capacity: '+capacity);
+                    $('#rules').html('House Rules: <br>'+rules);
+                    $('#beds').html('No. of beds: '+beds);
+                    $('#bathrooms').html('No. of bathrooms: '+bathrooms);
+                    $('#aveRating').html('Rating: '+aveRating);
+                    $('#amenities').html('Amenities: <br>'+amenities);
+                    $('#coverphoto').css("background-image","url("+ photo +")");
+                },
+                error: function(jqXHR, exception){
+                    console.log("Error");
+                    console.log(jqXHR.responseText);
+                }
+            });
+        });
+
+    </script>
 <?php endblock() ?>
