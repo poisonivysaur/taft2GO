@@ -61,17 +61,23 @@ if (!isset($_SESSION['isLoggedIn']))
           <a href="login.html">
             <ul class="navbar-nav"></ul>
           </a>
-          <a class="btn navbar-btn ml-2 btn-link baloo text-secondary">Dashboard
-            <br> </a>
-          <a class="btn navbar-btn ml-2 text-white btn-link baloo" href="inbox.php">Inbox
-            <br> </a>
-          <a class="btn navbar-btn ml-2 btn-link baloo text-white" href="listing.php">Listings
-            <br> </a>
-          <a class="btn navbar-btn ml-2 text-white btn-link baloo" href="stays.php">Stays
-            <br> </a>
-          <a class="btn navbar-btn ml-2 text-white btn-link baloo" href="profile.php">Profile
-            <br> </a>
-          <a class="btn navbar-btn ml-2 text-white btn-link baloo" href="account.php">Account </a>
+            <?php startblock('dashboardlink') ?>
+          <a class="btn navbar-btn ml-2 btn-link baloo text-secondary" href="/taft2GO/Dashboard">Dashboard
+            <br> </a><?php endblock() ?>
+          <!--<a class="btn navbar-btn ml-2 text-white btn-link baloo" href="inbox.php">Inbox
+            <br> </a>-->
+            <?php startblock('listingslink') ?>
+          <a class="btn navbar-btn ml-2 btn-link baloo text-white" href="/taft2GO/Listings">Listings
+            <br> </a><?php endblock() ?>
+            <?php startblock('stayslink') ?>
+          <a class="btn navbar-btn ml-2 text-white btn-link baloo" href="/taft2GO/Stays">Stays
+            <br> </a><?php endblock() ?>
+            <?php startblock('profilelink') ?>
+          <a class="btn navbar-btn ml-2 text-white btn-link baloo" href="/taft2GO/Profile">Profile
+            <br> </a><?php endblock() ?>
+            <?php startblock('accountlink') ?>
+          <a class="btn navbar-btn ml-2 text-white btn-link baloo" href="/taft2GO/Account">Account </a>
+            <?php endblock() ?>
         </div>
         <div class="container">
           <a class="navbar-brand" href="#"></a>
