@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php include 'base.php' ?>
+<?php include 'search-results.php' ?>
 
 <?php startblock('content') ?>
     <div class="py-5 text-white opaque-overlay w-100 h-100" style="background-image: url(&quot;homepage bg.jpg&quot;);">

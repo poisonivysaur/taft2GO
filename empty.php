@@ -50,3 +50,19 @@ email: <input type="email" id="email" name="email" value="Mouse"><br>
 </script>
 </body>
 </html>
+
+
+db.listing.insertOne( {
+        objID: "5a0f02887eeafaba61cff980",
+        address:"Manila Residences Tower II, Taft Avenue, Manila, Philippines",
+        type:"condo",
+        photo:"https://d38dwrpoohadw1.cloudfront.net/public/preselling/project_1437462310_7978_3844.jpg",
+        capacity: 4,
+        rules: "no smoking",
+        beds: 4,
+        bathroom: 2,
+        amenities:"swimming pool, gym",
+        monthlyRate: 12000,
+        status: "available",
+        description: "amazing"
+});

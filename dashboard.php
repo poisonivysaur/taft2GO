@@ -30,7 +30,7 @@ if (!isset($_SESSION['isLoggedIn']))
         <!--<a href="login.html">-->
           <div class="w3-dropdown-hover">
           <img src="https://poorishaadi.com/user-icon-png-pnglogocom.png" width="" height="50"
-               class="d-inline-block align-top m-0" class=""alt="">
+               class="d-inline-block align-top m-0" alt="">
               <div class="w3-dropdown-content w3-card-4">
                   <!--<img src="img_london.jpg" alt="London" style="width:100%">-->
                   <div class="w3-container">

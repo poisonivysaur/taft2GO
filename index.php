@@ -18,7 +18,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <a class="btn btn-primary baloo" href="search-results.html">Search</a>
+          <a class="btn btn-primary baloo" href="/taft2GO/Search">Search</a>
           <h1 class="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</h1>
           <h1 class="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</h1>
         </div>

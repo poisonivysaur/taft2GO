@@ -9,7 +9,7 @@
         <?php startblock('imports') ?>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
             <link rel="stylesheet" href="style.css" type="text/css">
-
+            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
             <link rel="import" href="bower_components/polymer/polymer-element.html">
             <link rel="import" href="bower_components/iron-ajax/iron-ajax.html">
             <link rel="import" href="bower_components/paper-button/paper-button.html">
@@ -20,23 +20,72 @@
 <body>
 	<?php startblock('navbar') ?>
 		<nav class="navbar navbar-expand-md navbar-dark m-0 style transparent">
+            <a href="/taft2GO/Homepage">
 			<img src="T2G Logo.png" width="" height="50" class="d-inline-block align-top m-0" alt="">
-			<div class="container" style="opacity: 0.2;">
+            </a>
+            <?php startblock('searchbar') ?>
+            <?php endblock() ?>
+
+            <div class="container" style="opacity: 0.2;">
 			  <a class="navbar-brand m-0" href="#"></a>
 			  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
 			  <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
 			    <ul class="navbar-nav"></ul>
 			  </div>
 			</div>
-			<a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="/taft2GO/Host">Become a Host</a>
-			<a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="/taft2GO/Help">Help
-			  <br> </a>
-			<a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Signup">Sign Up</a>
-			<a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Login">Log In</a>
+
+            <?php
+            session_start();
+            if (!isset($_SESSION['isLoggedIn'])){
+                echo '<a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="/taft2GO/Host">Become a Host</a>
+                    <a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="/taft2GO/Help">Help
+                        <br> </a>
+                    <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Signup">Sign Up</a>
+                    <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Login">Log In</a>';
+            }
+
+            else{
+
+                echo "<div class=\"w3-dropdown-hover\">
+                      <img src=\"https://poorishaadi.com/user-icon-png-pnglogocom.png\" width=\"\" height=\"50\"
+                           class=\"d-inline-block align-top m-0\" alt=\"\">
+                          <div class=\"w3-dropdown-content w3-card-4\">
+                              <!--<img src=\"img_london.jpg\" alt=\"London\" style=\"width:100%\">-->
+                              <div class=\"w3-container\">
+                                  <p></p>
+                                  <p>{$_SESSION['fname']} {$_SESSION['lname']}</p>
+                                  <a href=\"#\" class=\"w3-bar-item w3-button\">Profile</a>
+                                  <a href=\"/taft2GO/Logout\" class=\"w3-bar-item w3-button\">Logout</a>
+                              </div>
+                          </div>
+                          <div class=\"w3-dropdown-content w3-bar-block w3-border\">
+                                <!--
+                              <a href=\"#\" class=\"w3-bar-item w3-button\">Profile</a>
+                              <a href=\"/taft2GO/Logout\" class=\"w3-bar-item w3-button\">Logout</a>
+                              <!--<a href=\"#\" class=\"w3-bar-item w3-button\">Link 3</a>-->
+                          </div>
+                      </div>";
+
+                echo '<a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="addlisting.php">Host
+                      <br> </a>
+                  <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="stays.php">Stays</a>
+                  <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="inbox.php">Messages</a>
+                  <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="help.php">Help</a>';
+            }
+            ?>
 		</nav>
+
+        <?php startblock('navbar2') ?>
+        <?php endblock() ?>
 	<?php endblock() ?>
 
 	<?php startblock('content') ?>
+        <?php startblock('sidemenu') ?>
+        <?php endblock() ?>
+
+        <?php startblock('menucontent') ?>
+        <?php endblock() ?>
+
 	<?php endblock() ?>
 
 	<?php startblock('footer') ?>
