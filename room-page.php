@@ -25,20 +25,18 @@
                 <p id="aveRating"></p><br>
                 <p id="type"></p>
                 <p id="capacity"></p>
+                <p id="monthlyRate"></p>
                 <p id="rules"></p>
                 <p id="beds"></p>
                 <p id="bathrooms"></p>
                 <p id="monthlyRate"></p>
                 <p id="amenities"></p>
 
-
-
-
             </div>
 
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header bg-primary text-white"> From&nbsp;₱1,185 per night&nbsp;</div>
+                    <div id="dailyRate" class="card-header bg-primary text-white"> From&nbsp;₱1,185 per night&nbsp;</div>
                     <div class="card-body">
                         <div class="card-body p-5">
                             <h3 class="pb-3">Make a reservation</h3>
@@ -114,12 +112,14 @@
                     $('#description').html(description);
                     $('#type').html('Listing Type: '+type);
                     $('#capacity').html('Capacity: '+capacity);
+                    $('#monthlyRate').html('Monthly Rate: '+monthlyRate);
                     $('#rules').html('House Rules: <br>'+rules);
                     $('#beds').html('No. of beds: '+beds);
                     $('#bathrooms').html('No. of bathrooms: '+bathrooms);
                     $('#aveRating').html('Rating: '+aveRating);
                     $('#amenities').html('Amenities: <br>'+amenities);
                     $('#coverphoto').css("background-image","url("+ photo +")");
+                    $('#dailyRate').html('From '+(monthlyRate/30)+' per night');
                 },
                 error: function(jqXHR, exception){
                     console.log("Error");
