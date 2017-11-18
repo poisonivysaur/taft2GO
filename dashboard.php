@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <?php require_once 'ti.php' ?>
+<?php
+session_start();
+if (!isset($_SESSION['isLoggedIn']))
+    header("Location: http://".$_SERVER['HTTP_HOST'].  "/Login");
+?>
 <html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="style.css" type="text/css"> </head>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <body>
     <?php startblock('navbar') ?>
@@ -20,14 +26,33 @@
             <ul class="navbar-nav"></ul>
           </div>
         </div>
-        <a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="addlisting.html">Host
-          <br> </a>
-        <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="stays.php">Stays</a>
-        <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="inbox.php">Messages</a>
-        <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="help.php">Help</a>
-        <a href="login.html">
-          <img src="https://poorishaadi.com/user-icon-png-pnglogocom.png" width="" height="50" class="d-inline-block align-top m-0" alt="">
-        </a>
+
+        <!--<a href="login.html">-->
+          <div class="w3-dropdown-hover">
+          <img src="https://poorishaadi.com/user-icon-png-pnglogocom.png" width="" height="50"
+               class="d-inline-block align-top m-0" class=""alt="">
+              <div class="w3-dropdown-content w3-card-4">
+                  <!--<img src="img_london.jpg" alt="London" style="width:100%">-->
+                  <div class="w3-container">
+                      <p></p>
+                      <p><?php echo " ". $_SESSION['fname'] ." ". $_SESSION['lname'];?></p>
+                      <a href="#" class="w3-bar-item w3-button">Profile</a>
+                      <a href="/taft2GO/Logout" class="w3-bar-item w3-button">Logout</a>
+                  </div>
+              </div>
+              <div class="w3-dropdown-content w3-bar-block w3-border">
+                    <!--
+                  <a href="#" class="w3-bar-item w3-button">Profile</a>
+                  <a href="/taft2GO/Logout" class="w3-bar-item w3-button">Logout</a>
+                  <!--<a href="#" class="w3-bar-item w3-button">Link 3</a>-->
+              </div>
+          </div>
+        <!--</a>-->
+          <a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="addlisting.html">Host
+              <br> </a>
+          <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="stays.php">Stays</a>
+          <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="inbox.php">Messages</a>
+          <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="help.php">Help</a>
       </nav>
 
       <nav class="navbar navbar-expand-md bg-primary navbar-dark">

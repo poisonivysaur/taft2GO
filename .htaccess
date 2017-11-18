@@ -1,6 +1,7 @@
 RewriteEngine On
 
 RewriteRule ^Login?$ login.php
+RewriteRule ^Logout?$ logout.php
 RewriteRule ^Signup?$ signup.php
 RewriteRule ^Help?$ help.php
 RewriteRule ^Host?$ why-host.php
