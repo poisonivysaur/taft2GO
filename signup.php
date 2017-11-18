@@ -1,5 +1,4 @@
 <?php include 'base.php' ?>
-<?php header('Access-Control-Allow-Origin: *'); ?>
 
 <?php startblock('content') ?>
 
