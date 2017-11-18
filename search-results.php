@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php include 'base.php' ?>
 <html>
 
 <head>

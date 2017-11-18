@@ -66,8 +66,8 @@
         var isAdmin = 0;
         var profilePic = "";
 
-        var postData = '{"fname":"'+ fname + ', "lname:"'+ lname + ', "email:"'+ email + ', "username:"'+ username + ', "password:"'+ password + 
-                        ', "isActive:"'+ isActive + ', "isAdmin:"'+ isAdmin + ', "profilePic:"'+ profilePic + '"}';
+        var postData = '{"fname":"'+ fname + '"lname:"'+ lname + '"email:"'+ email + '"username:"'+ username + '"password:"'+ password +
+                        '"isActive:"'+ isActive + ', "isAdmin:"'+ isAdmin + ', "profilePic:"'+ profilePic + '"}';
         
         
         
