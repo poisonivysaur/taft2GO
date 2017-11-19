@@ -14,7 +14,7 @@
         <br> </button>
       <button class="btn navbar-btn ml-2 text-white btn-link baloo">&gt;
         <br> </button>
-      <button class="btn navbar-btn ml-2 text-white btn-link baloo" onclick="goToBooking3()">3. Confirm &amp; Pay
+      <button class="btn navbar-btn ml-2 text-white btn-link baloo" onclick="goToBooking3()">3. Request Reservation
         <br> </button>
     </div>
     <div class="container">
@@ -232,6 +232,9 @@
         $('#numPersons').html(numPersons+' guest(s)');
     }
 
+    function goToBooking3() {
+        console.log('booking 3');
+    }
 
 </script>
 

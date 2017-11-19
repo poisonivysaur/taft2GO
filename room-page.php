@@ -22,6 +22,8 @@
         <div class="row mb-5">
             <div class="col-md-6">
                 <h2 id="title" class="text-primary"></h2>
+                <div id="host"></div>
+
                 <p id="description" class=""></p>
                 <p id="aveRating"></p><br>
                 <p id="type"></p>
@@ -98,7 +100,9 @@
         $(document).ready(function(){
 
             console.log(listingID);
-
+            var accountID;
+            var hostfname;
+            var profPic;
             var monthlyRate = 0;
             $.ajax({
                 type: "GET",
@@ -120,7 +124,7 @@
                     monthlyRate = parseFloat(response._embedded[0].monthlyRate);
                     var status = response._embedded[0].status;
                     var aveRating = response._embedded[0].aveRating;
-
+                    accountID = response._embedded[0].accountID;
 
                     $('#title').html(title);
                     $('#description').html(description);
@@ -141,6 +145,25 @@
                     }
                     numOfPeople += '</select>';
                     $('#numOfPeople').html(numOfPeople);
+                    
+                    (function () {
+                        $.ajax({
+                            type: "GET",
+                            url: "http://localhost:8080/taft2GO/account/?filter={'_id': {'$oid': '" + accountID +"'}}",
+                            dataType: "json",
+                            success: function(response){
+                                console.log(response._embedded);
+                                hostfname = response._embedded[0].fname;
+                                profPic = 'https://cdn1.iconfinder.com/data/icons/mix-color-4/502/Untitled-1-512.png';
+                                sessionStorage.setItem('hostfname', hostfname);
+                                $('#host').html('<img width="50" src="'+profPic+'"><br><p>Hosted by '+hostfname+'</p>');
+                            },
+                            error: function(jqXHR, exception){
+                                console.log("Error");
+                                console.log(jqXHR.responseText);
+                            }
+                        });
+                    })();
                 },
                 error: function(jqXHR, exception){
                     console.log("Error");
@@ -148,7 +171,10 @@
                 }
             });
 
+            // get the host first name and photo
 
+
+            
             $('#checkin').on("input change", function (e) {
                 console.log("Date changed: ", e.target.value);
                 checkin = e.target.value;
@@ -208,6 +234,7 @@
         });
 
         function setSession() {
+
             console.log('in set session');
             sessionStorage.setItem('listingID', listingID);
             sessionStorage.setItem('checkin', checkin);
@@ -219,7 +246,21 @@
             var url = window.location.href;
             url = url.substr(0, url.indexOf('O')+1);
             console.log(url);
-            window.location.href = url + '/Booking';
+
+            var isLoggedIn = <?php if(isset($_SESSION['isLoggedIn'])) echo 'true'; else echo 'false';?>;
+            console.log(isLoggedIn);
+
+            if(isLoggedIn == true){
+                window.location.href = url + '/Booking';
+
+            }
+            else{
+                var roompageURL = window.location.href;
+                roompageURL = roompageURL.substr(roompageURL.indexOf('O')+1)
+                console.log(roompageURL);
+                sessionStorage.setItem('roompage', roompageURL);
+                window.location.href = url + '/Login';
+            }
         }
 
     </script>

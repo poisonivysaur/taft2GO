@@ -11,7 +11,7 @@
         $_SESSION['fname'] = $_POST['fname'];
         $_SESSION['lname'] = $_POST['lname'];
 
-        header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF'])."/Dashboard");
+        header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF']).$_POST['roompage']);
     }
 
 ?>
@@ -42,6 +42,7 @@
                 <input type="hidden" value="" name="objID" id="objID">
                 <input type="hidden" value="" name="fname" id="fname">
                 <input type="hidden" value="" name="lname" id="lname">
+                <input type="hidden" value="/Dashboard" name="roompage" id="roompage">
 
             </form>
             <button class="btn btn-primary baloo" onclick="login(email.value, password.value)">Log in</button>
@@ -57,6 +58,16 @@
       </div>
     </div>
 <script>
+
+    $(document).ready(function(){
+        var roomURL = sessionStorage.getItem('roompage');
+        if(roomURL !== null){
+            console.log('session roompage is not null yay');
+            console.log('ROOM URL '+roomURL);
+            $('input[name="roompage"]').val(roomURL);
+
+        }
+    });
     function login(email, pw) {
         $.ajax({
             type: "GET",

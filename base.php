@@ -61,7 +61,7 @@
                                   <p></p>
                                   <p>{$_SESSION['fname']} {$_SESSION['lname']}</p>
                                   <a href=\"#\" class=\"w3-bar-item w3-button\">Profile</a>
-                                  <a href=\"/taft2GO/Logout\" class=\"w3-bar-item w3-button\">Logout</a>
+                                  <button onclick='clearSession()' class=\"w3-bar-item w3-button\">Logout</button>
                               </div>
                           </div>
                           <div class=\"w3-dropdown-content w3-bar-block w3-border\">
@@ -139,7 +139,17 @@
 	<?php endblock() ?>
 
   
-  
+    <script>
+        function clearSession() {
+            sessionStorage.clear();
+            console.log('cleared session storage');
+            var url = window.location.href;
+            url = url.substr(0, url.indexOf('O')+1);    // domain/taft2GO/
+            console.log(url);
+            window.location.href = url + '/Logout';
+        }
+
+    </script>
 
 </body>
 </html>

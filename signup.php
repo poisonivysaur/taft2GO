@@ -69,7 +69,7 @@
         var username = "";
         var isActive = 1;
         var isAdmin = 0;
-        var profilePic = "";
+        var profilePic = "https://cdn1.iconfinder.com/data/icons/mix-color-4/502/Untitled-1-512.png"; // TO DO
 
         var postData = '{"fname":"'+ fname + '"lname:"'+ lname + '"email:"'+ email + '"username:"'+ username + '"password:"'+ password +
                         '"isActive:"'+ isActive + '"isAdmin:"'+ isAdmin + '"profilePic:"'+ profilePic + '"}';
