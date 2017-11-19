@@ -94,6 +94,7 @@
         var checkin = '';
         var checkout = '';
         var days = 0;
+        var total = '';
         $(document).ready(function(){
 
             console.log(listingID);
@@ -156,7 +157,8 @@
                 if(checkin != '' && checkout != '') {
                     console.log('yay not empty for both');
                     showDays(checkout, checkin);
-                    $('#total').html('<h4><b>Total: ₱'+ (monthlyRate/30*days).toFixed(2)+ '</b></h4> <p>('+ (monthlyRate/30).toFixed(2) +' x '+ days +' days) </p>');
+                    total = '<h4><b>Total: ₱'+ (monthlyRate/30*days).toFixed(2)+ '</b></h4> <p>('+ (monthlyRate/30).toFixed(2) +' x '+ days +' days) </p>';
+                    $('#total').html(total);
                 }
 
             });
@@ -168,7 +170,8 @@
                 if(checkin != '' && checkout != '') {
                     console.log('yay not empty for both');
                     showDays(checkout, checkin);
-                    $('#total').html('<h4><b>Total: ₱'+ (monthlyRate/30*days).toFixed(2)+ '</b></h4> <p>('+ (monthlyRate/30).toFixed(2) +' x '+ days +' days) </p>');
+                    total = '<h4><b>Total: ₱'+ (monthlyRate/30*days).toFixed(2)+ '</b></h4> <p>('+ (monthlyRate/30).toFixed(2) +' x '+ days +' days) </p>';
+                    $('#total').html(total);
                 }
             });
             function showDays(firstDate,secondDate){
@@ -212,6 +215,7 @@
             var numPersons = document.getElementById("numPersons");
             numPersons = numPersons.options[numPersons.selectedIndex].value;
             sessionStorage.setItem('numPersons', numPersons);
+            sessionStorage.setItem('total', total);
             var url = window.location.href;
             url = url.substr(0, url.indexOf('O')+1);
             console.log(url);

@@ -3,26 +3,26 @@
 <?php startblock('content') ?>
 
 
-
 <nav class="navbar navbar-expand-md bg-primary navbar-dark">
     <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
-      <ul class="navbar-nav"></ul>
-      <a class="btn navbar-btn ml-2 btn-link baloo text-white">1. Review house rules
-        <br> </a>
-      <a class="btn navbar-btn ml-2 text-white btn-link baloo" href="inbox.html">&gt;
-        <br> </a>
-      <a class="btn navbar-btn ml-2 btn-link text-white baloo" href="bookroom2.php">2. Who's coming?
-        <br> </a>
-      <a class="btn navbar-btn ml-2 text-white btn-link baloo" href="stays.html">&gt;
-        <br> </a>
-      <a class="btn navbar-btn ml-2 text-white btn-link baloo" href="bookroom3.php">3. Confirm &amp; Pay
-        <br> </a>
+      <!--<ul class="navbar-nav"></ul>-->
+      <button class="btn navbar-btn ml-2 btn-link baloo text-white" onclick="goBackToBooking1()">1. Review house rules
+        <br> </button>
+      <button class="btn navbar-btn ml-2 text-white btn-link baloo">&gt;
+        <br> </button>
+      <button class="btn navbar-btn ml-2 btn-link text-white baloo" onclick="goToBooking2()">2. Who's coming?
+        <br> </button>
+      <button class="btn navbar-btn ml-2 text-white btn-link baloo">&gt;
+        <br> </button>
+      <button class="btn navbar-btn ml-2 text-white btn-link baloo" onclick="goToBooking3()">3. Confirm &amp; Pay
+        <br> </button>
     </div>
     <div class="container">
       <a class="navbar-brand" href="#"></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
     </div>
   </nav>
+<div id="changeable">
   <div class="py-5">
     <div class="container">
       <div class="row">
@@ -36,6 +36,11 @@
             </div>
           </div>
           <h1 class="baloo"> Review house rules </h1>
+            <p id="rules"></p><hr>
+            <p id="amenities"></p><hr>
+            <p id="beds"></p><hr>
+            <p id="bathrooms"></p><hr>
+        <!--
           <ul class="list-group">
             <li class="list-group-item">Not suitable for pets</li>
             <li class="list-group-item">No parties or events</li>
@@ -43,6 +48,7 @@
             <li class="list-group-item">Check in time is 3PM - 10PM</li>
             <li class="list-group-item">Check out by 11AM</li>
           </ul>
+
           <p class="lead">Additional rules:</p>
           <ul class="">
             <li>Check Out 11:00</li>
@@ -61,21 +67,28 @@
             <li class="list-group-item">Respect your host’s place - you may be staying in their home!</li>
             <li class="list-group-item">Stay in touch with your host before and during your stay.</li>
           </ul>
+        -->
           <br>
-          <a class="btn btn-primary baloo w-50" href="bookroom2.php">Agree and Continue
-            <br> </a>
+          <button class="btn btn-primary baloo w-50" onclick="goToBooking2()">Agree and Continue
+            <br> </button>
         </div>
         <div class="col-md-5">
           <div class="card">
-            <div class="card-header">9 nights in Green Residences Taft
-              <br> </div>
+            <div id="title" class="card-header"><br> </div>
+
             <div class="card-body">
-              <h4>Condo Unit 19-63</h4>
-              <h6 class="text-muted">2 guests</h6>
-              <p class=" p-y-1">November 3, 2017 - Novermber 11, 2017</p>
+                <img id="photo" class="img-fluid d-block" src="">
+                <h4 id="type"></h4>
+                <h6 id="aveRating"></h6>
+                <hr>
+              <h6 id="numPersons" class="text-muted"></h6>
+              <p id="duration" class=" p-y-1"></p>
+                <hr>
+                <p id="total" class=" p-y-1"></p>
             </div>
           </div>
           <br>
+            <!--
           <table class="table">
             <tbody>
               <tr>
@@ -102,11 +115,12 @@
               </tr>
             </tbody>
           </table>
+            -->
         </div>
       </div>
     </div>
   </div>
-
+</div><!-- END OF CHANGEABLE -->
 
 <script>
     $(document).ready(function(){
@@ -116,6 +130,10 @@
         console.log('session listingID: ' + sessionStorage.getItem('listingID'));
 
         var listingID = sessionStorage.getItem('listingID');
+        var checkin = sessionStorage.getItem('checkin');
+        var checkout = sessionStorage.getItem('checkout');
+        var numPersons = sessionStorage.getItem('numPersons');
+        var total = sessionStorage.getItem('total');
 
         $.ajax({
             type: "GET",
@@ -123,6 +141,28 @@
             dataType: "json",
             success: function(response){
                 console.log(response);
+                var title = response._embedded[0].title;
+                var type = response._embedded[0].type;
+                var aveRating = response._embedded[0].aveRating;
+                var photo = response._embedded[0].photo;
+                var rules = response._embedded[0].rules;
+                var beds = parseInt(response._embedded[0].beds);
+                var bathrooms = parseFloat(response._embedded[0].bathrooms);
+                var amenities = response._embedded[0].amenities;
+
+                $('#title').html(title);
+                if(type == 'condo') type = 'Condominium';
+                else if(type == 'dorm') type = 'Dormitory';
+                $('#type').html(type + ' Unit');
+                $('#aveRating').html('User Rating: '+aveRating);
+                $('#photo').attr('src',photo);
+                $('#numPersons').html(numPersons+' guest(s)');
+                $('#duration').html('From <b>'+checkin + "</b> to <br><b>"+ checkout+"</b>");
+                $('#total').html(total);
+                $('#rules').html('House Rules: <br>'+rules);
+                $('#beds').html('No. of beds: '+beds);
+                $('#bathrooms').html('No. of bathrooms: '+bathrooms);
+                $('#amenities').html('Amenities: <br>'+amenities);
             },
             error: function(jqXHR, exception){
                 console.log("Error");
@@ -130,6 +170,33 @@
             }
         });
     });
+
+    function goToBooking1(){
+        $.ajax({
+            type: "POST",
+            url: 'bookroom1.php',
+            dataType: "html",
+            success: function(result){
+                $('#changeable').html(result);
+                // $('#ajaxPostal').html(result);
+            }
+        });
+    }
+
+    function goToBooking2() {
+        console.log('booking 2');
+        $.ajax({
+            type: "POST",
+            url: 'bookroom2.php',
+            dataType: "html",
+            success: function(result){
+                $('#changeable').html(result);
+                // $('#ajaxPostal').html(result);
+            }
+        });
+    }
+
+
 </script>
 
 <?php endblock() ?>
