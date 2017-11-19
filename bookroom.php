@@ -6,7 +6,7 @@
 <nav class="navbar navbar-expand-md bg-primary navbar-dark">
     <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
       <!--<ul class="navbar-nav"></ul>-->
-      <button class="btn navbar-btn ml-2 btn-link baloo text-white" onclick="goBackToBooking1()">1. Review house rules
+      <button class="btn navbar-btn ml-2 btn-link baloo text-white" onclick="goToBooking1()">1. Review house rules
         <br> </button>
       <button class="btn navbar-btn ml-2 text-white btn-link baloo">&gt;
         <br> </button>
@@ -22,7 +22,7 @@
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
     </div>
   </nav>
-<div id="changeable">
+
   <div class="py-5">
     <div class="container">
       <div class="row">
@@ -35,42 +35,45 @@
               </div>
             </div>
           </div>
-          <h1 class="baloo"> Review house rules </h1>
-            <p id="rules"></p><hr>
-            <p id="amenities"></p><hr>
-            <p id="beds"></p><hr>
-            <p id="bathrooms"></p><hr>
-        <!--
-          <ul class="list-group">
-            <li class="list-group-item">Not suitable for pets</li>
-            <li class="list-group-item">No parties or events</li>
-            <li class="list-group-item">Not safe or suitable for children (0-12 years)</li>
-            <li class="list-group-item">Check in time is 3PM - 10PM</li>
-            <li class="list-group-item">Check out by 11AM</li>
-          </ul>
+            <div id="changeable">
 
-          <p class="lead">Additional rules:</p>
-          <ul class="">
-            <li>Check Out 11:00</li>
-            <li>Check Inn 15:00-22:00</li>
-            <li>Events and Parties are not permitted.</li>
-            <li>Please lock the door of the building when entering and leaving the same. It's for everyone's safety.</li>
-            <li>Music until 23:00 hrs.</li>
-            <li>Do not allow other people to enter the building.</li>
-            <li>You can only smoke on the terrace.</li>
-            <li>We do not assume responsibility for lost and forgotten objects in the department.</li>
-            <li>We do not assume responsibility for accidents in the department. </li>
-          </ul>
-          <h3 class="">Since it’s your first Airbnb trip, remember:</h3>
-          <ul class="list-group">
-            <li class="list-group-item">Each place is unique, providing different spaces and amenities.</li>
-            <li class="list-group-item">Respect your host’s place - you may be staying in their home!</li>
-            <li class="list-group-item">Stay in touch with your host before and during your stay.</li>
-          </ul>
-        -->
-          <br>
-          <button class="btn btn-primary baloo w-50" onclick="goToBooking2()">Agree and Continue
-            <br> </button>
+                <h1 class="baloo"> Review house rules </h1>
+                <p id="rules"></p><hr>
+                <p id="amenities"></p><hr>
+                <p id="beds"></p><hr>
+                <p id="bathrooms"></p><hr>
+            <!--
+              <ul class="list-group">
+                <li class="list-group-item">Not suitable for pets</li>
+                <li class="list-group-item">No parties or events</li>
+                <li class="list-group-item">Not safe or suitable for children (0-12 years)</li>
+                <li class="list-group-item">Check in time is 3PM - 10PM</li>
+                <li class="list-group-item">Check out by 11AM</li>
+              </ul>
+
+              <p class="lead">Additional rules:</p>
+              <ul class="">
+                <li>Check Out 11:00</li>
+                <li>Check Inn 15:00-22:00</li>
+                <li>Events and Parties are not permitted.</li>
+                <li>Please lock the door of the building when entering and leaving the same. It's for everyone's safety.</li>
+                <li>Music until 23:00 hrs.</li>
+                <li>Do not allow other people to enter the building.</li>
+                <li>You can only smoke on the terrace.</li>
+                <li>We do not assume responsibility for lost and forgotten objects in the department.</li>
+                <li>We do not assume responsibility for accidents in the department. </li>
+              </ul>
+              <h3 class="">Since it’s your first Airbnb trip, remember:</h3>
+              <ul class="list-group">
+                <li class="list-group-item">Each place is unique, providing different spaces and amenities.</li>
+                <li class="list-group-item">Respect your host’s place - you may be staying in their home!</li>
+                <li class="list-group-item">Stay in touch with your host before and during your stay.</li>
+              </ul>
+            -->
+              <br>
+              <button class="btn btn-primary baloo w-50" onclick="goToBooking2()">Agree and Continue
+                <br> </button>
+            </div>
         </div>
         <div class="col-md-5">
           <div class="card">
@@ -120,20 +123,32 @@
       </div>
     </div>
   </div>
-</div><!-- END OF CHANGEABLE -->
+<!--</div>-->
 
 <script>
+
+    var listingID = sessionStorage.getItem('listingID');
+    var checkin = sessionStorage.getItem('checkin');
+    var checkout = sessionStorage.getItem('checkout');
+    var numPersons = sessionStorage.getItem('numPersons');
+    var total = sessionStorage.getItem('total');
+    var title;
+    var type;
+    var aveRating;
+    var photo;
+    var rules;
+    var beds;
+    var bathrooms;
+    var amenities;
+    var capacity;
+
     $(document).ready(function(){
         console.log('session checkin: ' + sessionStorage.getItem('checkin'));
         console.log('session checkout: ' + sessionStorage.getItem('checkout'));
         console.log('session numPersons: ' + sessionStorage.getItem('numPersons'));
         console.log('session listingID: ' + sessionStorage.getItem('listingID'));
 
-        var listingID = sessionStorage.getItem('listingID');
-        var checkin = sessionStorage.getItem('checkin');
-        var checkout = sessionStorage.getItem('checkout');
-        var numPersons = sessionStorage.getItem('numPersons');
-        var total = sessionStorage.getItem('total');
+
 
         $.ajax({
             type: "GET",
@@ -141,14 +156,15 @@
             dataType: "json",
             success: function(response){
                 console.log(response);
-                var title = response._embedded[0].title;
-                var type = response._embedded[0].type;
-                var aveRating = response._embedded[0].aveRating;
-                var photo = response._embedded[0].photo;
-                var rules = response._embedded[0].rules;
-                var beds = parseInt(response._embedded[0].beds);
-                var bathrooms = parseFloat(response._embedded[0].bathrooms);
-                var amenities = response._embedded[0].amenities;
+                title = response._embedded[0].title;
+                type = response._embedded[0].type;
+                aveRating = response._embedded[0].aveRating;
+                photo = response._embedded[0].photo;
+                rules = response._embedded[0].rules;
+                beds = parseInt(response._embedded[0].beds);
+                bathrooms = parseFloat(response._embedded[0].bathrooms);
+                amenities = response._embedded[0].amenities;
+                capacity = parseInt(response._embedded[0].capacity);
 
                 $('#title').html(title);
                 if(type == 'condo') type = 'Condominium';
@@ -160,6 +176,7 @@
                 $('#duration').html('From <b>'+checkin + "</b> to <br><b>"+ checkout+"</b>");
                 $('#total').html(total);
                 $('#rules').html('House Rules: <br>'+rules);
+                console.log('in ajax rules: '+rules);
                 $('#beds').html('No. of beds: '+beds);
                 $('#bathrooms').html('No. of bathrooms: '+bathrooms);
                 $('#amenities').html('Amenities: <br>'+amenities);
@@ -172,13 +189,20 @@
     });
 
     function goToBooking1(){
+        console.log('booking 1');
         $.ajax({
             type: "POST",
             url: 'bookroom1.php',
             dataType: "html",
             success: function(result){
                 $('#changeable').html(result);
-                // $('#ajaxPostal').html(result);
+                (function () {
+                    console.log(rules);
+                    $('#rules').html('House Rules: <br>'+rules);
+                    $('#beds').html('No. of beds: '+beds);
+                    $('#bathrooms').html('No. of bathrooms: '+bathrooms);
+                    $('#amenities').html('Amenities: <br>'+amenities);
+                })();
             }
         });
     }
@@ -191,9 +215,21 @@
             dataType: "html",
             success: function(result){
                 $('#changeable').html(result);
-                // $('#ajaxPostal').html(result);
+                (function () {
+                    var numOfPeople = '<p class="lead">People Staying</p><select id="numGuests" onchange="changeGuests(this)">';
+                    for(var i = 1; i <= capacity; i++){
+                        numOfPeople += '<option value="' + i + '">' + i + ' person(s)</option>';
+                    }
+                    numOfPeople += '</select>';
+                    $('#numOfGuests').html(numOfPeople);
+                })();
             }
         });
+    }
+    function changeGuests(obj) {
+        console.log(obj.value);
+        numPersons = obj.value;
+        $('#numPersons').html(numPersons+' guest(s)');
     }
 
 
