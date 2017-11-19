@@ -21,8 +21,9 @@ if (!isset($_SESSION['isLoggedIn']))
     <?php startblock('navbar') ?>
       <nav class="navbar navbar-expand-md navbar-dark bg-light m-0 style">
         <div class="container">
-          <a class="navbar-brand m-0" href="#"></a>
-          <img src="T2G Logo.png" width="" height="50" class="d-inline-block align-top m-0" alt="">
+          <a href="/taft2GO/Homepage">
+                <img src="T2G Logo.png" width="" height="50" class="d-inline-block align-top m-0" alt="">
+            </a>
           <input class="form-control mr-sm-2 baloo" type="text" placeholder="Find the right place...">
           <a href="Search" class="btn btn-outline-primary baloo">Search</a>
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
