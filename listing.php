@@ -25,15 +25,9 @@
 
 
             <?php startblock('menucontent') ?>
-                <div class="col-md-8">
-          <div class="card">
-            <div class="card-body">
-              <p class="lead">You don't have any listings yet.</p>
-              <p class="">Make money by renting out your extra space on taft2GO. You’ll also get to meet interesting people from around the country!</p>
-              <a href="/taft2GO/AddListing" class="btn btn-outline-primary baloo">Post a new listing</a>
+            <div id="listings" class="col-md-8">
+
             </div>
-          </div>
-        </div>
             <?php endblock() ?>
       </div>
     </div>
@@ -52,6 +46,24 @@
                 console.log(studentJsonArray);
                 console.log(studentJsonArray.length);
 
+                var listings = '';
+
+                if(studentJsonArray.length == 0){
+                    listings = '<div class="card">'
+                            + '<div class="card-body">'
+                            + '<p class="lead">You don\'t have any listings yet.</p>'
+                            + '<p class="">Make money by renting out your extra space on taft2GO. You’ll also get to meet interesting people from around the country!</p>'
+                            + '<a href="/taft2GO/AddListing" class="btn btn-outline-primary baloo">Post a new listing</a>'
+                            + '</div>'
+                            + '</div>';
+                }
+                else{
+                    //console.log("yay may listings");
+                    for(var i = 0; i < studentJsonArray.length; i++){
+                        listigs += '';
+                    }
+                }
+                $('#listings').html(listings);
             },
             error: function(jqXHR, exception){
                 console.log("Error");
