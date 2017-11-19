@@ -1,0 +1,28 @@
+RewriteEngine On
+
+RewriteRule ^Login?$ login.php
+RewriteRule ^Logout?$ logout.php
+RewriteRule ^Signup?$ signup.php
+RewriteRule ^Homepage?$ homepage.php
+RewriteRule ^Help?$ help.php
+RewriteRule ^Host?$ why-host.php
+RewriteRule ^Search?$ search-results.php
+RewriteRule ^Dashboard?$ dashboard.php
+RewriteRule ^Session?$ session.php
+
+
+RewriteRule ^Listings?$ listing.php
+RewriteRule ^Listings/([0-9a-zA-Z]+)?$ room-page.php?objID=$1
+RewriteRule ^AddListings?$ addlisting.php
+
+
+
+RewriteRule ^Book?$ bookroom.php
+
+RewriteRule ^Stays?$ stays.php
+
+RewriteRule ^Profile?$ profile.php
+
+RewriteRule ^Account?$ account.php
+
+
