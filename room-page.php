@@ -6,6 +6,7 @@
 <?php endblock() ?>
 
 <?php startblock('content')?>
+<div id="changeable">
     <div id="coverphoto" class="py-5 gradient-overlay" style="background-image: url(&quot;coverphoto.jpg&quot;);">
     <div class="container py-5">
         <div class="row">
@@ -40,15 +41,19 @@
                     <div class="card-body">
                         <div class="card-body p-5">
                             <h3 class="pb-3">Make a reservation</h3>
-                            <form action="https://formspree.io/YOUREMAILHERE">
+                            <form>
+                                <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
                                 <div class="form-group"> <label>Check in</label>
-                                    <input type="date" class="form-control"> </div>
+                                    <input id="checkin" type="date" class="form-control"> </div>
                                 <div class="form-group"> <label>Check out</label>
-                                    <input type="date" class="form-control"> </div>
-                                <div class="form-group"> <label>People</label>
+                                    <input id="checkout" type="date" class="form-control"> </div>
+                                <div class="form-group" id="numOfPeople"> <label>People Staying</label>
                                     <input type="number" class="form-control" placeholder="2"> </div>
-                                <a class="btn btn-primary baloo" href="/taft2GO/Book">Request to Book</a>
+
+                                <div class="form-group" id="total"></div>
+
                             </form>
+                            <button class="btn btn-primary baloo" onclick="setSession()">Request to Book</button>
                         </div>
                         <h6 class="text-muted">You won't be charged yet.</h6>
                     </div>
@@ -64,7 +69,7 @@
         </div>
         <div id="disqus_thread"></div>
 
-        <!--
+        <!--    Original Review section
         <div class="row">
             <div class="col-md-12">
                 <h2 class="text-primary pt-3 baloo"><i class="fa fa-user fa-fw"></i>Person 1</h2>
@@ -80,18 +85,20 @@
         -->
     </div>
     </div>
-
+</div> <!-- END OF CHANGEABLE -->
     <script>
         function getURLParameter(name) {
             return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
         }
-
-
-
+        var listingID = getURLParameter('listingID');
+        var checkin = '';
+        var checkout = '';
+        var days = 0;
         $(document).ready(function(){
-            var listingID = getURLParameter('listingID');
+
             console.log(listingID);
 
+            var monthlyRate = 0;
             $.ajax({
                 type: "GET",
                 url: "http://localhost:8080/taft2GO/listing/?filter={'_id': {'$oid': '" + listingID +"'}}",
@@ -109,7 +116,7 @@
                     var beds = parseInt(response._embedded[0].beds);
                     var bathrooms = parseFloat(response._embedded[0].bathrooms);
                     var amenities = response._embedded[0].amenities;
-                    var monthlyRate = parseFloat(response._embedded[0].monthlyRate);
+                    monthlyRate = parseFloat(response._embedded[0].monthlyRate);
                     var status = response._embedded[0].status;
                     var aveRating = response._embedded[0].aveRating;
 
@@ -118,20 +125,72 @@
                     $('#description').html(description);
                     $('#type').html('Listing Type: '+type);
                     $('#capacity').html('Capacity: '+capacity);
-                    $('#monthlyRate').html('Monthly Rate: '+monthlyRate);
+                    $('#monthlyRate').html('Monthly Rate: ₱'+monthlyRate);
                     $('#rules').html('House Rules: <br>'+rules);
                     $('#beds').html('No. of beds: '+beds);
                     $('#bathrooms').html('No. of bathrooms: '+bathrooms);
                     $('#aveRating').html('Rating: '+aveRating);
                     $('#amenities').html('Amenities: <br>'+amenities);
                     $('#coverphoto').css("background-image","url("+ photo +")");
-                    $('#dailyRate').html('From '+(monthlyRate/30)+' per night');
+                    $('#dailyRate').html('From ₱'+(monthlyRate/30).toFixed(2)+' per night');
+
+                    var numOfPeople = '<label>People Staying</label><br><select id="numPersons">';
+                    for(var i = 1; i <= capacity; i++){
+                        numOfPeople += '<option value="' + i + '">' + i + ' person(s)</option>';
+                    }
+                    numOfPeople += '</select>';
+                    $('#numOfPeople').html(numOfPeople);
                 },
                 error: function(jqXHR, exception){
                     console.log("Error");
                     console.log(jqXHR.responseText);
                 }
             });
+
+
+            $('#checkin').on("input change", function (e) {
+                console.log("Date changed: ", e.target.value);
+                checkin = e.target.value;
+                console.log("checkin date: "+checkin);
+
+                if(checkin != '' && checkout != '') {
+                    console.log('yay not empty for both');
+                    showDays(checkout, checkin);
+                    $('#total').html('<h4><b>Total: ₱'+ (monthlyRate/30*days).toFixed(2)+ '</b></h4> <p>('+ (monthlyRate/30).toFixed(2) +' x '+ days +' days) </p>');
+                }
+
+            });
+            $('#checkout').on("input change", function (e) {
+                console.log("Date changed: ", e.target.value);
+                checkout = e.target.value;
+                console.log("checkout date: "+checkout);
+
+                if(checkin != '' && checkout != '') {
+                    console.log('yay not empty for both');
+                    showDays(checkout, checkin);
+                    $('#total').html('<h4><b>Total: ₱'+ (monthlyRate/30*days).toFixed(2)+ '</b></h4> <p>('+ (monthlyRate/30).toFixed(2) +' x '+ days +' days) </p>');
+                }
+            });
+            function showDays(firstDate,secondDate){
+
+                var startDay = new Date(firstDate);
+                var endDay = new Date(secondDate);
+                var millisecondsPerDay = 1000 * 60 * 60 * 24;
+
+                var millisBetween = startDay.getTime() - endDay.getTime();
+                days = millisBetween / millisecondsPerDay;
+
+                // Round down.
+                console.log( Math.floor(days));
+
+            }
+
+
+
+            /**
+             *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+             *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
             var disqus_config = function () {
                 this.page.url = "localhost/taft2GO/room-page.php?listingID=";  // Replace PAGE_URL with your page's canonical URL variable
                 this.page.identifier = listingID; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
@@ -145,11 +204,19 @@
             })();
         });
 
-
-        /**
-         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-
+        function setSession() {
+            console.log('in set session');
+            sessionStorage.setItem('listingID', listingID);
+            sessionStorage.setItem('checkin', checkin);
+            sessionStorage.setItem('checkout', checkout);
+            var numPersons = document.getElementById("numPersons");
+            numPersons = numPersons.options[numPersons.selectedIndex].value;
+            sessionStorage.setItem('numPersons', numPersons);
+            var url = window.location.href;
+            url = url.substr(0, url.indexOf('O')+1);
+            console.log(url);
+            window.location.href = url + '/Booking';
+        }
 
     </script>
     <script id="dsq-count-scr" src="//taft2go.disqus.com/count.js" async></script>

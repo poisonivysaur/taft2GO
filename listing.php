@@ -42,13 +42,13 @@
             dataType: "json",
             success: function(response){
 
-                const studentJsonArray = response._embedded;
-                console.log(studentJsonArray);
-                console.log(studentJsonArray.length);
+                const jsonArray = response._embedded;
+                console.log(jsonArray);
+                console.log(jsonArray.length);
 
                 var listings = '';
 
-                if(studentJsonArray.length == 0){
+                if(jsonArray.length == 0){
                     listings = '<div class="card">'
                             + '<div class="card-body">'
                             + '<p class="lead">You don\'t have any listings yet.</p>'
@@ -59,8 +59,25 @@
                 }
                 else{
                     //console.log("yay may listings");
-                    for(var i = 0; i < studentJsonArray.length; i++){
-                        listigs += '';
+                    for(var i = 0; i < jsonArray.length; i++){
+                        listings += '<div class="card">'
+                                + '<div class="card-body">'
+                                + '<div class="row">'
+                                + '<div class="col-md-6">'
+                                + '<div class="card">'
+                                + '<img class="img-fluid d-block" src="'+ jsonArray[i].photo +'"></div>'
+                                + '</div>'
+                                + '<div class="col-md-6">'
+                                + '<p class="lead">' + jsonArray[i].title + '</p>'
+                                + '<p class="">' + jsonArray[i].description + '</p>'
+                                + '<p class=""> Monthly rate of: ' + jsonArray[i].monthlyRate + '</p>'
+                                + '<p class=""> User rating: ' + jsonArray[i].aveRating + '</p>'
+                                + '<a class="btn btn-outline-primary baloo" href="room-page.php?listingID='+ jsonArray[i]._id.$oid +'">View Listing</a>'
+                                + '</div>'
+                                + '</div>'
+                                + '</div>'
+                                + '</div>';
+
                     }
                 }
                 $('#listings').html(listings);

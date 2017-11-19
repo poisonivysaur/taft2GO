@@ -28,11 +28,11 @@
   <nav class="navbar navbar-expand-md bg-primary navbar-dark">
     <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
       <ul class="navbar-nav"></ul>
-      <a class="btn navbar-btn ml-2 btn-link baloo text-white" href="bookroom.html">1. Review house rules
+      <a class="btn navbar-btn ml-2 btn-link baloo text-white" href="bookroom.php">1. Review house rules
         <br> </a>
       <a class="btn navbar-btn ml-2 text-white btn-link baloo" href="inbox.html">&gt;
         <br> </a>
-      <a class="btn navbar-btn ml-2 btn-link text-white baloo" href="bookroom2.html">2. Who's coming?
+      <a class="btn navbar-btn ml-2 btn-link text-white baloo" href="bookroom2.php">2. Who's coming?
         <br> </a>
       <a class="btn navbar-btn ml-2 text-white btn-link baloo" href="stays.html">&gt;
         <br> </a>

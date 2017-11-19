@@ -1,5 +1,10 @@
 <?php include 'base.php' ?>
 
+<?php startblock('searchbar') ?>
+    <input class="form-control mr-sm-2 baloo" type="text" placeholder="Find the right place...">
+    <a href="/taft2GO/Search" class="btn btn-outline-primary baloo">Search</a>
+<?php endblock() ?>
+
 <?php startblock('content') ?>
 
   <div class="py-5 text-white opaque-overlay w-100 h-100" style="background-image: url(&quot;homepage bg.jpg&quot;);">
