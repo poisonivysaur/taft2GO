@@ -51,7 +51,7 @@
                                 <div class="form-group"> <label>Check out</label>
                                     <input id="checkout" type="date" class="form-control"> </div>
                                 <div class="form-group" id="numOfPeople"> <label>People Staying</label>
-                                    <input type="number" class="form-control" placeholder="2"> </div>
+                                    <input type="number" class="form-control" min=1 placeholder="2"> </div>
 
                                 <div class="form-group" id="total"></div>
 
@@ -161,6 +161,7 @@
                                 hostfname = response._embedded[0].fname;
                                 profPic = 'https://cdn1.iconfinder.com/data/icons/mix-color-4/502/Untitled-1-512.png';
                                 sessionStorage.setItem('hostfname', hostfname);
+                                sessionStorage.setItem('hostPic', profPic);
                                 $('#host').html('<img width="50" src="'+profPic+'"><br><p>Hosted by '+hostfname+'</p>');
                             },
                             error: function(jqXHR, exception){

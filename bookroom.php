@@ -14,7 +14,7 @@
         <br> </button>
       <button class="btn navbar-btn ml-2 text-white btn-link baloo">&gt;
         <br> </button>
-      <button class="btn navbar-btn ml-2 text-white btn-link baloo" onclick="goToBooking3()">3. Request Reservation
+      <button class="btn navbar-btn ml-2 text-white btn-link baloo" onclick="goToBooking3()">3. Make Reservation
         <br> </button>
     </div>
     <div class="container">
@@ -141,6 +141,7 @@
     var bathrooms;
     var amenities;
     var capacity;
+    var tripDetails;
 
     $(document).ready(function(){
         console.log('session checkin: ' + sessionStorage.getItem('checkin'));
@@ -209,6 +210,7 @@
 
     function goToBooking2() {
         console.log('booking 2');
+
         $.ajax({
             type: "POST",
             url: 'bookroom2.php',
@@ -225,6 +227,7 @@
                 })();
             }
         });
+
     }
     function changeGuests(obj) {
         console.log(obj.value);
@@ -234,6 +237,65 @@
 
     function goToBooking3() {
         console.log('booking 3');
+        tripDetails = $('#tripDetails').val();
+        console.log('trip details: '+tripDetails);
+
+        $.ajax({
+            type: "POST",
+            url: 'bookroom3.php',
+            dataType: "html",
+            success: function(result){
+                $('#changeable').html(result);
+                (function () {
+                    var numOfPeople = '<p class="lead">People Staying</p><select id="numGuests" onchange="changeGuests(this)">';
+                    for(var i = 1; i <= capacity; i++){
+                        numOfPeople += '<option value="' + i + '">' + i + ' person(s)</option>';
+                    }
+                    numOfPeople += '</select>';
+                    $('#numOfGuests').html(numOfPeople);
+                    $('#fname').attr('value', '<?php echo $_SESSION['fname']?>');
+                    $('#lname').attr('value', '<?php echo $_SESSION['lname']?>');
+                })();
+            }
+        });
+    }
+
+    function makeReservation() {
+
+        // POSTING TIME
+
+        var postData = '{"accountID":"'+ '<?php echo $_SESSION['objID'];?>' + '"listingID:"'+ listingID + '"checkIn:"'+ checkin + '"checkOut:"'+ checkout +
+            '"numOfPeople:"'+ numPersons + '"status:"'+ 'reserved' + '"tripDetails:"'+ tripDetails + '"}';
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/taft2GO/booking",
+            processData: false,
+            contentType: "application/json",
+            data: postData,
+            complete: function(jqXHR, exception){
+                console.log(jqXHR.status);
+                console.log(jqXHR.responseText);
+
+                if(jqXHR.status == 201){ // created
+                    $('#feedback').html('<div class="col-md-12">'
+                        + '<div class="alert alert-success" role="alert">'
+                        + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>'
+                        + '<h4 class="alert-heading">Booking Reserved! </h4>'
+                        + '<p class="mb-0">You can view your upcoming reservations and past bookings in the Stays tab of your account.</p>'
+                        + '</div>'
+                        + '</div>');
+                    $('#billingInfo').val('');
+                }
+                else if(jqXHR.status == 409){ // conflict
+                    $('#feedback').html('<h4>Successfully Registered! Please <a href="/taft2GO/Login">Login</a> to continue</h4>');
+                }
+                else{
+                    $('#feedback').html('<h4>Error procesing request.</h4>');
+                }
+            }
+
+        });
     }
 
 </script>

@@ -265,7 +265,7 @@
                                     + '<div class="alert alert-success" role="alert">'
                                     + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>'
                                     + '<h4 class="alert-heading">New Listing Added! </h4>'
-                                    + '<p class="mb-0">ou can view your listings in the Listings tab of your account.</p>'
+                                    + '<p class="mb-0">You can view your listings in the Listings tab of your account.</p>'
                                     + '</div>'
                                     + '</div>');
                             $('#monthlyRate').val('');

@@ -6,6 +6,7 @@
         </div>
         <p class="lead"> </p>
           <p class="lead" id="tell">Tell your host about your trip</p>
+            <p id="hostPic"></p>
           <p class="">Sharing your trip details can help your host confirm your reservation more quickly.</p>
           <ul class="border border-secondary bg-light">
             <li>What brings you to the area?</li>
@@ -19,7 +20,8 @@
 
 <script>
     $(document).ready(function(){
-        console.log('orayt booking 2 get session fname: '+sessionStorage.getItem('hostfname'));
+        console.log('orayt booking 2 get session fname: '+sessionStorage.getItem('hostfname')+'pic: '+sessionStorage.getItem('hostPic'));
         $('#tell').html('Tell '+sessionStorage.getItem('hostfname')+' about your trip');
+        $('#hostPic').html('<img width="50" src="'+sessionStorage.getItem('hostPic')+'">');
     });
 </script>
