@@ -8,7 +8,7 @@
 
         <?php startblock('imports') ?>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-            <link rel="stylesheet" href="style.css" type="text/css">
+            <?php startblock('style') ?><link rel="stylesheet" href="style.css" type="text/css"><?php endblock()?>
             <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!--
             <link rel="import" href="bower_components/polymer/polymer-element.html">
@@ -26,7 +26,7 @@
 	<?php startblock('navbar') ?>
 		<nav class="navbar navbar-expand-md navbar-dark m-0 style transparent">
             <a href="/taft2GO/Homepage">
-			<img src="T2G Logo.png" width="" height="50" class="d-inline-block align-top m-0" alt="">
+			<?php startblock('logo' )?><img src="T2G Logo.png" width="" height="50" class="d-inline-block align-top m-0" alt=""><?php endblock()?>
             </a>
 
             <?php startblock('searchbar') ?>

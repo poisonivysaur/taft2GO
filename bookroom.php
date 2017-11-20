@@ -142,6 +142,7 @@
     var amenities;
     var capacity;
     var tripDetails;
+    var payWith;
 
     $(document).ready(function(){
         console.log('session checkin: ' + sessionStorage.getItem('checkin'));
@@ -263,9 +264,9 @@
     function makeReservation() {
 
         // POSTING TIME
-
+        payWith = document.getElementById('payWith').options[document.getElementById('payWith').selectedIndex].value;
         var postData = '{"accountID":"'+ '<?php echo $_SESSION['objID'];?>' + '"listingID:"'+ listingID + '"checkIn:"'+ checkin + '"checkOut:"'+ checkout +
-            '"numOfPeople:"'+ numPersons + '"status:"'+ 'reserved' + '"tripDetails:"'+ tripDetails + '"}';
+            '"numOfPeople:"'+ numPersons + '"status:"'+ 'reserved' + '"tripDetails:"'+ tripDetails + '"payWith:"' + payWith +'"}';
 
         $.ajax({
             type: "POST",

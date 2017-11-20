@@ -1,14 +1,6 @@
 <div id="feedback"></div>
 <h1 class="baloo"> Make Booking Reservation</h1>
-          <p class="lead">Billing country</p>
-          <div class="btn-group">
-            <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown"> Select country</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Separated link</a>
-            </div>
-          </div>
+
           <p class="lead"> </p>
           <p class="lead">Select payment method</p>
             <select id="payWith">

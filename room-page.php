@@ -1,12 +1,18 @@
 <?php include 'base.php' ?>
 
+    <?php startblock('style')?><link rel="stylesheet" href="/taft2GO/style.css" type="text/css"><?php endblock()?>
+
 <?php startblock('searchbar') ?>
     <input class="form-control mr-sm-2 baloo" type="text" placeholder="Find the right place...">
     <a href="/taft2GO/Search" class="btn btn-outline-primary baloo">Search</a>
 <?php endblock() ?>
 
+<?php startblock('logo') ?><img src="/taft2GO/T2G Logo.png" width="" height="50" class="d-inline-block align-top m-0" alt=""><?php endblock()?>
+
+
+
 <?php startblock('content')?>
-    <link rel="stylesheet" href="/taft2GO/style.css" type="text/css">
+
 <div id="changeable">
     <div id="coverphoto" class="py-5 gradient-overlay" style="background-image: url(&quot;coverphoto.jpg&quot;);">
     <div class="container py-5">

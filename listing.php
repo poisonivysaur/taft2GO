@@ -72,11 +72,12 @@
                                 + '<p class="">' + jsonArray[i].description + '</p>'
                                 + '<p class=""> Monthly rate of: ' + jsonArray[i].monthlyRate + '</p>'
                                 + '<p class=""> User rating: ' + jsonArray[i].aveRating + '</p>'
-                                + '<a class="btn btn-outline-primary baloo" href="room-page.php?listingID='+ jsonArray[i]._id.$oid +'">View Listing</a>'
+                                //+ '<a href="/taft2GO/Listings/'+ jsonArray[i]._id.$oid +'">'
+                                + '<a class="btn btn-outline-primary baloo" href="/taft2GO/Listings/'+ jsonArray[i]._id.$oid +'">View Listing</a>'
                                 + '</div>'
                                 + '</div>'
                                 + '</div>'
-                                + '</div>';
+                                + '</div><br>';
 
                     }
                 }
