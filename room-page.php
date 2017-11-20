@@ -6,6 +6,7 @@
 <?php endblock() ?>
 
 <?php startblock('content')?>
+    <link rel="stylesheet" href="/taft2GO/style.css" type="text/css">
 <div id="changeable">
     <div id="coverphoto" class="py-5 gradient-overlay" style="background-image: url(&quot;coverphoto.jpg&quot;);">
     <div class="container py-5">

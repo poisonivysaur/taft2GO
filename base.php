@@ -10,10 +10,11 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
             <link rel="stylesheet" href="style.css" type="text/css">
             <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!--
             <link rel="import" href="bower_components/polymer/polymer-element.html">
             <link rel="import" href="bower_components/iron-ajax/iron-ajax.html">
             <link rel="import" href="bower_components/paper-button/paper-button.html">
-
+    -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
