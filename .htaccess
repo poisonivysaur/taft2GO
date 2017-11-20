@@ -22,6 +22,7 @@ RewriteRule ^AddListings?$ addlisting.php
 RewriteRule ^Booking?$ bookroom.php
 
 RewriteRule ^Stays?$ stays.php
+RewriteRule ^Stays-Past?$ stays-past.php
 
 RewriteRule ^Profile?$ profile.php
 

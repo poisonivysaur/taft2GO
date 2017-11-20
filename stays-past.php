@@ -1,45 +1,37 @@
-<?php include 'dashboard.php' ?>
+<?php include 'stays.php' ?>
 
-<?php startblock('dashboardlink') ?>
-<a class="btn navbar-btn ml-2 btn-link baloo text-white" href="/taft2GO/Dashboard">Dashboard
-    <br> </a><?php endblock() ?>
-<?php startblock('stayslink') ?>
-<a class="btn navbar-btn ml-2 btn-link baloo text-secondary" href="/taft2GO/Stayls">Stays
-    <br> </a><?php endblock() ?>
+<?php startblock('sidemenu') ?>
+<div class="col-md-4 text-secondary">
+    <a class="btn navbar-btn ml-2 btn-link baloo text-dark text-left ml-auto menu" href="/taft2GO/Stays">Upcoming Stays</a>
+    <a class="btn navbar-btn ml-2 btn-link baloo ml-auto text-secondary text-left menu" href="/taft2GO/Stays-Past">Booking History</a>
+    <!--
+  <a class="btn navbar-btn ml-2 btn-link baloo text-dark ml-auto menu text-left" href="listing-requirements.html">Reservation Requirements</a>
+  <a class="btn navbar-btn ml-2 btn-link baloo text-dark ml-auto menu text-left" href="listing-page.html">Listings Page</a>
 
-
-<?php startblock('content') ?>
-<div class="py-5">
-    <div class="container">
-        <div class="row">
-            <?php startblock('sidemenu') ?>
-            <div class="col-md-4 text-secondary">
-                <a class="btn navbar-btn ml-2 btn-link baloo ml-auto text-secondary text-left menu" href="/taft2GO/Stays">Upcoming Stays</a>
-                <a class="btn navbar-btn ml-2 btn-link baloo text-dark text-left ml-auto menu" href="/taft2GO/Stays-Past">Booking History</a>
-                <!--
-              <a class="btn navbar-btn ml-2 btn-link baloo text-dark ml-auto menu text-left" href="listing-requirements.html">Reservation Requirements</a>
-              <a class="btn navbar-btn ml-2 btn-link baloo text-dark ml-auto menu text-left" href="listing-page.html">Listings Page</a>
-
-                <a class="btn btn-primary baloo" href="/taft2GO/AddListing">Add New Listing
-                    <br> </a>-->
-            </div>
-            <?php endblock() ?>
-
-
-            <?php startblock('menucontent') ?>
-            <div id="upcoming" class="col-md-8">
-
-            </div>
-
-            <?php endblock() ?>
-        </div>
-    </div>
+    <a class="btn btn-primary baloo" href="/taft2GO/AddListing">Add New Listing
+        <br> </a>-->
 </div>
+<?php endblock() ?>
+
+
+
+
+<?php startblock('menucontent') ?>
+    <div id="history" class="col-md-8">
+
+    </div>
+
+<?php endblock() ?>
+
+
+
+
+
 <?php startblock('staysScript')?>
     <script>
         $(document).ready(function(){
             var noBookings = true;
-            var upcoming = '<h1 class="text-dark">Upcoming Stays</h1>';
+            var upcoming = '<h1 class="text-dark">Booking History</h1>';
             $.ajax({
                 type: "GET",
                 url: "http://localhost:8080/taft2GO/booking/?filter={'accountID': '<?php echo $_SESSION['objID'] ?>'}",
@@ -84,21 +76,21 @@
                     }
                     if(noBookings == true){
                         upcoming = '<div class="py-5">'
-                                + '<div class="container">'
-                                + '<div class="row">'
-                                + '<div class="col-md-12">'
-                                + '<div class="card">'
-                                + '<div class="card-body">'
-                                + '<h1 class="">Choose your next stay.</h1>'
-                                + '<a class="btn btn-primary baloo" href="search-results.html">Go to search</a>'
-                                + '</div>'
-                                + '</div>'
-                                + '</div>'
-                                + '</div>'
-                                + '</div>'
-                                + '</div>';
+                            + '<div class="container">'
+                            + '<div class="row">'
+                            + '<div class="col-md-12">'
+                            + '<div class="card">'
+                            + '<div class="card-body">'
+                            + '<h1 class="">Choose your next stay.</h1>'
+                            + '<a class="btn btn-primary baloo" href="search-results.html">Go to search</a>'
+                            + '</div>'
+                            + '</div>'
+                            + '</div>'
+                            + '</div>'
+                            + '</div>'
+                            + '</div>';
                     }
-                    $('#upcoming').html(upcoming);
+                    $('#history').html(upcoming);
                 },
                 async: false,
                 error: function(jqXHR, exception){
@@ -109,5 +101,3 @@
         });
     </script>
 <?php endblock()?>
-
-<?php endblock() ?>

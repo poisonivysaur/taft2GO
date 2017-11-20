@@ -50,12 +50,12 @@
                     <div class="card-body">
                         <div class="card-body p-5">
                             <h3 class="pb-3">Make a reservation</h3>
-                            <form>
+                            <form id="bookingForm">
                                 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
                                 <div class="form-group"> <label>Check in</label>
-                                    <input id="checkin" type="date" class="form-control"> </div>
+                                    <input id="checkin" type="date" class="form-control" required> </div>
                                 <div class="form-group"> <label>Check out</label>
-                                    <input id="checkout" type="date" class="form-control"> </div>
+                                    <input id="checkout" type="date" class="form-control" required> </div>
                                 <div class="form-group" id="numOfPeople"> <label>People Staying</label>
                                     <input type="number" class="form-control" min=1 placeholder="2"> </div>
 
@@ -247,6 +247,7 @@
         });
 
         function BOOK() {
+            //document.getElementById('bookingForm').submit();
 
             console.log('in set session');
             sessionStorage.setItem('listingID', listingID);
@@ -281,6 +282,10 @@
                 sessionStorage.setItem('roompage', roompageURL);
                 window.location.href = url + '/Login';
             }
+        }
+
+        function areDatesAvailable(){
+
         }
 
     </script>

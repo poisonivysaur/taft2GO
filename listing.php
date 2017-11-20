@@ -48,7 +48,7 @@
                 console.log(jsonArray);
                 console.log(jsonArray.length);
 
-                var listings = '';
+                var listings = '<h1 class="text-dark">Your Listings</h1>';
 
                 if(jsonArray.length == 0){
                     listings = '<div class="card">'
@@ -93,4 +93,5 @@
     });
 </script>
 <?php endblock()?>
+
 <?php endblock() ?>

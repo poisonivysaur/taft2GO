@@ -1,5 +1,17 @@
 <?php include 'listing.php' ?>
 
+<?php startblock('sidemenu') ?>
+<div class="col-md-4 text-secondary">
+    <a class="btn navbar-btn ml-2 btn-link baloo text-dark text-left ml-auto menu" href="/taft2GO/Listing">Listings</a>
+    <a class="btn navbar-btn ml-2 btn-link baloo ml-auto text-secondary text-left menu" href="/taft2GO/Listings-Reservations">Reservations</a>
+    <!--
+  <a class="btn navbar-btn ml-2 btn-link baloo text-dark ml-auto menu text-left" href="listing-requirements.html">Reservation Requirements</a>
+  <a class="btn navbar-btn ml-2 btn-link baloo text-dark ml-auto menu text-left" href="listing-page.html">Listings Page</a>
+    -->
+    <a class="btn btn-primary baloo" href="/taft2GO/AddListing">Add New Listing
+        <br> </a>
+</div>
+<?php endblock() ?>
 <?php startblock('menucontent') ?>
 <div id="reservations" class="col-md-8">
 
@@ -19,7 +31,7 @@
             console.log(listings);
             console.log(listings.length);
             var noReservations = true;
-            var reservations = '';
+            var reservations = '<h1 class="text-dark">Your Reservations</h1>';
 
             for(var i = 0; i < listings.length; i++){   // for each listing, get bookings that corresponds to this listing
                 $.ajax({
