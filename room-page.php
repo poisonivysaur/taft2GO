@@ -62,7 +62,7 @@
                                 <div class="form-group" id="total"></div>
 
                             </form>
-                            <button class="btn btn-primary baloo" onclick="setSession()">Request to Book</button>
+                            <button class="btn btn-primary baloo" onclick="BOOK()">Request to Book</button>
                         </div>
                         <h6 class="text-muted">You won't be charged yet.</h6>
                     </div>
@@ -103,6 +103,7 @@
             console.log(url);
             return url;
         }
+        var accountID;
         var listingID = getURLParameter();
         var checkin = '';
         var checkout = '';
@@ -111,7 +112,7 @@
         $(document).ready(function(){
 
             console.log(listingID);
-            var accountID;
+
             var hostfname;
             var profPic;
             var monthlyRate = 0;
@@ -245,7 +246,7 @@
             })();
         });
 
-        function setSession() {
+        function BOOK() {
 
             console.log('in set session');
             sessionStorage.setItem('listingID', listingID);
@@ -263,7 +264,14 @@
             console.log(isLoggedIn);
 
             if(isLoggedIn == true){
-                window.location.href = url + '/Booking';
+
+                if(accountID == "<?php echo $_SESSION['objID']; ?>"){
+                    alert('You cannot book your own place.');
+                    window.location.href = url + '/Listings';
+                }
+                else{
+                    window.location.href = url + '/Booking';
+                }
 
             }
             else{

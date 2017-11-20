@@ -11,9 +11,11 @@ RewriteRule ^Dashboard?$ dashboard.php
 RewriteRule ^Session?$ session.php
 
 
+RewriteRule ^Listings-Reservations?$ listing-reservation.php
 RewriteRule ^Listings?$ listing.php
 RewriteRule ^Listings/([0-9a-zA-Z]+)?$ room-page.php?objID=$1
 RewriteRule ^AddListings?$ addlisting.php
+
 
 
 

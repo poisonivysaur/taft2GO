@@ -14,10 +14,12 @@
       <div class="row">
             <?php startblock('sidemenu') ?>
                 <div class="col-md-4 text-secondary">
-          <a class="btn navbar-btn ml-2 btn-link baloo ml-auto text-secondary text-left menu">Listings</a>
-          <a class="btn navbar-btn ml-2 btn-link baloo text-dark text-left ml-auto menu" href="listing-reservation.html">Reservations</a>
+          <a class="btn navbar-btn ml-2 btn-link baloo ml-auto text-secondary text-left menu" href="/taft2GO/Listing">Listings</a>
+          <a class="btn navbar-btn ml-2 btn-link baloo text-dark text-left ml-auto menu" href="/taft2GO/Listings-Reservations">Reservations</a>
+            <!--
           <a class="btn navbar-btn ml-2 btn-link baloo text-dark ml-auto menu text-left" href="listing-requirements.html">Reservation Requirements</a>
           <a class="btn navbar-btn ml-2 btn-link baloo text-dark ml-auto menu text-left" href="listing-page.html">Listings Page</a>
+            -->
           <a class="btn btn-primary baloo" href="/taft2GO/AddListing">Add New Listing
             <br> </a>
         </div>
@@ -32,7 +34,7 @@
       </div>
     </div>
   </div>
-
+<?php startblock('listingScript')?>
 <script>
     $(document).ready(function(){
         console.log('<?php echo "objID: ".$_SESSION['objID'] ?>');
@@ -90,4 +92,5 @@
         });
     });
 </script>
+<?php endblock()?>
 <?php endblock() ?>
