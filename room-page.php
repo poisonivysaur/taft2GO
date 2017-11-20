@@ -90,10 +90,14 @@
     </div>
 </div> <!-- END OF CHANGEABLE -->
     <script>
-        function getURLParameter(name) {
-            return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+        function getURLParameter() {
+            //return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+            var url = window.location.href;
+            url = url.substr(url.lastIndexOf('s')+2);
+            console.log(url);
+            return url;
         }
-        var listingID = getURLParameter('listingID');
+        var listingID = getURLParameter();
         var checkin = '';
         var checkout = '';
         var days = 0;
