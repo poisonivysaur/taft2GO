@@ -41,38 +41,44 @@
                     var bookings = response._embedded;
                     var noBookings = false;
                     for(var j = 0; j < bookings.length; j++){
-                        $.ajax({
-                            type: "GET",
-                            url: "http://localhost:8080/taft2GO/listing/?filter={'_id': {'$oid': '" + bookings[j].listingID +"'}}",
-                            dataType: "json",
-                            success: function(response){
-                                console.log(response);
-                                listings = response._embedded;
-                                upcoming += '<div class="card">'
-                                    + '<div class="card-body">'
-                                    + '<div class="row">'
-                                    + '<div class="col-md-6">'
-                                    + '<div class="card">'
-                                    + '<img class="img-fluid d-block" src="'+ listings[0].photo +'"></div>'
-                                    + '</div>'
-                                    + '<div class="col-md-6">'
-                                    + '<p class="">' + listings[0].title + '</p>'
-                                    + '<p class="lead">Booking ID: ' + bookings[j]._id.$oid + '</p>'
-                                    //+ '<p>Booking by: '+ fname +' '+ lname + '</p>'
-                                    + '<p class=""> Check in date: ' + bookings[j].checkIn + '</p>'
-                                    + '<p class=""> Check out date: ' + bookings[j].checkOut + '</p>'
-                                    + '<a class="btn btn-outline-primary baloo" href="/taft2GO/Listings/'+ listings[0]._id.$oid +'">View Listing</a>'
-                                    + '</div>'
-                                    + '</div>'
-                                    + '</div>'
-                                    + '</div><br>';
-                            },
-                            async: false,
-                            error: function(jqXHR, exception){
-                                console.log("Error");
-                                console.log(jqXHR.responseText);
-                            }
-                        });
+                        var today = new Date();
+                        console.log(today);
+                        var checkinDate = new Date(bookings[j].checkIn);
+                        console.log(checkinDate);
+                        if(today >= checkinDate) {
+                            $.ajax({
+                                type: "GET",
+                                url: "http://localhost:8080/taft2GO/listing/?filter={'_id': {'$oid': '" + bookings[j].listingID + "'}}",
+                                dataType: "json",
+                                success: function (response) {
+                                    console.log(response);
+                                    listings = response._embedded;
+                                    upcoming += '<div class="card">'
+                                        + '<div class="card-body">'
+                                        + '<div class="row">'
+                                        + '<div class="col-md-6">'
+                                        + '<div class="card">'
+                                        + '<img class="img-fluid d-block" src="' + listings[0].photo + '"></div>'
+                                        + '</div>'
+                                        + '<div class="col-md-6">'
+                                        + '<p class="">' + listings[0].title + '</p>'
+                                        + '<p class="lead">Booking ID: ' + bookings[j]._id.$oid + '</p>'
+                                        //+ '<p>Booking by: '+ fname +' '+ lname + '</p>'
+                                        + '<p class=""> Check in date: ' + bookings[j].checkIn + '</p>'
+                                        + '<p class=""> Check out date: ' + bookings[j].checkOut + '</p>'
+                                        + '<a class="btn btn-outline-primary baloo" href="/taft2GO/Listings/' + listings[0]._id.$oid + '">View Listing</a>'
+                                        + '</div>'
+                                        + '</div>'
+                                        + '</div>'
+                                        + '</div><br>';
+                                },
+                                async: false,
+                                error: function (jqXHR, exception) {
+                                    console.log("Error");
+                                    console.log(jqXHR.responseText);
+                                }
+                            });
+                        }   // booking history
                     }
                     if(noBookings == true){
                         upcoming = '<div class="py-5">'
