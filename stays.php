@@ -96,7 +96,7 @@
                                 + '<div class="card">'
                                 + '<div class="card-body">'
                                 + '<h1 class="">Choose your next stay.</h1>'
-                                + '<a class="btn btn-primary baloo" href="search-results.html">Go to search</a>'
+                                + '<a class="btn btn-primary baloo" href="/taft2GO/Search">Go to search</a>'
                                 + '</div>'
                                 + '</div>'
                                 + '</div>'

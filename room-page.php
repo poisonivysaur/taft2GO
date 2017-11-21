@@ -271,7 +271,43 @@
                     window.location.href = url + '/Listings';
                 }
                 else{
-                    window.location.href = url + '/Booking';
+                    var noConflict = true;
+                    $.ajax({
+                        type: "GET",
+                        url: "http://localhost:8080/taft2GO/booking/?filter={'listingID': '"+listingID+"'}",
+                        dataType: "json",
+                        success: function(response){
+                            console.log('get bookings');
+                           console.log(response._embedded);
+
+                           var mgaBookings = response._embedded;
+                           var checkin2;
+                           var checkout2;
+                           for(var k = 0; k < mgaBookings.length; k++){
+                                checkin1 = new Date(checkin);
+                                checkout1 = new Date(checkout);
+                                checkin2 = new Date(mgaBookings[k].checkIn);
+                                checkout2 = new Date(mgaBookings[k].checkOut);
+                                console.log(checkin2);
+                               if(checkin1 <= checkout2 && checkout1 >= checkin2) {
+                                    noConflict = false;
+                               }
+
+                           }
+                        },
+                        async: false,
+                        error: function(jqXHR, exception){
+                            console.log("Error");
+                            console.log(jqXHR.responseText);
+                        }
+                    });
+                    if(noConflict) { // no conflict
+                        window.location.href = url + '/Booking';
+                    }
+                    else{
+                        total = '<h4><b>Sorry, but those dates are unavailable.</b></h4>';
+                        $('#total').html(total);
+                    }
                 }
 
             }
