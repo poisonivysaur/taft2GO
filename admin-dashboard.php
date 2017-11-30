@@ -2,8 +2,8 @@
 <?php require_once 'ti.php' ?>
 <?php
 session_start();
-if (!isset($_SESSION['isLoggedIn']))
-    header("Location: http://".$_SERVER['HTTP_HOST'].  "/Login");
+if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isAdmin'] == 0)
+    header("Location: http://".$_SERVER['HTTP_HOST'].  "/taft2GO/Logout");
 ?>
 <html>
 <head>
@@ -11,19 +11,27 @@ if (!isset($_SESSION['isLoggedIn']))
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="style.css" type="text/css"> </head>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="import" href="bower_components/vaadin-grid/vaadin-grid.html">
+    <link rel="import" href="bower_components/paper-button/paper-button.html">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<!-- Data Table Libs  -->
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.2.0/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.2.0/js/responsive.bootstrap4.min.js"></script>
 
 <body>
 <?php startblock('navbar') ?>
 <nav class="navbar navbar-expand-md navbar-dark bg-light m-0 style">
     <div class="container">
-        <a href="/taft2GO/Homepage">
+        <!--<a href="/taft2GO/Homepage">-->
             <img src="T2G Logo.png" width="" height="50" class="d-inline-block align-top m-0" alt="">
-        </a>
+        <h3 class="text-primary baloo">Administrator Account</h3>
+        <!--</a>--><!--
         <input class="form-control mr-sm-2 baloo" type="text" placeholder="Find the right place...">
         <a href="Search" class="btn btn-outline-primary baloo">Search</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
@@ -36,6 +44,7 @@ if (!isset($_SESSION['isLoggedIn']))
     <div class="w3-dropdown-hover">
         <img src="https://poorishaadi.com/user-icon-png-pnglogocom.png" width="" height="50"
              class="d-inline-block align-top m-0" alt="">
+
         <div class="w3-dropdown-content w3-card-4">
             <!--<img src="img_london.jpg" alt="London" style="width:100%">-->
             <div class="w3-container">
@@ -45,14 +54,8 @@ if (!isset($_SESSION['isLoggedIn']))
                 <a href="/taft2GO/Logout" class="w3-bar-item w3-button">Logout</a>
             </div>
         </div>
-        <div class="w3-dropdown-content w3-bar-block w3-border">
-            <!--
-          <a href="#" class="w3-bar-item w3-button">Profile</a>
-          <a href="/taft2GO/Logout" class="w3-bar-item w3-button">Logout</a>
-          <!--<a href="#" class="w3-bar-item w3-button">Link 3</a>-->
-        </div>
     </div>
-    <h3 class="text-primary baloo">Administrator Account</h3>
+
     <!--</a>-->
     <!--<a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="addlisting.html">Host
     <br> </a>-->
@@ -70,13 +73,14 @@ if (!isset($_SESSION['isLoggedIn']))
             <ul class="navbar-nav"></ul>
         </a>
         <?php startblock('dashboardlink') ?>
-        <a class="btn navbar-btn ml-2 btn-link baloo text-secondary" href="/taft2GO/Dashboard">Admin Dashboard
+        <a class="btn navbar-btn ml-2 btn-link baloo text-secondary" href="/taft2GO/AdminDashboard">Accounts
             <br> </a><?php endblock() ?>
         <!--<a class="btn navbar-btn ml-2 text-white btn-link baloo" href="inbox.php">Inbox
           <br> </a>-->
         <?php startblock('listingslink') ?>
-        <a class="btn navbar-btn ml-2 btn-link baloo text-white" href="/taft2GO/Listings">Listings
+        <a class="btn navbar-btn ml-2 btn-link baloo text-white" href="/taft2GO/AdminListings">Listings
             <br> </a><?php endblock() ?>
+        <!--
         <?php startblock('stayslink') ?>
         <a class="btn navbar-btn ml-2 text-white btn-link baloo" href="/taft2GO/Stays">Stays
             <br> </a><?php endblock() ?>
@@ -86,6 +90,7 @@ if (!isset($_SESSION['isLoggedIn']))
         <?php startblock('accountlink') ?>
         <a class="btn navbar-btn ml-2 text-white btn-link baloo" href="/taft2GO/Account">Account </a>
         <?php endblock() ?>
+        -->
     </div>
     <div class="container">
         <a class="navbar-brand" href="#"></a>
@@ -98,39 +103,24 @@ if (!isset($_SESSION['isLoggedIn']))
 <div class="py-5">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
-                    <h4 class="alert-heading">Welcome to taft2GO!</h4>
-                    <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
-                    <a class="btn btn-primary baloo" href="">Get started
-                        <br> </a>
-                </div>
-                <div class="card">
-                    <div class="card-header"> Listings in progress</div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <img class="img-fluid d-block" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg"> </div>
-                            <div class="col-md-8">
-                                <h4>Manila Residence Room 1408</h4>
-                                <h6 class="text-muted">Last updated on October 5, 2017</h6>
-                                <p class=" p-y-1">You are 50% done with your listing</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
-                                </div>
-                                <p class=" p-y-1">&nbsp;</p>
-                                <a class="btn btn-primary baloo" href="addlisting.html">Get started
-                                    <br> </a>
-                                <a href="room-page.html" class="btn btn-outline-primary baloo">Preview</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <?php startblock('sidemenu') ?>
+            <div class="col-md-4 text-secondary">
+                <a class="btn navbar-btn ml-2 btn-link baloo ml-auto text-secondary text-left menu" href="/taft2GO/AdminAccounts">Active Accounts</a>
+                <a class="btn navbar-btn ml-2 btn-link baloo text-dark text-left ml-auto menu" href="/taft2GO/Listings-Reservations">Deactivated Accounts</a>
+
             </div>
+            <?php endblock() ?>
+
+
+            <?php startblock('menucontent') ?>
+            <div id="accounts" class="col-md-8">
+
+            </div>
+            <?php endblock() ?>
         </div>
     </div>
 </div>
+
 <?php endblock() ?>
 
 <?php startblock('footer') ?>
@@ -177,6 +167,64 @@ if (!isset($_SESSION['isLoggedIn']))
 </div>
 <?php endblock() ?>
 
+<script>
+    $(document).ready(function(){
+        getAccounts();
+    });
+
+    function getAccounts(){
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/taft2GO/account?filter={'isAdmin': '" + 0 + "','isActive':'" + 1 + "'}",
+            dataType: "json",
+            success: function (response) {
+                response = response._embedded;
+                console.log(response);
+                var tableData = '<div class="row mb-3">'
+                    + '<div class="col-md-12">'
+                    + '<div class="table-responsive">'
+                    + '<table class="table table-hover table-bordered nowrap material-shadow" cellspacing="0" width="100%" id="table">'
+                    + '<thead class="thead-inverse">'
+                    + '<tr><th>Account ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Delete Account</th></tr></thead><tbody>';
+
+                for(var i = 0; i < response.length; i++){
+                    tableData += '<tr>'
+                        + '<td>' + response[i]._id.$oid + '</td>'
+                        + '<td>' + response[i].fname + '</td>'
+                        + '<td>' + response[i].lname + '</td>'
+                        + '<td>' + response[i].email + '</td>'
+                        + '<td><paper-button raised class="primary" onclick="deactivate()">Deactivate</paper-button></td>'
+                        + '</tr>';
+                }
+                tableData += '</tbody></table></div></div></div>';
+                $('#accounts').html(tableData);
+                $('#table').DataTable({
+                    responsive: {
+                        details: {
+                            display: $.fn.dataTable.Responsive.display.modal( {
+                                header: function ( row ) {
+                                    var data = row.data();
+                                    return 'Details for '+data[0]+' '+data[1];
+                                }
+                            } ),
+                            renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                                tableClass: 'table'
+                            } )
+                        }
+                    }
+                });
+            },
+
+            error: function (jqXHR, exception) {
+                console.log(jqXHR);
+            }
+        });
+    }
+    
+    function deactivate() {
+        console.log("deactivate ");
+    }
+</script>
 </body>
 
 </html>

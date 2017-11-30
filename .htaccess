@@ -12,6 +12,7 @@ RewriteRule ^Session?$ session.php
 
 RewriteRule ^AdminDashboard?$ admin-dashboard.php
 RewriteRule ^AdminAccounts?$ admin-accounts.php
+RewriteRule ^AdminListings?$ admin-listing.php
 RewriteRule ^AdminListings/([0-9a-zA-Z]+)?$ admin-listings.php?objID=$1
 
 RewriteRule ^Listings-Reservations?$ listing-reservation.php
