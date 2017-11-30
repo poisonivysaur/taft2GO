@@ -49,12 +49,13 @@
                     var bookings = response._embedded;
 
                     for(var j = 0; j < bookings.length; j++){
-                        noBookings = false;
+
                         var today = new Date();
                         console.log(today);
                         var checkinDate = new Date(bookings[j].checkIn);
                         console.log(checkinDate);
                         if(today < checkinDate) {
+                            noBookings = false;
                             $.ajax({
                                 type: "GET",
                                 url: "http://localhost:8080/taft2GO/listing/?filter={'_id': {'$oid': '" + bookings[j].listingID + "'}}",
@@ -90,7 +91,7 @@
                         }   // upcoming date
                     }
                     if(noBookings == true){
-                        upcoming = '<div class="py-5">'
+                        upcoming += '<div class="py-5">'
                                 + '<div class="container">'
                                 + '<div class="row">'
                                 + '<div class="col-md-12">'
