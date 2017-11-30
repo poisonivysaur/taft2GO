@@ -261,12 +261,12 @@
             url = url.substr(0, url.indexOf('O')+1);
             console.log(url);
 
-            var isLoggedIn = <?php if(isset($_SESSION['isLoggedIn'])) echo 'true'; else echo 'false';?>;
+            var isLoggedIn = <?php if(!empty($_SESSION['isLoggedIn'])) echo 'true'; else echo 'false';?>;
             console.log(isLoggedIn);
 
             if(isLoggedIn == true){
 
-                if(accountID == "<?php echo $_SESSION['objID']; ?>"){
+                if(accountID == "<?php if(isset($_SESSION['objID'])) echo $_SESSION['objID']; else echo '';?>"){
                     alert('You cannot book your own place.');
                     window.location.href = url + '/Listings';
                 }
