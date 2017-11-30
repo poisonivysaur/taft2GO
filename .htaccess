@@ -8,6 +8,7 @@ RewriteRule ^Help?$ help.php
 RewriteRule ^Host?$ why-host.php
 RewriteRule ^Search?$ search-results.php
 RewriteRule ^Dashboard?$ dashboard.php
+RewriteRule ^AdminDashboard?$ admin-dashboard.php
 RewriteRule ^Session?$ session.php
 
 
