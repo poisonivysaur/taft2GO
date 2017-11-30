@@ -8,12 +8,13 @@
 
         <?php startblock('imports') ?>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-            <link rel="stylesheet" href="style.css" type="text/css">
+            <?php startblock('style') ?><link rel="stylesheet" href="style.css" type="text/css"><?php endblock()?>
             <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!--
             <link rel="import" href="bower_components/polymer/polymer-element.html">
             <link rel="import" href="bower_components/iron-ajax/iron-ajax.html">
             <link rel="import" href="bower_components/paper-button/paper-button.html">
-
+    -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
@@ -25,7 +26,7 @@
 	<?php startblock('navbar') ?>
 		<nav class="navbar navbar-expand-md navbar-dark m-0 style transparent">
             <a href="/taft2GO/Homepage">
-			<img src="T2G Logo.png" width="" height="50" class="d-inline-block align-top m-0" alt="">
+			<?php startblock('logo' )?><img src="T2G Logo.png" width="" height="50" class="d-inline-block align-top m-0" alt=""><?php endblock()?>
             </a>
 
             <?php startblock('searchbar') ?>
@@ -61,7 +62,7 @@
                                   <p></p>
                                   <p>{$_SESSION['fname']} {$_SESSION['lname']}</p>
                                   <a href=\"#\" class=\"w3-bar-item w3-button\">Profile</a>
-                                  <a href=\"/taft2GO/Logout\" class=\"w3-bar-item w3-button\">Logout</a>
+                                  <button onclick='clearSession()' class=\"w3-bar-item w3-button\">Logout</button>
                               </div>
                           </div>
                           <div class=\"w3-dropdown-content w3-bar-block w3-border\">
@@ -74,7 +75,7 @@
 
                 echo '<!--<a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="addlisting.php">Host-->
                       <br> </a>
-                  <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="stays.php">Stays</a>
+                  <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Stays">Stays</a>
                   <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Listings">Listings</a>
                   <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Help">Help</a>';
             }
@@ -139,7 +140,17 @@
 	<?php endblock() ?>
 
   
-  
+    <script>
+        function clearSession() {
+            sessionStorage.clear();
+            console.log('cleared session storage');
+            var url = window.location.href;
+            url = url.substr(0, url.indexOf('O')+1);    // domain/taft2GO/
+            console.log(url);
+            window.location.href = url + '/Logout';
+        }
+
+    </script>
 
 </body>
 </html>

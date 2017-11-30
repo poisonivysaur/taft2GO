@@ -11,16 +11,14 @@
         $_SESSION['fname'] = $_POST['fname'];
         $_SESSION['lname'] = $_POST['lname'];
 
-        if($_SESSION['isAdmin'] == 1){
-            header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF'])."/AdminDashboard");
-        }
-        else{
-            header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF'])."/Dashboard");
-        }
-
+        header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF']).$_POST['roompage']);
     }
 
 ?>
+<?php startblock('searchbar') ?>
+<input class="form-control mr-sm-2 baloo" type="text" placeholder="Find the right place...">
+<a href="/taft2GO/Search" class="btn btn-outline-primary baloo">Search</a>
+<?php endblock() ?>
 
 <?php startblock('content') ?>
     <div class="py-5 text-white opaque-overlay w-100 h-100" style="background-image: url(&quot;homepage bg.jpg&quot;);">
@@ -44,6 +42,7 @@
                 <input type="hidden" value="" name="objID" id="objID">
                 <input type="hidden" value="" name="fname" id="fname">
                 <input type="hidden" value="" name="lname" id="lname">
+                <input type="hidden" value="/Dashboard" name="roompage" id="roompage">
 
             </form>
             <button class="btn btn-primary baloo" onclick="login(email.value, password.value)">Log in</button>
@@ -59,6 +58,16 @@
       </div>
     </div>
 <script>
+
+    $(document).ready(function(){
+        var roomURL = sessionStorage.getItem('roompage');
+        if(roomURL !== null){
+            console.log('session roompage is not null yay');
+            console.log('ROOM URL '+roomURL);
+            $('input[name="roompage"]').val(roomURL);
+
+        }
+    });
     function login(email, pw) {
         $.ajax({
             type: "GET",
@@ -66,7 +75,7 @@
             dataType: "json",
             success: function(response){
                 console.log(response);
-                if(response._returned == 1){
+                if(response._returned > 0){
                     response = response._embedded;
                     $('#isAdmin').val(response[0].isAdmin);
                     $('#objID').val(response[0]._id.$oid);

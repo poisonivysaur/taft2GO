@@ -158,54 +158,60 @@
 
     <script>
     $(document).ready(function(){
-        $.ajax({
-            type: "GET",
-            url: "http://localhost:8080/taft2GO/listing",
-            dataType: "json",
-            success: function(response){
+        (function update(){
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:8080/taft2GO/listing",
+                dataType: "json",
+                success: function(response){
 
-                const studentJsonArray = response._embedded;
-                console.log(studentJsonArray);
-                console.log(studentJsonArray.length);
-                var condos = '';
-                var dorms = '';
+                    const jsonArray = response._embedded;
+                    console.log(jsonArray);
+                    console.log(jsonArray.length);
+                    var condos = '';
+                    var dorms = '';
 
-                for(var i = 0; i < studentJsonArray.length; i++){
-                    console.log("looped");
-                    console.log(studentJsonArray[i].type);
-                    if(studentJsonArray[i].type == 'condo'){
-                        console.log("added condo");
-                        condos += '<div class="col-md-3">'
-                                + '<a href="room-page.php?listingID='+ studentJsonArray[i]._id.$oid +'">'
-                                //+ '<a href="/taft2GO/Listings/'+ studentJsonArray[i].objID +'">'
-                                + '<img class="img-fluid d-block" src="'+ studentJsonArray[i].photo +'">'
-                                + '<p>'+ studentJsonArray[i].title +'</p>'
-                                + '<p>Monthy Rate of Php'+ studentJsonArray[i].monthlyRate +'</p>'
-                                + '<p>User Rating: '+ studentJsonArray[i].aveRating +'</p>'
+                    for(var i = 0; i < jsonArray.length; i++){
+                        console.log("looped");
+                        console.log(jsonArray[i].type);
+                        if(jsonArray[i].type == 'condo'){
+                            console.log("added condo");
+                            condos += '<div class="col-md-3">'
+                                //+ '<a href="room-page.php?listingID='+ jsonArray[i]._id.$oid +'">'
+                                + '<a href="/taft2GO/Listings/'+ jsonArray[i]._id.$oid +'">'
+                                + '<img class="img-fluid d-block" src="'+ jsonArray[i].photo +'">'
+                                + '<p>'+ jsonArray[i].title +'</p>'
+                                + '<p>Monthy Rate of Php'+ jsonArray[i].monthlyRate +'</p>'
+                                + '<p>User Rating: '+ jsonArray[i].aveRating +'</p>'
                                 + '</a>'
                                 + '</div>';
+                        }
+                        else if(jsonArray[i].type == 'dorm'){
+                            console.log("added dorm");
+                            dorms += '<div class="col-md-3">'
+                                //+ '<a href="room-page.php?listingID='+ jsonArray[i]._id.$oid +'">'
+                                + '<a href="/taft2GO/Listings/'+ jsonArray[i]._id.$oid +'">'
+                                + '<img class="img-fluid d-block" src="'+ jsonArray[i].photo +'">'
+                                + '<p>'+ jsonArray[i].title +'</p>'
+                                + '<p>Monthy Rate of Php'+ jsonArray[i].monthlyRate +'</p>'
+                                + '<p>User Rating: '+ jsonArray[i].aveRating +'</p>'
+                                + '</a>'
+                                + '</div>';
+                        }
                     }
-                    else if(studentJsonArray[i].type == 'dorm'){
-                        console.log("added dorm");
-                        dorms += '<div class="col-md-3">'
-                            + '<a href="room-page.php?listingID='+ studentJsonArray[i]._id.$oid +'">'
-                            //+ '<a href="/taft2GO/Listings/'+ studentJsonArray[i].objID +'">'
-                            + '<img class="img-fluid d-block" src="'+ studentJsonArray[i].photo +'">'
-                            + '<p>'+ studentJsonArray[i].title +'</p>'
-                            + '<p>Monthy Rate of Php'+ studentJsonArray[i].monthlyRate +'</p>'
-                            + '<p>User Rating: '+ studentJsonArray[i].aveRating +'</p>'
-                            + '</a>'
-                            + '</div>';
-                    }
+                    $('#condos').html(condos);
+                    $('#dorms').html(dorms);
+                },
+                error: function(jqXHR, exception){
+                    console.log("Error");
+                    console.log(jqXHR.responseText);
                 }
-                $('#condos').html(condos);
-                $('#dorms').html(dorms);
-            },
-            error: function(jqXHR, exception){
-                console.log("Error");
-                console.log(jqXHR.responseText);
-            }
-        });
+            }).then(function(){
+                console.log('orayt called set timeout');
+                setTimeout(update, 5000);
+            });
+        })();
+
     });
     </script>
 <?php endblock() ?>
