@@ -47,8 +47,9 @@
                 success: function(response){
                     console.log(response);
                     var bookings = response._embedded;
-                    var noBookings = false;
+
                     for(var j = 0; j < bookings.length; j++){
+                        noBookings = false;
                         var today = new Date();
                         console.log(today);
                         var checkinDate = new Date(bookings[j].checkIn);
