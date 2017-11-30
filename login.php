@@ -33,9 +33,9 @@
 
             <form class="" method="POST" id="loginForm" action="<?php echo $_SERVER['PHP_SELF']; ?>">
               <div class="form-group baloo"> <label class="baloo">Email address</label>
-                <input type="email" id="email" name="email" class="form-control" placeholder="Enter email"> </div>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Enter email" required autofocus> </div>
               <div class="form-group baloo"> <label class="baloo">Password</label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="Password"> </div>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required> </div>
 
 
                 <input type="hidden" value="" name="isAdmin" id="isAdmin">
@@ -69,32 +69,37 @@
         }
     });
     function login(email, pw) {
-        $.ajax({
-            type: "GET",
-            url: "http://localhost:8080/taft2GO/account/?filter={'email': '" + email + "','password':'" + pw +"'}",
-            dataType: "json",
-            success: function(response){
-                console.log(response);
-                if(response._returned > 0){
-                    response = response._embedded;
-                    $('#isAdmin').val(response[0].isAdmin);
-                    $('#objID').val(response[0]._id.$oid);
-                    $('#fname').val(response[0].fname);
-                    $('#lname').val(response[0].lname);
-                    $('#loginForm').submit();
-                    //$('#feedback').html('<h4>Email & password FETCHED.</h4>');
-                }
-                else{
-                    $('#feedback').html('<h4>Email & password does not match.</h4>');
-                    $('#email').val("");
-                    $('#password').val("");
-                }
-            },
+        if(email == "" || password == ""){
+            $('#feedback').html('<h4>Please fill out all fields.</h4>');
+        }
+        else {
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:8080/taft2GO/account/?filter={'email': '" + email + "','password':'" + pw + "'}",
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                    if (response._returned > 0) {
+                        response = response._embedded;
+                        $('#isAdmin').val(response[0].isAdmin);
+                        $('#objID').val(response[0]._id.$oid);
+                        $('#fname').val(response[0].fname);
+                        $('#lname').val(response[0].lname);
+                        $('#loginForm').submit();
+                        //$('#feedback').html('<h4>Email & password FETCHED.</h4>');
+                    }
+                    else {
+                        $('#feedback').html('<h4>Email & password does not match.</h4>');
+                        $('#email').val("");
+                        $('#password').val("");
+                    }
+                },
 
-            error: function(jqXHR, exception){
-                console.log(jqXHR);
-            }
-        });
+                error: function (jqXHR, exception) {
+                    console.log(jqXHR);
+                }
+            });
+        }
     }
 </script>
 <?php endblock() ?>

@@ -14,7 +14,7 @@
 
                     <!--<form class="">--><!---->
                     <div class="form-group baloo"> <label class="baloo">Email address</label>
-                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter email" required> </div>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter email" required autofocus> </div>
 
                     <div class="form-group baloo text-white"> <label class="baloo">First Name</label>
                         <input type="text" id="fname" name="firstname" class="form-control" placeholder="First Name" required> </div>
@@ -73,7 +73,7 @@
                         isUnique = false;
                     }
                 },
-
+                async: false,
                 error: function(jqXHR, exception){
                     console.log(jqXHR);
                 }
@@ -98,12 +98,18 @@
             }
             else if(password != confirm){
                 $('#feedback').html('<h4>Passwords do not match.</h4>');
+                $('#password').val('');
+                $('#confirm_password').val('');
             }
             else if(validateEmail(email) == false){
                 $('#feedback').html('<h4>Please enter a valid email address.</h4>');
+                $('#password').val('');
+                $('#confirm_password').val('');
             }
             else if(checkUniqueEmail(email) == false){
                 $('#feedback').html('<h4>Email address already exists.</h4>');
+                $('#password').val('');
+                $('#confirm_password').val('');
             }
             else {
                 var postData = '{"fname":"' + fname + '"lname:"' + lname + '"email:"' + email + '"username:"' + username + '"password:"' + password +
