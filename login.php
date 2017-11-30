@@ -11,7 +11,13 @@
         $_SESSION['fname'] = $_POST['fname'];
         $_SESSION['lname'] = $_POST['lname'];
 
-        header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF'])."/Dashboard");
+        if($_SESSION['isAdmin'] == 1){
+            header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF'])."/AdminDashboard");
+        }
+        else{
+            header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF'])."/Dashboard");
+        }
+
     }
 
 ?>
