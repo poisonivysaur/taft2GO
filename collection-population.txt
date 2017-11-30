@@ -1,0 +1,56 @@
+// taft2GO collection populations
+
+# ACCOUNT collection
+
+{
+  "_id": {
+    "$oid": "5a122455e362e3118dfc2a6c"
+  },
+  "fname": "ivy",
+  "lname": "lim",
+  "username": "poison.ivy",
+  "password": "asdf",
+  "status": "",
+  "profilePic": "",
+  "isAdmin": 1,
+  "isActive": 1,
+  "email": "test@gmail.com",
+  "_type": "DOCUMENT"
+}
+
+
+# LISTING collection
+
+{
+  "_id": {
+    "$oid": "5a122780e362e3118dfc2a6d"
+  },
+  "accountID": "5a122455e362e3118dfc2a6c",
+  "address": "manila residence, Taft Ave. Manila",
+  "title": "room 2401 manila residence",
+  "description": "amazing home",
+  "type": "condo",
+  "photo": "https://d38dwrpoohadw1.cloudfront.net/public/preselling/project_1437462310_7978_3844.jpg",
+  "capacity": 4,
+  "monthlyRate": 12000,
+  "rules": "no smoking",
+  "beds": 4,
+  "bathrooms": 1.5,
+  "aveRating": 3.5,
+  "amenities": "gym, wifi",
+  "status": "available",
+  "_type": "DOCUMENT"
+}
+
+
+# BOOKING collection
+
+{
+	"accountID": '5a12247fa615f5a59430b68f',
+	"listingID": '5a122780e362e3118dfc2a6d',
+	"checkIn": '2017-11-20',
+	"checkOut": '2017-11-22',
+	"numOfPeople": 4,
+	"status": 'reserved',
+	"tripDetails": 'i want to go on vacation po'
+}

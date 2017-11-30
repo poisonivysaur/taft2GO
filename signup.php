@@ -60,6 +60,27 @@
             return re.test(email);
         }
 
+        function checkUniqueEmail(email){
+            var isUnique = true;
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:8080/taft2GO/account/?filter={'email': '" + email +"'}",
+                dataType: "json",
+                success: function(response){
+                    console.log(response);
+                    if(response._returned > 0){
+                        response = response._embedded;
+                        isUnique = false;
+                    }
+                },
+
+                error: function(jqXHR, exception){
+                    console.log(jqXHR);
+                }
+            });
+            return isUnique;
+        }
+
         function createNewAccount(){
 
             var email = $('#email').val();
@@ -73,40 +94,49 @@
             var profilePic = "";
 
             if(email == "" || fname == "" || lname == "" || password == "" || confirm == ""){
-                $('#feedback').html('<h4>Error procesing request.</h4>');
+                $('#feedback').html('<h4>Please fill out all fields.</h4>');
             }
-            var postData = '{"fname":"'+ fname + '"lname:"'+ lname + '"email:"'+ email + '"username:"'+ username + '"password:"'+ password +
-                '"isActive:"'+ isActive + '"isAdmin:"'+ isAdmin + '"profilePic:"'+ profilePic + '"}';
+            else if(password != confirm){
+                $('#feedback').html('<h4>Passwords do not match.</h4>');
+            }
+            else if(validateEmail(email) == false){
+                $('#feedback').html('<h4>Please enter a valid email address.</h4>');
+            }
+            else if(checkUniqueEmail(email) == false){
+                $('#feedback').html('<h4>Email address already exists.</h4>');
+            }
+            else {
+                var postData = '{"fname":"' + fname + '"lname:"' + lname + '"email:"' + email + '"username:"' + username + '"password:"' + password +
+                    '"isActive:"' + isActive + '"isAdmin:"' + isAdmin + '"profilePic:"' + profilePic + '"}';
 
 
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8080/taft2GO/account",
+                    processData: false,
+                    contentType: "application/json",
+                    data: postData,
+                    complete: function (jqXHR, exception) {
+                        console.log(jqXHR.status);
+                        console.log(jqXHR.responseText);
 
-            $.ajax({
-                type: "POST",
-                url: "http://localhost:8080/taft2GO/account",
-                processData: false,
-                contentType: "application/json",
-                data: postData,
-                complete: function(jqXHR, exception){
-                    console.log(jqXHR.status);
-                    console.log(jqXHR.responseText);
+                        if (jqXHR.status == 201) { // created
+                            $('#feedback').html('<h4>Successfully Registered! Please <a href="/taft2GO/Login">Login</a> to continue</h4>');
+                            $('#email').val('');
+                            $('#fname').val('');
+                            $('#lname').val('');
+                            $('#password').val('');
+                            $('#confirm_password').val('');
+                        }
 
-                    if(jqXHR.status == 201){ // created
-                        $('#feedback').html('<h4>Successfully Registered! Please <a href="/taft2GO/Login">Login</a> to continue</h4>');
-                        $('#email').val('');
-                        $('#fname').val('');
-                        $('#lname').val('');
-                        $('#password').val('');
-                        $('#confirm_password').val('');
+                        else {
+                            $('#feedback').html('<h4>Error procesing request.</h4>');
+                        }
                     }
 
-                    else{
-                        $('#feedback').html('<h4>Error procesing request.</h4>');
-                    }
-                }
+                });
 
-            });
-
-
+            }
 
         }
 
