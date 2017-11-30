@@ -11,7 +11,12 @@
         $_SESSION['fname'] = $_POST['fname'];
         $_SESSION['lname'] = $_POST['lname'];
 
-        header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF']).$_POST['roompage']);
+        if($_SESSION['isAdmin'] == 1){
+            header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF'])."/AdminDashboard");
+        }
+        else {
+            header("Location: http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . $_POST['roompage']);
+        }
     }
 
 ?>
@@ -75,12 +80,13 @@
         else {
             $.ajax({
                 type: "GET",
-                url: "http://localhost:8080/taft2GO/account/?filter={'email': '" + email + "','password':'" + pw + "'}",
+                url: "http://localhost:8080/taft2GO/account/?filter={'email': '" + email + "','password':'" + pw + "','isActive':'" + 1 + "'}",
                 dataType: "json",
                 success: function (response) {
                     console.log(response);
                     if (response._returned > 0) {
                         response = response._embedded;
+                        console.log(response);
                         $('#isAdmin').val(response[0].isAdmin);
                         $('#objID').val(response[0]._id.$oid);
                         $('#fname').val(response[0].fname);

@@ -8,9 +8,11 @@ RewriteRule ^Help?$ help.php
 RewriteRule ^Host?$ why-host.php
 RewriteRule ^Search?$ search-results.php
 RewriteRule ^Dashboard?$ dashboard.php
-RewriteRule ^AdminDashboard?$ admin-dashboard.php
 RewriteRule ^Session?$ session.php
 
+RewriteRule ^AdminDashboard?$ admin-dashboard.php
+RewriteRule ^AdminAccounts?$ admin-accounts.php
+RewriteRule ^AdminListings/([0-9a-zA-Z]+)?$ admin-listings.php?objID=$1
 
 RewriteRule ^Listings-Reservations?$ listing-reservation.php
 RewriteRule ^Listings?$ listing.php
