@@ -41,7 +41,7 @@ if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isAdmin'] == 1)
 
         <!--<a href="login.html">-->
           <div class="w3-dropdown-hover">
-          <img src="https://poorishaadi.com/user-icon-png-pnglogocom.png" width="" height="50"
+                <img src="https://poorishaadi.com/user-icon-png-pnglogocom.png" width="" height="50"
                class="d-inline-block align-top m-0" alt="">
               <div class="w3-dropdown-content w3-card-4">
                   <!--<img src="img_london.jpg" alt="London" style="width:100%">-->
@@ -70,6 +70,7 @@ if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isAdmin'] == 1)
               <br> </a>
 
           <!--<a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Help">Help</a>-->
+          
           <input class="form-control mr-sm-2 baloo" type="text" placeholder="Find the right place...">
           <a href="Search" class="btn btn-outline-primary baloo">Search</a>
       </nav>
