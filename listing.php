@@ -2,7 +2,7 @@
 
 
 <?php startblock('dashboardlink') ?>
-<a class="btn navbar-btn ml-2 btn-link baloo text-white" href="/taft2GO/Dashboard">Dashboard
+<!--<a class="btn navbar-btn ml-2 btn-link baloo text-white" href="/taft2GO/Dashboard">Dashboard-->
     <br> </a><?php endblock() ?>
 <?php startblock('listingslink') ?>
 <a class="btn navbar-btn ml-2 btn-link baloo text-secondary" href="/taft2GO/Listings">Listings

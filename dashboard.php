@@ -70,7 +70,7 @@ if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isAdmin'] == 1)
               <br> </a>
 
           <!--<a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Help">Help</a>-->
-          
+
           <input class="form-control mr-sm-2 baloo" type="text" placeholder="Find the right place...">
           <a href="Search" class="btn btn-outline-primary baloo">Search</a>
       </nav>

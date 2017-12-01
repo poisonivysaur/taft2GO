@@ -5,97 +5,102 @@
     <a href="/taft2GO/Search" class="btn btn-outline-primary baloo">Search</a>
 <?php endblock() ?>
 
-<?php startblock('content')?>
-  <div class="py-5 gradient-overlay" style="background-image: url(&quot;https://pingendo.github.io/templates/sections/assets/cover_event.jpg&quot;);">
-    <div class="container py-5">
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class="">Explore taft2GO</h1>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4 text-white">
-          <h2 class="">Condominiums</h2>
-          <a class="btn btn-primary baloo" href="explore.html">Condos</a>
-        </div>
-        <div class="col-md-4 text-white">
-          <h2 class="">Dormitories</h2>
-          <a class="btn btn-primary baloo" href="explore.html">Dorms</a>
-          <p class="lead"> </p>
-        </div>
-          <!--
-        <div class="col-md-4 text-white">
-          <h2 class="">Transients</h2>
-          <a class="btn btn-primary baloo" href="explore.html">Transients</a>
-        </div>-->
-      </div>
-    </div>
-  </div>
-    <!--
   <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class="">Top-rated Homes</h1>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-3">
-          <a href="room-page.html">
-            <img class="img-fluid d-block" src="home 1.png"> </a>
-        </div>
-        <div class="col-md-3">
-          <a href="room-page.html">
-            <img class="img-fluid d-block" src="home 2.png"> </a>
-        </div>
-        <div class="col-md-3">
-          <a href="room-page.html">
-            <img class="img-fluid d-block" src="home 3.png"> </a>
-        </div>
-        <div class="col-md-3">
-          <a href="room-page.html">
-            <img class="img-fluid d-block" src="home 3.png"> </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  -->
+      <?php startblock('content')?>
+      <div class="py-5 gradient-overlay" style="background-image: url(&quot;https://pingendo.github.io/templates/sections/assets/cover_event.jpg&quot;);">
+          <div class="container py-5">
+              <div class="row">
+                  <div class="col-md-12">
+                      <h1 class="">Explore taft2GO</h1>
+                  </div>
+              </div>
+              <?php startblock('searchCondos')?>
+              <div class="row">
+                  <div class="col-md-4 text-white">
+                      <h2 class="">Condominiums</h2>
+                      <a class="btn btn-primary baloo" href="/taft2GO/Condominiums">Condos</a>
+                  </div>
+                  <?php endblock()?>
 
-    <!-- CONDOS -->
-  <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class="baloo">Condominiums
-            <br> </h1>
-        </div>
+                  <?php startblock('searchDorms')?>
+                  <div class="col-md-4 text-white">
+                      <h2 class="">Dormitories</h2>
+                      <a class="btn btn-primary baloo" href="/taft2GO/Dormitories">Dorms</a>
+                      <p class="lead"> </p>
+                  </div>
+                  <?php endblock() ?>
+                  <!--
+                <div class="col-md-4 text-white">
+                  <h2 class="">Transients</h2>
+                  <a class="btn btn-primary baloo" href="explore.html">Transients</a>
+                </div>-->
+              </div>
+          </div>
       </div>
-      <div id="condos" class="row">
-          <!--
-        <div class="col-md-3">
-          <a href="room-page.html">
-            <img class="img-fluid d-block" src="home 1.png"> </a>
+      <!--
+    <div class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="">Top-rated Homes</h1>
+          </div>
         </div>
-        <div class="col-md-3">
-          <a href="room-page.html">
-            <img class="img-fluid d-block" src="home 2.png"> </a>
+        <div class="row">
+          <div class="col-md-3">
+            <a href="room-page.html">
+              <img class="img-fluid d-block" src="home 1.png"> </a>
+          </div>
+          <div class="col-md-3">
+            <a href="room-page.html">
+              <img class="img-fluid d-block" src="home 2.png"> </a>
+          </div>
+          <div class="col-md-3">
+            <a href="room-page.html">
+              <img class="img-fluid d-block" src="home 3.png"> </a>
+          </div>
+          <div class="col-md-3">
+            <a href="room-page.html">
+              <img class="img-fluid d-block" src="home 3.png"> </a>
+          </div>
         </div>
-        <div class="col-md-3">
-          <a href="room-page.html">
-            <img class="img-fluid d-block" src="home 3.png"> </a>
-        </div>
-        <div class="col-md-3">
-          <a href="room-page.html">
-            <img class="img-fluid d-block" src="home 3.png"> </a>
-        </div>
-          -->
       </div>
     </div>
-  </div>
+    -->
 
-    <!-- DORMS -->
-  <div class="py-5">
-    <div class="container">
+      <!-- CONDOS -->
+      <div class="py-5">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-12">
+                      <h1 class="baloo">Condominiums
+                          <br> </h1>
+                  </div>
+              </div>
+              <div id="condos" class="row">
+                  <!--
+                <div class="col-md-3">
+                  <a href="room-page.html">
+                    <img class="img-fluid d-block" src="home 1.png"> </a>
+                </div>
+                <div class="col-md-3">
+                  <a href="room-page.html">
+                    <img class="img-fluid d-block" src="home 2.png"> </a>
+                </div>
+                <div class="col-md-3">
+                  <a href="room-page.html">
+                    <img class="img-fluid d-block" src="home 3.png"> </a>
+                </div>
+                <div class="col-md-3">
+                  <a href="room-page.html">
+                    <img class="img-fluid d-block" src="home 3.png"> </a>
+                </div>
+                  -->
+              </div>
+          </div>
+      </div>
+
+      <!-- DORMS -->
+      <div class="container">
       <div class="row">
         <div class="col-md-12">
           <h1 class="baloo">Dormitories

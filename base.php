@@ -45,7 +45,7 @@
             }
             if (!isset($_SESSION['isLoggedIn'])){
                 echo '<a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="/taft2GO/Host">Become a Host</a>
-                    <!--<a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="/taft2GO/Help">Help-->
+                    <!--<a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="/taft2GO/Help">Help--><p><?php echo " ". $_SESSION[\'fname\'] ." ". $_SESSION[\'lname\'];?></p>
                         <br> </a>
                     <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Signup">Sign Up</a>
                     <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Login">Log In</a>';

@@ -6,7 +6,12 @@ RewriteRule ^Signup?$ signup.php
 RewriteRule ^Homepage?$ homepage.php
 RewriteRule ^Help?$ help.php
 RewriteRule ^Host?$ why-host.php
+
 RewriteRule ^Search?$ search-results.php
+RewriteRule ^Condominiums?$ search-condos.php
+RewriteRule ^Dormitories?$ search-dorms.php
+
+
 RewriteRule ^Dashboard?$ listing.php
 RewriteRule ^Session?$ session.php
 
