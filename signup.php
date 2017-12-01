@@ -90,7 +90,7 @@
             var confirm = $('#confirm_password').val();
             var username = "";
             var isActive = 1;
-            var isAdmin = 1;
+            var isAdmin = 0;
             var profilePic = "";
 
             if(email == "" || fname == "" || lname == "" || password == "" || confirm == ""){

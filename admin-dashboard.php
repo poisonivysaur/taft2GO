@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <?php require_once 'ti.php' ?>
 <?php
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isAdmin'] == 0)
     header("Location: http://".$_SERVER['HTTP_HOST'].  "/taft2GO/Logout");
 ?>
@@ -106,8 +109,7 @@ if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isAdmin'] == 0)
             <?php startblock('sidemenu') ?>
             <div class="col-md-4 text-secondary">
                 <a class="btn navbar-btn ml-2 btn-link baloo ml-auto text-secondary text-left menu" href="/taft2GO/AdminAccounts">Active Accounts</a>
-                <a class="btn navbar-btn ml-2 btn-link baloo text-dark text-left ml-auto menu" href="/taft2GO/Listings-Reservations">Deactivated Accounts</a>
-
+                <!--<a class="btn navbar-btn ml-2 btn-link baloo text-dark text-left ml-auto menu" href="/taft2GO/Listings-Reservations">Deactivated Accounts</a>-->
             </div>
             <?php endblock() ?>
 
@@ -167,6 +169,7 @@ if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isAdmin'] == 0)
 </div>
 <?php endblock() ?>
 
+<?php startblock('adminScript') ?>
 <script>
     $(document).ready(function(){
         getAccounts();
@@ -178,9 +181,9 @@ if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isAdmin'] == 0)
             url: "http://localhost:8080/taft2GO/account?filter={'isAdmin': '" + 0 + "','isActive':'" + 1 + "'}",
             dataType: "json",
             success: function (response) {
-                response = response._embedded;
+                var response = response._embedded;
                 console.log(response);
-                var tableData = '<div class="row mb-3">'
+                var tableData = '<h2 class="baloo">Active Accounts</h2><div class="row mb-3">'
                     + '<div class="col-md-12">'
                     + '<div class="table-responsive">'
                     + '<table class="table table-hover table-bordered nowrap material-shadow" cellspacing="0" width="100%" id="table">'
@@ -188,12 +191,15 @@ if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isAdmin'] == 0)
                     + '<tr><th>Account ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Delete Account</th></tr></thead><tbody>';
 
                 for(var i = 0; i < response.length; i++){
+                    var id = response[i]._id.$oid;
+                    console.log(id);
                     tableData += '<tr>'
-                        + '<td>' + response[i]._id.$oid + '</td>'
+                        + '<td onmouseover="this.style.cursor=\'pointer\'">' + response[i]._id.$oid + '</td>'
                         + '<td>' + response[i].fname + '</td>'
                         + '<td>' + response[i].lname + '</td>'
                         + '<td>' + response[i].email + '</td>'
-                        + '<td><paper-button raised class="primary" onclick="deactivate()">Deactivate</paper-button></td>'
+
+                        + '<td><paper-button raised class="btn btn-primary baloo" onclick=deactivate("'+ id +'")>Deactivate</paper-button></td>'
                         + '</tr>';
                 }
                 tableData += '</tbody></table></div></div></div>';
@@ -204,7 +210,7 @@ if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isAdmin'] == 0)
                             display: $.fn.dataTable.Responsive.display.modal( {
                                 header: function ( row ) {
                                     var data = row.data();
-                                    return 'Details for '+data[0]+' '+data[1];
+                                    return 'Details for '+data[1]+' '+data[2];
                                 }
                             } ),
                             renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
@@ -221,10 +227,116 @@ if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isAdmin'] == 0)
         });
     }
     
-    function deactivate() {
-        console.log("deactivate ");
+    function deactivate(id) {
+        console.log("deactivate "+id);
+
+        $.ajax({
+            type: "DELETE",
+            url: "http://localhost:8080/taft2GO/account/" + id,
+            processData: false,
+            contentType: "application/json",
+            complete: function (jqXHR, exception) {
+                console.log(jqXHR.status);
+                console.log(jqXHR.responseText);
+
+                if (jqXHR.status == 204) { // created
+                    console.log("account "+id+" successfully deleted.");
+                    // ########################################### DELETE ALL LISTINGS UNDER THAT ACCOUNT ######################
+                    (function () {
+                        $.ajax({
+                            type: "GET",
+                            url: "http://localhost:8080/taft2GO/listing/?filter={'accountID': '"+ id +"'}",
+                            dataType: "json",
+                            success: function(response){
+                                console.log(response._embedded);
+                                var listings = response._embedded;
+
+                                // loop around each listing, deleting them in the db
+                                for(var i = 0; i < listings.length; i++){
+                                    var listingID = listings[i]._id.$oid;
+                                    $.ajax({
+                                        type: "DELETE",
+                                        url: "http://localhost:8080/taft2GO/listing/" +listingID,
+                                        processData: false,
+                                        contentType: "application/json",
+                                        complete: function(jqXHR, exception){
+                                            console.log(jqXHR.status);
+                                            console.log(jqXHR.responseText);
+                                            if(jqXHR.status == 204){
+                                                console.log("listing "+listingID + "successfully deleted.");
+
+
+                                                // delete all bookings from the listing as well
+
+                                            }
+                                            else{
+                                                console.log("Error deleting");
+                                            }
+                                        }
+                                    });
+                                }
+                            },
+                            async: false,
+                            error: function(jqXHR, exception){
+                                console.log("Error");
+                                console.log(jqXHR.responseText);
+                            }
+                        });
+                    })();
+
+                    // ########################################### DELETE ALL BOOKINGS UNDER THAT ACCOUNT ######################
+                    (function () {
+                        $.ajax({
+                            type: "GET",
+                            url: "http://localhost:8080/taft2GO/booking/?filter={'accountID': '"+ id +"'}",
+                            dataType: "json",
+                            success: function(response){
+                                console.log(response._embedded);
+                                var bookings = response._embedded;
+
+                                // loop around each listing, deleting them in the db
+                                for(var i = 0; i < bookings.length; i++){
+                                    var bookingID = bookings[i]._id.$oid;
+                                    $.ajax({
+                                        type: "DELETE",
+                                        url: "http://localhost:8080/taft2GO/booking/" +bookingID,
+                                        processData: false,
+                                        contentType: "application/json",
+                                        complete: function(jqXHR, exception){
+                                            console.log(jqXHR.status);
+                                            console.log(jqXHR.responseText);
+                                            if(jqXHR.status == 204){
+                                                console.log("booking "+bookingID + "successfully deleted.");
+
+
+                                                // delete all bookings from the listing as well
+
+                                            }
+                                            else{
+                                                console.log("Error deleting");
+                                            }
+                                        }
+                                    });
+                                }
+                            },
+                            async: false,
+                            error: function(jqXHR, exception){
+                                console.log("Error");
+                                console.log(jqXHR.responseText);
+                            }
+                        });
+                    })();
+                }
+                else {
+                    console.log("Error deleting");
+                }
+            },
+            async: false
+
+        });
     }
 </script>
+<?php endblock() ?>
 </body>
 
 </html>

@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <?php include 'base.php' ?>
+<?php startblock('searchbar') ?>
+<input class="form-control mr-sm-2 baloo" type="text" placeholder="Find the right place...">
+<a href="/taft2GO/Search" class="btn btn-outline-primary baloo">Search</a>
+<?php endblock() ?>
 
 <?php startblock('content') ?>
     <div class="py-5 gradient-overlay" style="background-image: url(&quot;https://pingendo.github.io/templates/sections/assets/cover_event.jpg&quot;);">
@@ -11,7 +15,7 @@
           <p class="lead baloo">HOST ON TAFT2GO</p>
           <h1 class="display-3 mb-4 baloo">Earn money as a&nbsp;
             <br>taft2GO host</h1>
-          <a href="login.html" class="btn btn-lg btn-primary mx-1 baloo">Get started</a>
+          <a href="/taft2GO/Login" class="btn btn-lg btn-primary mx-1 baloo">Get started</a>
         </div>
       </div>
     </div>

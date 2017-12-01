@@ -31,7 +31,7 @@
     <script>
         $(document).ready(function(){
             var noBookings = true;
-            var upcoming = '<h1 class="text-dark">Booking History</h1>';
+            var upcoming = '<h1 class="text-dark baloo">Booking History</h1>';
             $.ajax({
                 type: "GET",
                 url: "http://localhost:8080/taft2GO/booking/?filter={'accountID': '<?php echo $_SESSION['objID'] ?>'}",

@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <?php require_once 'ti.php' ?>
 <?php
-session_start();
-if (!isset($_SESSION['isLoggedIn']))
-    header("Location: http://".$_SERVER['HTTP_HOST'].  "/Login");
+if(!isset($_SESSION))
+{
+    session_start();
+}
+if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isAdmin'] == 1)
+    header("Location: http://".$_SERVER['HTTP_HOST'].  "/taft2GO/Logout");
 ?>
 <html>
 <head>
@@ -16,6 +19,11 @@ if (!isset($_SESSION['isLoggedIn']))
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<!-- Data Table Libs  -->
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.2.0/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.2.0/js/responsive.bootstrap4.min.js"></script>
 
 <body>
     <?php startblock('navbar') ?>
@@ -24,13 +32,12 @@ if (!isset($_SESSION['isLoggedIn']))
           <a href="/taft2GO/Homepage">
                 <img src="T2G Logo.png" width="" height="50" class="d-inline-block align-top m-0" alt="">
             </a>
-          <input class="form-control mr-sm-2 baloo" type="text" placeholder="Find the right place...">
-          <a href="Search" class="btn btn-outline-primary baloo">Search</a>
+          <!--
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
           <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
             <ul class="navbar-nav"></ul>
-          </div>
-        </div>
+          </div>-->
+
 
         <!--<a href="login.html">-->
           <div class="w3-dropdown-hover">
@@ -41,7 +48,9 @@ if (!isset($_SESSION['isLoggedIn']))
                   <div class="w3-container">
                       <p></p>
                       <p><?php echo " ". $_SESSION['fname'] ." ". $_SESSION['lname'];?></p>
-                      <a href="#" class="w3-bar-item w3-button">Profile</a>
+                      <!--<a href="#" class="w3-bar-item w3-button">Profile</a>-->
+                      <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="Stays">Stays</a>
+                      <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Listings">Listings</a>
                       <a href="/taft2GO/Logout" class="w3-bar-item w3-button">Logout</a>
                   </div>
               </div>
@@ -51,13 +60,18 @@ if (!isset($_SESSION['isLoggedIn']))
                   <a href="/taft2GO/Logout" class="w3-bar-item w3-button">Logout</a>
                   <!--<a href="#" class="w3-bar-item w3-button">Link 3</a>-->
               </div>
-          </div>
+          </div><!-- dropdown logout -->
+
+
+
+        </div><!-- container -->
         <!--</a>-->
           <!--<a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="addlisting.html">Host-->
               <br> </a>
-          <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="Stays">Stays</a>
-          <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Listings">Listings</a>
-          <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Help">Help</a>
+
+          <!--<a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Help">Help</a>-->
+          <input class="form-control mr-sm-2 baloo" type="text" placeholder="Find the right place...">
+          <a href="Search" class="btn btn-outline-primary baloo">Search</a>
       </nav>
 
       <nav class="navbar navbar-expand-md bg-primary navbar-dark">
@@ -66,7 +80,7 @@ if (!isset($_SESSION['isLoggedIn']))
           <a href="login.html">
             <ul class="navbar-nav"></ul>
           </a>
-            <?php startblock('dashboardlink') ?>
+            <?php startblock('dashboardlink') ?><!--
           <a class="btn navbar-btn ml-2 btn-link baloo text-secondary" href="/taft2GO/Dashboard">Dashboard
             <br> </a><?php endblock() ?>
           <!--<a class="btn navbar-btn ml-2 text-white btn-link baloo" href="inbox.php">Inbox
@@ -77,12 +91,12 @@ if (!isset($_SESSION['isLoggedIn']))
             <?php startblock('stayslink') ?>
           <a class="btn navbar-btn ml-2 text-white btn-link baloo" href="/taft2GO/Stays">Stays
             <br> </a><?php endblock() ?>
-            <?php startblock('profilelink') ?>
+            <?php startblock('profilelink') ?><!--
           <a class="btn navbar-btn ml-2 text-white btn-link baloo" href="/taft2GO/Profile">Profile
             <br> </a><?php endblock() ?>
             <?php startblock('accountlink') ?>
           <a class="btn navbar-btn ml-2 text-white btn-link baloo" href="/taft2GO/Account">Account </a>
-            <?php endblock() ?>
+            <?php endblock() ?>-->
         </div>
         <div class="container">
           <a class="navbar-brand" href="#"></a>

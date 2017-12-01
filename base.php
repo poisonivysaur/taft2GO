@@ -29,8 +29,6 @@
 			<?php startblock('logo' )?><img src="T2G Logo.png" width="" height="50" class="d-inline-block align-top m-0" alt=""><?php endblock()?>
             </a>
 
-            <?php startblock('searchbar') ?>
-            <?php endblock() ?>
             <div style="width: 50px;"></div>
             <!--
             <div class="container" style="opacity: 0.2;">
@@ -42,10 +40,12 @@
 			</div>
             -->
             <?php
-            session_start();
+            if(!isset($_SESSION)){
+                session_start();
+            }
             if (!isset($_SESSION['isLoggedIn'])){
                 echo '<a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="/taft2GO/Host">Become a Host</a>
-                    <a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="/taft2GO/Help">Help
+                    <!--<a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="/taft2GO/Help">Help-->
                         <br> </a>
                     <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Signup">Sign Up</a>
                     <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Login">Log In</a>';
@@ -61,7 +61,9 @@
                               <div class=\"w3-container\">
                                   <p></p>
                                   <p>{$_SESSION['fname']} {$_SESSION['lname']}</p>
-                                  <a href=\"#\" class=\"w3-bar-item w3-button\">Profile</a>
+                                  <!--<a href=\"#\" class=\"w3-bar-item w3-button\">Profile</a>-->
+                                  <a class=\"btn navbar-btn ml-2 btn-light text-primary baloo\" href=\"/taft2GO/Stays\">Stays</a>
+                                    <a class=\"btn navbar-btn ml-2 btn-light text-primary baloo\" href=\"/taft2GO/Listings\">Listings</a>
                                   <button onclick='clearSession()' class=\"w3-bar-item w3-button\">Logout</button>
                               </div>
                           </div>
@@ -75,11 +77,13 @@
 
                 echo '<!--<a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="addlisting.php">Host-->
                       <br> </a>
-                  <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Stays">Stays</a>
-                  <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Listings">Listings</a>
-                  <a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Help">Help</a>';
+                  
+                  <!--<a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Help">Help</a>-->';
             }
             ?>
+
+            <?php startblock('searchbar') ?>
+            <?php endblock() ?>
 		</nav>
 
         <?php startblock('navbar2') ?>

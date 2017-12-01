@@ -28,10 +28,11 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-md-6">
+
                 <h2 id="title" class="text-primary"></h2>
+                <div id="verified"></div>
                 <div id="host"></div>
 
-                <p id="description" class=""></p>
                 <p id="aveRating"></p><br>
                 <p id="type"></p>
                 <p id="capacity"></p>
@@ -41,6 +42,9 @@
                 <p id="bathrooms"></p>
                 <p id="monthlyRate"></p>
                 <p id="amenities"></p>
+
+                <hr>
+                <p id="description" class=""></p>
 
             </div>
 
@@ -136,6 +140,8 @@
                     monthlyRate = parseFloat(response._embedded[0].monthlyRate);
                     var status = response._embedded[0].status;
                     var aveRating = response._embedded[0].aveRating;
+                    var verified = response._embedded[0].isVerified;
+                    var verifiedPic = "http://www.iconarchive.com/download/i103471/paomedia/small-n-flat/sign-check.ico";
                     accountID = response._embedded[0].accountID;
 
                     $('#title').html(title);
@@ -149,7 +155,10 @@
                     $('#aveRating').html('Rating: '+aveRating);
                     $('#amenities').html('Amenities: <br>'+amenities);
                     $('#coverphoto').css("background-image","url("+ photo +")");
-                    $('#dailyRate').html('From ₱'+(monthlyRate/30).toFixed(2)+' per night');
+                    $('#dailyRate').html('<span class="baloo" style="font-size: 36px">₱'+(monthlyRate/30).toFixed(2)+'</span> per night');
+                    if(verified == 1){
+                        $('#verified').html('<img width="50" src="'+verifiedPic+'"><p>  Verified Place</p>');
+                    }
 
                     var numOfPeople = '<label>People Staying</label><br><select id="numPersons">';
                     for(var i = 1; i <= capacity; i++){
@@ -157,7 +166,9 @@
                     }
                     numOfPeople += '</select>';
                     $('#numOfPeople').html(numOfPeople);
-                    
+
+
+                    // get the host first name and photo
                     (function () {
                         $.ajax({
                             type: "GET",
@@ -183,8 +194,6 @@
                     console.log(jqXHR.responseText);
                 }
             });
-
-            // get the host first name and photo
 
 
             

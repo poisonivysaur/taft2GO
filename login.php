@@ -2,8 +2,12 @@
 
 <?php
 
+    //session_start();
+if(!isset($_SESSION))
+{
     session_start();
-    if (isset($_POST['email'])){
+}
+if (isset($_POST['email'])){
         $_SESSION['isLoggedIn'] = true;
         $_SESSION['email'] = $_POST['email'];
         $_SESSION['isAdmin'] = $_POST['isAdmin'];

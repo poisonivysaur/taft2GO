@@ -39,7 +39,7 @@
     <script>
         $(document).ready(function(){
             var noBookings = true;
-            var upcoming = '<h1 class="text-dark">Upcoming Stays</h1>';
+            var upcoming = '<h1 class="text-dark baloo">Upcoming Stays</h1>';
             $.ajax({
                 type: "GET",
                 url: "http://localhost:8080/taft2GO/booking/?filter={'accountID': '<?php echo $_SESSION['objID'] ?>'}",

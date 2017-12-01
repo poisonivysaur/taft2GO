@@ -23,10 +23,11 @@
           <a class="btn btn-primary baloo" href="explore.html">Dorms</a>
           <p class="lead"> </p>
         </div>
+          <!--
         <div class="col-md-4 text-white">
           <h2 class="">Transients</h2>
           <a class="btn btn-primary baloo" href="explore.html">Transients</a>
-        </div>
+        </div>-->
       </div>
     </div>
   </div>
@@ -65,7 +66,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="">Condominiums
+          <h1 class="baloo">Condominiums
             <br> </h1>
         </div>
       </div>
@@ -97,7 +98,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="">Dormitories
+          <h1 class="baloo">Dormitories
             <br> </h1>
         </div>
       </div>
@@ -179,8 +180,8 @@
                             condos += '<div class="col-md-3">'
                                 //+ '<a href="room-page.php?listingID='+ jsonArray[i]._id.$oid +'">'
                                 + '<a href="/taft2GO/Listings/'+ jsonArray[i]._id.$oid +'">'
-                                + '<img class="img-fluid d-block" src="'+ jsonArray[i].photo +'">'
-                                + '<p>'+ jsonArray[i].title +'</p>'
+                                + '<img class="img-fluid d-block" src="'+ jsonArray[i].photo +'"><br>'
+                                + '<h3>'+ jsonArray[i].title +'</h3>'
                                 + '<p>Monthy Rate of Php'+ jsonArray[i].monthlyRate +'</p>'
                                 + '<p>User Rating: '+ jsonArray[i].aveRating +'</p>'
                                 + '</a>'
@@ -191,8 +192,8 @@
                             dorms += '<div class="col-md-3">'
                                 //+ '<a href="room-page.php?listingID='+ jsonArray[i]._id.$oid +'">'
                                 + '<a href="/taft2GO/Listings/'+ jsonArray[i]._id.$oid +'">'
-                                + '<img class="img-fluid d-block" src="'+ jsonArray[i].photo +'">'
-                                + '<p>'+ jsonArray[i].title +'</p>'
+                                + '<img class="img-fluid d-block" src="'+ jsonArray[i].photo +'"><br>'
+                                + '<h3>'+ jsonArray[i].title +'</h3>'
                                 + '<p>Monthy Rate of Php'+ jsonArray[i].monthlyRate +'</p>'
                                 + '<p>User Rating: '+ jsonArray[i].aveRating +'</p>'
                                 + '</a>'

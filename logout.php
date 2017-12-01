@@ -5,7 +5,11 @@
     console.log('cleared session storage');
 </script>
 <?php
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
+//session_start();
 $_SESSION=array();
 session_destroy();
 setcookie('PHPSESSID','',time()-300,'/','',0);

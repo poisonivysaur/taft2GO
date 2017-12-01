@@ -13,6 +13,7 @@
     <div class="container">
       <div class="row">
             <?php startblock('sidemenu') ?>
+          <br>
                 <div class="col-md-4 text-secondary">
           <a class="btn navbar-btn ml-2 btn-link baloo ml-auto text-secondary text-left menu" href="/taft2GO/Listing">Listings</a>
           <a class="btn navbar-btn ml-2 btn-link baloo text-dark text-left ml-auto menu" href="/taft2GO/Listings-Reservations">Reservations</a>
@@ -48,7 +49,7 @@
                 console.log(jsonArray);
                 console.log(jsonArray.length);
 
-                var listings = '<h1 class="text-dark">Your Listings</h1>';
+                var listings = '<h1 class="text-dark baloo">Your Listings</h1>';
 
                 if(jsonArray.length == 0){
                     listings = '<div class="card">'

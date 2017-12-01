@@ -132,6 +132,7 @@
                 type = type.options[type.selectedIndex].value;
                 capacity = capacity.options[capacity.selectedIndex].value;
 
+
                  $.ajax({
                      type: "POST",
                      url: 'addlisting2.php',
@@ -246,7 +247,7 @@
                 var postData = '{"accountID":"'+ accountID + '"address:"'+ address + '"type:"'+ type + '"photo:"'+ photo +
                     '"capacity:"'+ capacity + '"rules:"'+ rules + '"beds:"'+ beds + '"bathrooms:"'+ bathrooms +
                     '"amenities:"'+ amenities + '"monthlyRate:"'+ monthlyRate + '"status:"'+ status + '"title:"'+ title +
-                    '"description:"'+ description + '"aveRating:"'+ aveRating + '"}';
+                    '"description:"'+ description + '"aveRating:"'+ aveRating + '"isVerified:"'+ 0 + '"}';
 
 
 
