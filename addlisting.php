@@ -270,9 +270,7 @@
                                     + '</div>'
                                     + '</div>');
                             $('#monthlyRate').val('');
-                        }
-                        else if(jqXHR.status == 409){ // conflict
-                            $('#feedback').html('<h4>Successfully Registered! Please <a href="/taft2GO/Login">Login</a> to continue</h4>');
+                            $('#btnAddListing').attr("disabled","disabled");
                         }
                         else{
                             $('#feedback').html('<h4>Error procesing request.</h4>');

@@ -86,7 +86,7 @@
                                 + '<img class="img-fluid d-block" src="'+ jsonArray[i].photo +'"><br>'
                                 + '<h3>'+ jsonArray[i].title +'</h3>'
                                 + '<p>Monthy Rate of Php'+ jsonArray[i].monthlyRate +'</p>'
-                                + '<p>User Rating: '+ jsonArray[i].aveRating +'</p>'
+                               // + '<p>User Rating: '+ jsonArray[i].aveRating +'</p>'
                                 + '</a>'
                                 + '</div>';
                         }

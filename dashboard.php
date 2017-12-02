@@ -28,8 +28,7 @@ if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isAdmin'] == 1)
 <body>
     <?php startblock('navbar') ?>
       <nav class="navbar navbar-expand-md navbar-dark bg-light m-0 style">
-        <div class="container">
-          <a href="/taft2GO/Homepage">
+            <a href="/taft2GO/Homepage">
                 <img src="T2G Logo.png" width="" height="50" class="d-inline-block align-top m-0" alt="">
             </a>
           <!--
@@ -62,12 +61,9 @@ if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isAdmin'] == 1)
               </div>
           </div><!-- dropdown logout -->
 
-
-
-        </div><!-- container -->
         <!--</a>-->
-          <!--<a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="addlisting.html">Host-->
-              <br> </a>
+          <!--<a class="btn navbar-btn ml-2 btn-light text-primary body baloo" href="addlisting.html">Host
+              <br> </a>-->
 
           <!--<a class="btn navbar-btn ml-2 btn-light text-primary baloo" href="/taft2GO/Help">Help</a>-->
 
@@ -76,11 +72,9 @@ if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isAdmin'] == 1)
       </nav>
 
       <nav class="navbar navbar-expand-md bg-primary navbar-dark">
-        <a href="login.html"> </a>
+
         <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
-          <a href="login.html">
-            <ul class="navbar-nav"></ul>
-          </a>
+
             <?php startblock('dashboardlink') ?><!--
           <a class="btn navbar-btn ml-2 btn-link baloo text-secondary" href="/taft2GO/Dashboard">Dashboard
             <br> </a><?php endblock() ?>

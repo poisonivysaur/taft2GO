@@ -92,69 +92,11 @@
                 else {
                     console.log("Error verifying");
                 }
+
+                getListings();
             }
         });
     }
-    function deactivate(id) {
-        console.log("deactivate "+id);
 
-        $.ajax({
-            type: "DELETE",
-            url: "http://localhost:8080/taft2GO/account/" + id,
-            processData: false,
-            contentType: "application/json",
-            complete: function (jqXHR, exception) {
-                console.log(jqXHR.status);
-                console.log(jqXHR.responseText);
-
-                if (jqXHR.status == 204) { // created
-                    console.log("account "+id+" successfully deleted.");
-
-                    (function () {
-                        $.ajax({
-                            type: "GET",
-                            url: "http://localhost:8080/taft2GO/listing/?filter={'accountID': '"+ id +"'}",
-                            dataType: "json",
-                            success: function(response){
-                                console.log(response._embedded);
-                                var listings = response._embedded;
-
-                                // loop around each listing, deleting them in the db
-                                for(var i = 0; i < listings.length; i++){
-                                    var listingID = listings[i]._id.$oid;
-                                    $.ajax({
-                                        type: "DELETE",
-                                        url: "http://localhost:8080/taft2GO/listing/" +listingID,
-                                        processData: false,
-                                        contentType: "application/json",
-                                        complete: function(jqXHR, exception){
-                                            console.log(jqXHR.status);
-                                            console.log(jqXHR.responseText);
-                                            if(jqXHR.status == 204){
-                                                console.log("listing "+listingID + "successfully deleted.");
-                                            }
-                                            else{
-                                                console.log("Error deleting");
-                                            }
-                                        }
-                                    });
-                                }
-                            },
-                            async: false,
-                            error: function(jqXHR, exception){
-                                console.log("Error");
-                                console.log(jqXHR.responseText);
-                            }
-                        });
-                    })();
-                }
-                else {
-                    console.log("Error deleting");
-                }
-            },
-            async: false
-
-        });
-    }
 </script>
 <?php endblock() ?>

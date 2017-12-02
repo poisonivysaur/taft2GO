@@ -1,10 +1,10 @@
 <?php include 'dashboard.php' ?>
 
 <?php startblock('dashboardlink') ?>
-<a class="btn navbar-btn ml-2 btn-link baloo text-white" href="/taft2GO/Dashboard">Dashboard
-    <br> </a><?php endblock() ?>
+<!--<a class="btn navbar-btn ml-2 btn-link baloo text-white" href="/taft2GO/Dashboard">Dashboard
+    <br> </a><?php endblock() ?>-->
 <?php startblock('stayslink') ?>
-<a class="btn navbar-btn ml-2 btn-link baloo text-secondary" href="/taft2GO/Stayls">Stays
+<a class="btn navbar-btn ml-2 btn-link baloo text-secondary" href="/taft2GO/Stays">Stays
     <br> </a><?php endblock() ?>
 
 

@@ -23,6 +23,7 @@ RewriteRule ^AdminListings/([0-9a-zA-Z]+)?$ admin-listings.php?objID=$1
 RewriteRule ^Listings-Reservations?$ listing-reservation.php
 RewriteRule ^Listings?$ listing.php
 RewriteRule ^Listings/([0-9a-zA-Z]+)?$ room-page.php?objID=$1
+RewriteRule ^EditListings/([0-9a-zA-Z]+)?$ edit-listing.php?objID=$1
 RewriteRule ^AddListings?$ addlisting.php
 
 

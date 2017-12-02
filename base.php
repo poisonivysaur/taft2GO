@@ -29,7 +29,7 @@
 			<?php startblock('logo' )?><img src="T2G Logo.png" width="" height="50" class="d-inline-block align-top m-0" alt=""><?php endblock()?>
             </a>
 
-            <div style="width: 50px;"></div>
+
             <!--
             <div class="container" style="opacity: 0.2;">
 			  <a class="navbar-brand m-0" href="#"></a>
@@ -84,6 +84,7 @@
 
             <?php startblock('searchbar') ?>
             <?php endblock() ?>
+
 		</nav>
 
         <?php startblock('navbar2') ?>

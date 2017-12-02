@@ -265,8 +265,44 @@ if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isAdmin'] == 0)
                                             if(jqXHR.status == 204){
                                                 console.log("listing "+listingID + "successfully deleted.");
 
-
+                                                // ########################################### DELETE ALL BOOKINGS FOR THAT LISING ######################
                                                 // delete all bookings from the listing as well
+                                                $.ajax({
+                                                    type: "GET",
+                                                    url: "http://localhost:8080/taft2GO/booking/?filter={'listingID': '"+ listingID +"'}",
+                                                    dataType: "json",
+                                                    success: function(response){
+                                                        console.log(response._embedded);
+                                                        var bookings = response._embedded;
+
+                                                        // loop around each booking, deleting them in the db
+                                                        for(var i = 0; i < bookings.length; i++){
+                                                            var bookingID = bookings[i]._id.$oid;
+                                                            $.ajax({
+                                                                type: "DELETE",
+                                                                url: "http://localhost:8080/taft2GO/booking/" +bookingID,
+                                                                processData: false,
+                                                                contentType: "application/json",
+                                                                complete: function(jqXHR, exception){
+                                                                    console.log(jqXHR.status);
+                                                                    console.log(jqXHR.responseText);
+                                                                    if(jqXHR.status == 204){
+                                                                        console.log("booking "+bookingID + "successfully deleted.");
+
+                                                                    }
+                                                                    else{
+                                                                        console.log("Error deleting");
+                                                                    }
+                                                                }
+                                                            });
+                                                        }
+                                                    },
+                                                    async: false,
+                                                    error: function(jqXHR, exception){
+                                                        console.log("Error");
+                                                        console.log(jqXHR.responseText);
+                                                    }
+                                                });
 
                                             }
                                             else{
@@ -294,7 +330,7 @@ if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isAdmin'] == 0)
                                 console.log(response._embedded);
                                 var bookings = response._embedded;
 
-                                // loop around each listing, deleting them in the db
+                                // loop around each booking, deleting them in the db
                                 for(var i = 0; i < bookings.length; i++){
                                     var bookingID = bookings[i]._id.$oid;
                                     $.ajax({
@@ -326,6 +362,9 @@ if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isAdmin'] == 0)
                             }
                         });
                     })();
+
+                    // ########################################### UPDATE Table ########################################
+                    getAccounts();
                 }
                 else {
                     console.log("Error deleting");

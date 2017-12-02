@@ -39,7 +39,7 @@
                 <button class="btn btn-outline-primary mx-0 w-100" onclick="goBackTo3()">Back</button>
             </div>
             <div class="col-md-3">
-                <button class="btn btn-primary w-100" onclick="finish()">Finish </button>
+                <button class="btn btn-primary w-100" id="btnAddListing" onclick="finish()">Finish </button>
             </div>
         </div>
       <br> </div>
