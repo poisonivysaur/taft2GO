@@ -5,9 +5,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-  <link rel="stylesheet" href="style.css" type="text/css"> </head>
+  <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="bower_components/paper-date-picker/paper-date-picker.html">
+    <link rel="import" href="bower_components/paper-date-picker/paper-date-picker-dialog.html">
+</head>
+
 
 <body>
+<paper-date-picker onclick="picker.open()"></paper-date-picker>
+<paper-date-picker-dialog id="picker" ></paper-date-picker-dialog>
   <nav class="navbar navbar-expand-md navbar-dark bg-light m-0 style">
     <div class="container">
       <a class="navbar-brand m-0" href="#"></a>

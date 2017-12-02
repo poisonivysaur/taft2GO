@@ -55,8 +55,6 @@
                                     <option value="condo" selected>Condominium</option>
                                     <option value="dorm">Dormitory</option>
                                 </select>
-                                <p class="text-secondary"> </p>
-                                <p class="text-secondary">We use this data for analysis and never share it with other users.</p>
                             </div>
                         </div>
                     </div>
@@ -74,8 +72,6 @@
                                     ?>
 
                                 </select>
-                                <p class="text-secondary"> </p>
-                                <p class="text-secondary">We use this data for analysis and never share it with other users.</p>
                             </div>
                         </div>
                     </div>
@@ -150,17 +146,17 @@ Wifi, Closet/drawers, TV, gymnasium etc."></textarea>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4" style="transition: all 0.25s;">
-                                <p class="lead text-right">Monthly Price</p>
+                                <p class="lead text-right">Monthly Price &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ₱</p>
                             </div>
                             <div class="col-md-8" style="transition: all 0.25s;">
-                                <input class="form-control  w-75" type="number" min="1" step="any" id="monthlyRate" placeholder="5000">
+                                 <input class="form-control  w-75" type="number" min="1" step="any" id="monthlyRate" placeholder="5000">
                             </div>
                         </div>
                     </div>
 
                 </div>
                 <p class="lead">&nbsp;</p>
-                <a class="btn btn-primary baloo" href="">Save Listing Details</a><br><br>
+                <a class="btn btn-primary baloo text-white" onclick="saveListingDetails()">Save Listing Details</a><br><br>
 
                 <div class="card">
                     <div class="card-header"> Photos of Listing</div>
@@ -187,20 +183,80 @@ Wifi, Closet/drawers, TV, gymnasium etc."></textarea>
         console.log(url);
         return url;
     }
-    var accountID;
     var listingID = getURLParameter();
-    var checkin = '';
-    var checkout = '';
-    var days = 0;
-    var total = '';
-    console.log(listingID);
+    var verified = 0;
+    $(document).ready(function(){
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/taft2GO/listing/?filter={'_id': {'$oid': '" + listingID +"'}}",
+            dataType: "json",
+            success: function(response){
+                // get the object in listing
+                console.log(response._embedded);
+                var title = response._embedded[0].title;
+                var description = response._embedded[0].description;
+                var address = response._embedded[0].address;
+                var type = response._embedded[0].type;
+                //var photo = response._embedded[0].photo;
+                var capacity = parseInt(response._embedded[0].capacity);
+                var rules = response._embedded[0].rules;
+                var beds = parseInt(response._embedded[0].beds);
+                var bathrooms = parseFloat(response._embedded[0].bathrooms);
+                var amenities = response._embedded[0].amenities;
+                var monthlyRate = parseFloat(response._embedded[0].monthlyRate);
+                var status = response._embedded[0].status;
+                var aveRating = response._embedded[0].aveRating;
+                verified = response._embedded[0].isVerified;
+                var accountID = response._embedded[0].accountID;
 
-    function editListing(id){
-        console.log("edit listing "+id);
-        var patchData = "{'isVerified':'1'}";
+                $('#address').val(address);
+                $('#title').val(title);
+                $('#description').val(description);
+                $('#type').val(type);
+                $('#capacity').val(capacity);
+                $('#monthlyRate').val(monthlyRate);
+                $('#rules').val(rules);
+                $('#beds').val(beds);
+                $('#bathrooms').val(bathrooms);
+                $('#aveRating').val(aveRating);
+                $('#amenities').val(amenities);
+
+            },
+            error: function(jqXHR, exception){
+                console.log("Error");
+                console.log(jqXHR.responseText);
+            }
+        });
+    });
+
+    function saveListingDetails(){
+        console.log("save listing details");
+
+
+        var address = document.getElementById("address").value;
+        var type = document.getElementById("type");
+        var capacity = document.getElementById("capacity");
+        type = type.options[type.selectedIndex].value;
+        capacity = capacity.options[capacity.selectedIndex].value;
+
+        var beds = parseInt(document.getElementById("beds").value);
+        var bathrooms = parseFloat(document.getElementById("bathrooms").value);
+        var amenities = document.getElementById("amenities").value;
+        var title = document.getElementById("title").value;
+        var description = document.getElementById("description").value;
+        var rules = document.getElementById("rules").value;
+        var monthlyRate = parseFloat(document.getElementById("monthlyRate").value);
+
+        // PATCHING TIME
+
+        var patchData = '{"address":"'+ address + '"type:"'+ type +
+            '"capacity:"'+ capacity + '"rules:"'+ rules + '"beds:"'+ beds + '"bathrooms:"'+ bathrooms +
+            '"amenities:"'+ amenities + '"monthlyRate:"'+ monthlyRate + '"title:"'+ title +
+            '"description:"'+ description + '"}';
+
         $.ajax({
             type: "PATCH",
-            url: "http://localhost:8080/taft2GO/listing/" + id,
+            url: "http://localhost:8080/taft2GO/listing/" + listingID,
             processData: false,
             contentType: "application/json",
             data: patchData,
@@ -209,7 +265,7 @@ Wifi, Closet/drawers, TV, gymnasium etc."></textarea>
                 console.log(jqXHR.responseText);
 
                 if (jqXHR.status == 200) { // created
-                    console.log("listing " + id + " successfully edited.");
+                    console.log("listing " + listingID + " successfully edited.");
                     $('#feedback').html('<div class="col-md-12">'
                         + '<div class="alert alert-success" role="alert">'
                         + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>'
@@ -222,8 +278,6 @@ Wifi, Closet/drawers, TV, gymnasium etc."></textarea>
                 else {
                     console.log("Error verifying");
                 }
-
-                getListings();
             }
         });
     }

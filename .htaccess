@@ -1,5 +1,6 @@
 RewriteEngine On
 
+RewriteRule ^$ homepage.php
 RewriteRule ^Login?$ login.php
 RewriteRule ^Logout?$ logout.php
 RewriteRule ^Signup?$ signup.php

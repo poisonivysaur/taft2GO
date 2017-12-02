@@ -1,6 +1,12 @@
 <?php include 'base.php' ?>
 
-    <?php startblock('style')?><link rel="stylesheet" href="/taft2GO/style.css" type="text/css"><?php endblock()?>
+    <?php startblock('style')?>
+    <link rel="stylesheet" href="/taft2GO/style.css" type="text/css">
+    <script src="/taft2GO/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="/taft2GO/bower_components/paper-date-picker/paper-date-picker.html">
+    <link rel="import" href="/taft2GO/bower_components/paper-date-picker/paper-date-picker-dialog.html">
+    <?php endblock()?>
+
 
 <?php startblock('searchbar') ?>
     <input class="form-control mr-sm-2 baloo" type="text" placeholder="Find the right place...">
@@ -60,6 +66,8 @@
                                     <input id="checkin" type="date" class="form-control" required> </div>
                                 <div class="form-group"> <label>Check out</label>
                                     <input id="checkout" type="date" class="form-control" required> </div>
+                                <paper-date-picker onclick="picker.open()"></paper-date-picker>
+                                <paper-date-picker-dialog id="picker" ></paper-date-picker-dialog>
                                 <div class="form-group" id="numOfPeople"> <label>People Staying</label>
                                     <input type="number" class="form-control" min=1 placeholder="2"> </div>
 

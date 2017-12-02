@@ -15,7 +15,6 @@ if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isAdmin'] == 0)
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="style.css" type="text/css"> </head>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="import" href="bower_components/vaadin-grid/vaadin-grid.html">
     <link rel="import" href="bower_components/paper-button/paper-button.html">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

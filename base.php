@@ -7,9 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <?php startblock('imports') ?>
+
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
             <?php startblock('style') ?><link rel="stylesheet" href="style.css" type="text/css"><?php endblock()?>
             <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <script src="/taft2GO/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="/taft2GO/bower_components/paper-date-picker/paper-date-picker.html">
+    <link rel="import" href="/taft2GO/bower_components/paper-date-picker/paper-date-picker-dialog.html">
     <!--
             <link rel="import" href="bower_components/polymer/polymer-element.html">
             <link rel="import" href="bower_components/iron-ajax/iron-ajax.html">
