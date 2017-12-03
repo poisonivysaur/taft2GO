@@ -25,6 +25,9 @@ if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isAdmin'] == 1)
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.2.0/js/dataTables.responsive.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.2.0/js/responsive.bootstrap4.min.js"></script>
 
+<?php startblock('imports') ?>
+<?php endblock() ?>
+
 <body>
     <?php startblock('navbar') ?>
       <nav class="navbar navbar-expand-md navbar-dark bg-light m-0 style">

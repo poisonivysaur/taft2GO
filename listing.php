@@ -1,5 +1,10 @@
 <?php include 'dashboard.php' ?>
 
+<?php startblock('imports') ?>
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="bower_components/vaadin-grid/vaadin-grid.html">
+    <link rel="import" href="bower_components/vaadin-grid/vaadin-grid-filter.html">
+<?php endblock() ?>
 
 <?php startblock('dashboardlink') ?>
 <!--<a class="btn navbar-btn ml-2 btn-link baloo text-white" href="/taft2GO/Dashboard">Dashboard-->
@@ -28,6 +33,24 @@
 
 
             <?php startblock('menucontent') ?>
+          <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+          <link rel="import" href="bower_components/vaadin-grid/vaadin-grid.html">
+          <link rel="import" href="bower_components/vaadin-grid/vaadin-grid-filter.html">
+          <vaadin-grid items='[{"name": "John", "surname": "Lennon", "role": "singer"},
+{"name": "Ringo", "surname": "Starr", "role": "drums"}]'>
+              <vaadin-grid-column>
+                  <template class="header">Name</template>
+                  <template>[[item.name]]</template>
+              </vaadin-grid-column>
+              <vaadin-grid-column>
+                  <template class="header">Surname</template>
+                  <template>[[item.surname]]</template>
+              </vaadin-grid-column>
+              <vaadin-grid-column>
+                  <template class="header">Role</template>
+                  <template>[[item.role]]</template>
+              </vaadin-grid-column>
+          </vaadin-grid>
             <div id="listings" class="col-md-8">
 
             </div>
@@ -46,6 +69,8 @@
             success: function(response){
 
                 const jsonArray = response._embedded;
+                //document.getElementById('vaadin-grid').items = jsonArray;
+                //$('#vaadin-grid').attr("items", JSON.stringify(jsonArray));
                 console.log(jsonArray);
                 console.log(jsonArray.length);
 
@@ -69,7 +94,8 @@
                                 + '<div class="col-md-6">'
                                 + '<div class="card">'
                                 + '<img class="img-fluid d-block" src="'+ jsonArray[i].photo +'"></div><br><br>'
-                                + '<a class="btn btn-outline-primary baloo" href="/taft2GO/Listings/'+ jsonArray[i]._id.$oid +'">View Listing</a><br><br>'
+                                //+ '<a class="btn btn-outline-primary baloo" href="/taft2GO/Listings/'+ jsonArray[i]._id.$oid +'">View Listing</a><br><br>'
+                                + '<a class="btn btn-outline-primary baloo" href="/taft2GO/room-page.php?listingID='+ jsonArray[i]._id.$oid +'">View Listing</a><br><br>'
                                 + '<a class="btn btn-outline-primary baloo" href="/taft2GO/edit-listing.php?listingID='+ jsonArray[i]._id.$oid +'">Edit Listing</a>'
                                 + '</div>'
                                 + '<div class="col-md-6">'

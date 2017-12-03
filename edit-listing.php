@@ -19,13 +19,13 @@
         my-carousel::after {
             display: block;
             content: '';
-            padding-top: 75%; /* 4:3 = height is 75% of width */
+            padding-top: 40%; /* 4:3 = height is 75% of width */
         }
 
         my-carousel img {
             position: absolute;
             width: 100%;
-            height: 100%;
+            height: 300px;
         }
 
         paper-button.primary {
@@ -219,17 +219,9 @@ Wifi, Closet/drawers, TV, gymnasium etc."></textarea>
                             <img data-src="images/coverphoto.jpg">
                             <img data-src="images/home%201.png">
                             <img data-src="images/home%202.png">
-                            <img data-src="images/home%203.png">
+                            <img data-src="images/manres.jpg">
 
                         </my-carousel>
-
-                        <my-description id="desc">
-                            <p>first description</p>
-                            <p>second description</p>
-                            <p>third description</p>
-                            <p>fourth description</p>
-
-                        </my-description>
 
                         <h1 class="baloo">Upload Image</h1>
                         <vaadin-upload id="vaadin" class="thick-border" accept="image/*"></vaadin-upload>
@@ -243,7 +235,7 @@ Wifi, Closet/drawers, TV, gymnasium etc."></textarea>
                     </div>
                 </div>
                 <h5 class="text-secondary">&nbsp; </h5>
-                <a class="btn btn-primary baloo" href="">Save Photos</a>
+                <a class="btn btn-primary text-white baloo" onclick="savePhotos()">Save Photos</a>
             </div>
         </div>
     </div>
@@ -253,6 +245,9 @@ Wifi, Closet/drawers, TV, gymnasium etc."></textarea>
 <?php endblock()?>
 
 <script>
+    var files;  // PHOTOS THAT ARE UPLOADED IN THE VAADIN ELEMENT
+
+
     function getURLParameter(name) {
         return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
         /*var url = window.location.href;
@@ -359,40 +354,13 @@ Wifi, Closet/drawers, TV, gymnasium etc."></textarea>
         });
     }
 
-</script>
-
-<script>
-
     const imgCarousel = document.querySelector('#images');
     setInterval(_ => imgCarousel.next(), 3000);
-
-    const descCarousel = document.querySelector('#desc');
-
-
-    var el = document.querySelector('my-carousel');
-    if(el){
-        el.addEventListener('clickedNext', function (e) {
-            console.log('clicked next!');
-            descCarousel.next();
-        });
-
-        el.addEventListener('clickedPrev', function (e) {
-            console.log('clicked previous!');
-            descCarousel.previous();
-        });
-
-        el.addEventListener('upload', function (e) {    // unused junk
-            addImage(img, desc);
-        });
-    }
-    else{   // unused junk
-        setInterval(_ => descCarousel.next(), 3000);
-    }
 
     function addImage() {
 
         //imgPath = 'images/' + document.querySelector('vaadin-upload').shadowRoot.innerHTML; //shadowRoot.querySelector('#name').value;
-        var files = document.querySelector('#vaadin').files;
+        files = document.querySelector('#vaadin').files;
         console.log(files);
 
         for (var i = 0; i < files.length; i++) {
@@ -410,12 +378,72 @@ Wifi, Closet/drawers, TV, gymnasium etc."></textarea>
         }
 
         console.log(document.querySelector('#imgDesc').value);
-        let imgDesc = document.querySelector('#imgDesc').value
+        let imgDesc = document.querySelector('#imgDesc').value;
         let desc = document.createElement('p');
         desc.innerHTML = imgDesc;
         descCarousel.appendChild(desc);
 
+    }/*
+    function savePhotos(){
+        console.log("saving time!");
+
+        // PATCHING TIME
+
+        var patchData = '{"photo":[';
+
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+
+            if(i == files.length-1) {   // last file
+                patchData += JSON.stringify(file);
+            }
+            else{
+                patchData += JSON.stringify(file) + ',';
+            }
+        }
+        patchData += ']}';
+
+        console.log(patchData);
+
+
+    }*/
+    function savePhotos() {
+        var imgs = document.querySelectorAll(".obj");
+
+        for (var i = 0; i < imgs.length; i++) {
+            new FileUpload(imgs[i], imgs[i].file);
+        }
     }
+
+    function FileUpload(img, file) {
+        var reader = new FileReader();
+        //this.ctrl = createThrobber(img);
+        var xhr = new XMLHttpRequest();
+        this.xhr = xhr;
+
+        var self = this;/*
+        this.xhr.upload.addEventListener("progress", function(e) {
+            if (e.lengthComputable) {
+                var percentage = Math.round((e.loaded * 100) / e.total);
+                self.ctrl.update(percentage);
+            }
+        }, false);
+
+        xhr.upload.addEventListener("load", function(e){
+            self.ctrl.update(100);
+            var canvas = self.ctrl.ctx.canvas;
+            canvas.parentNode.removeChild(canvas);
+        }, false);*/
+        xhr.open("PATCH", "http://localhost:8080/taft2GO/listing/" + listingID,);
+        xhr.overrideMimeType('application/json; charset=x-user-defined-binary');
+        xhr.setRequestHeader("Content-type", "application/json");
+        reader.onload = function(evt) {
+            console.log("WHAT IT LOOKS LIKE: "+'{"photo": "'+evt.target.result+'"}');
+            xhr.send(evt.target.result);
+        };
+        reader.readAsBinaryString(file);
+    }
+
 </script>
 <script>// for the vaadin element
     function mockXhrGenerator(file) {

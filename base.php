@@ -12,8 +12,7 @@
             <?php startblock('style') ?><link rel="stylesheet" href="style.css" type="text/css"><?php endblock()?>
             <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="bower_components/vaadin-date-picker/vaadin-date-picker.html">
+
     <!--
             <link rel="import" href="bower_components/polymer/polymer-element.html">
             <link rel="import" href="bower_components/iron-ajax/iron-ajax.html">

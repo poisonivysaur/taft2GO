@@ -5,10 +5,6 @@
     <link rel="import" href="bower_components/vaadin-date-picker/vaadin-date-picker.html">
 
     <link rel="stylesheet" href="/taft2GO/style.css" type="text/css">
-    <script src="/taft2GO/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="/taft2GO/bower_components/paper-date-picker/paper-date-picker.html">
-    <link rel="import" href="/taft2GO/bower_components/paper-date-picker/paper-date-picker-dialog.html">
-    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="my-carousel.html">
     <link rel="import" href="my-description.html">
     <link rel="import" href="bower_components/paper-button/paper-button.html">
@@ -25,7 +21,7 @@
         my-carousel::after {
             display: block;
             content: '';
-            padding-top: 50%; /* 4:3 = height is 75% of width */
+            padding-top: 40%; /* 4:3 = height is 75% of width */
         }
 
         my-carousel img {
@@ -55,16 +51,7 @@
 <?php startblock('content')?>
 
 <div id="changeable">
-    <div id="coverphoto" class="py-5 gradient-overlay" style="background-image: url(&quot;coverphoto.jpg&quot;);">
-        <div class="container py-5">
-            <div class="row">
-                <div class="col-md-3 text-white">
-                    <!--<a class="btn btn-primary baloo" href="">View Photos</a>-->
-                </div>
-                <div class="col-md-9 text-white align-self-center"></div>
-            </div>
-        </div>
-    </div>
+
     <my-carousel id="images">
         <img data-src="images/coverphoto.jpg">
         <img data-src="images/home%201.png">
@@ -72,14 +59,6 @@
         <img data-src="images/home%203.png">
         <img data-src="images/manres.jpg">
     </my-carousel>
-
-    <my-description id="desc">
-        <p>first description</p>
-        <p>second description</p>
-        <p>third description</p>
-        <p>fourth description</p>
-
-    </my-description>
 
     <div class="py-5">
     <div class="container">
@@ -169,25 +148,6 @@
         const imgCarousel = document.querySelector('#images');
         setInterval(_ => imgCarousel.next(), 3000);
 
-        const descCarousel = document.querySelector('#desc');
-
-
-        var el = document.querySelector('my-carousel');
-        if(el){
-            el.addEventListener('clickedNext', function (e) {
-                console.log('clicked next!');
-                descCarousel.next();
-            });
-
-            el.addEventListener('clickedPrev', function (e) {
-                console.log('clicked previous!');
-                descCarousel.previous();
-            });
-
-            el.addEventListener('upload', function (e) {    // unused junk
-                addImage(img, desc);
-            });
-        }
     </script>
     <script>
         function getURLParameter(name) {
