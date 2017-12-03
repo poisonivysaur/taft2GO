@@ -1,7 +1,61 @@
 <?php include 'search-results.php' ?>
-<?php startblock('style')?><link rel="stylesheet" href="/taft2GO/style.css" type="text/css"><?php endblock()?>
+<?php startblock('style')?>
+    <link rel="stylesheet" href="/taft2GO/style.css" type="text/css">
+
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="my-carousel.html">
+    <link rel="import" href="my-description.html">
+    <link rel="import" href="bower_components/paper-button/paper-button.html">
+    <link rel="import" href="bower_components/paper-input/paper-input.html">
+
+    <script src="https://cdn.vaadin.com/vaadin-elements/master/mock-http-request/lib/mock.js"></script>
+    <link rel="import" href="bower_components/vaadin-upload/vaadin-upload.html">
+    <style>
+
+        my-carousel {
+            width: 100%;
+        }
+
+        my-carousel::after {
+            display: block;
+            content: '';
+            padding-top: 75%; /* 4:3 = height is 75% of width */
+        }
+
+        my-carousel img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        paper-button.primary {
+            color: #fff;
+            background: limegreen;/*var(--primary-color);*/
+        }
+
+    </style>
+    <style is="custom-style">
+
+        vaadin-upload.thick-border {
+            --primary-color: mediumslateblue;
+            --dark-primary-color: #063;
+            --light-primary-color: #6c9;
+            --error-color: darkred;
+
+            border: 2px solid mediumpurple;
+            padding: 14px;
+            background: lightgreen;
+            border-radius: 0;
+        }
+
+        vaadin-upload.thick-border[dragover] {
+            border-color: #396;
+        }
+    </style>
+<?php endblock()?>
 
 <?php startblock('logo') ?><img src="/taft2GO/T2G Logo.png" width="" height="50" class="d-inline-block align-top m-0" alt=""><?php endblock()?>
+
 <?php startblock('content') ?>
 <nav class="navbar navbar-expand-md bg-primary navbar-dark">
     <!--
@@ -24,7 +78,7 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
     </div>
     -->
-    <h3 class="text-white baloo">Edit Listing</h3>
+    <h1 class="text-white baloo">Edit Listing</h1>
 </nav>
 
 <div class="py-5">
@@ -161,8 +215,31 @@ Wifi, Closet/drawers, TV, gymnasium etc."></textarea>
                 <div class="card">
                     <div class="card-header"> Photos of Listing</div>
                     <div class="card-body">
+                        <my-carousel id="images">
+                            <img data-src="images/coverphoto.jpg">
+                            <img data-src="images/home%201.png">
+                            <img data-src="images/home%202.png">
+                            <img data-src="images/home%203.png">
 
+                        </my-carousel>
 
+                        <my-description id="desc">
+                            <p>first description</p>
+                            <p>second description</p>
+                            <p>third description</p>
+                            <p>fourth description</p>
+
+                        </my-description>
+
+                        <h1 class="baloo">Upload Image</h1>
+                        <vaadin-upload id="vaadin" class="thick-border" accept="image/*"></vaadin-upload>
+
+                        <div class="card">
+                            <!--
+                            <h4>Image directory: <paper-input id = "imgPath"></paper-input></h4>-->
+                            <h4>Description: <paper-input id="imgDesc"></paper-input></h4>
+                            <paper-button raised class="primary" onclick="addImage()">Submit</paper-button>
+                        </div>
                     </div>
                 </div>
                 <h5 class="text-secondary">&nbsp; </h5>
@@ -176,14 +253,14 @@ Wifi, Closet/drawers, TV, gymnasium etc."></textarea>
 <?php endblock()?>
 
 <script>
-    function getURLParameter() {
-        //return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
-        var url = window.location.href;
+    function getURLParameter(name) {
+        return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+        /*var url = window.location.href;
         url = url.substr(url.lastIndexOf('s')+2);
         console.log(url);
-        return url;
+        return url;*/
     }
-    var listingID = getURLParameter();
+    var listingID = getURLParameter("listingID");
     var verified = 0;
     $(document).ready(function(){
         $.ajax({
@@ -282,4 +359,94 @@ Wifi, Closet/drawers, TV, gymnasium etc."></textarea>
         });
     }
 
+</script>
+
+<script>
+
+    const imgCarousel = document.querySelector('#images');
+    setInterval(_ => imgCarousel.next(), 3000);
+
+    const descCarousel = document.querySelector('#desc');
+
+
+    var el = document.querySelector('my-carousel');
+    if(el){
+        el.addEventListener('clickedNext', function (e) {
+            console.log('clicked next!');
+            descCarousel.next();
+        });
+
+        el.addEventListener('clickedPrev', function (e) {
+            console.log('clicked previous!');
+            descCarousel.previous();
+        });
+
+        el.addEventListener('upload', function (e) {    // unused junk
+            addImage(img, desc);
+        });
+    }
+    else{   // unused junk
+        setInterval(_ => descCarousel.next(), 3000);
+    }
+
+    function addImage() {
+
+        //imgPath = 'images/' + document.querySelector('vaadin-upload').shadowRoot.innerHTML; //shadowRoot.querySelector('#name').value;
+        var files = document.querySelector('#vaadin').files;
+        console.log(files);
+
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+
+            let img = document.createElement('img');
+            img.classList.add("obj");
+            img.file = file;
+            //img.setAttribute('data-src', imgPath);
+            imgCarousel.appendChild(img);
+
+            var reader = new FileReader();
+            reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+            reader.readAsDataURL(file);
+        }
+
+        console.log(document.querySelector('#imgDesc').value);
+        let imgDesc = document.querySelector('#imgDesc').value
+        let desc = document.createElement('p');
+        desc.innerHTML = imgDesc;
+        descCarousel.appendChild(desc);
+
+    }
+</script>
+<script>// for the vaadin element
+    function mockXhrGenerator(file) {
+        var xhr = new MockHttpRequest();
+        xhr.upload = {};
+        xhr.onsend = function() {
+            var total = file && file.size || 1024, done = 0;
+            function start() {
+                setTimeout(progress, 1000);
+            }
+            function progress() {
+                xhr.upload.onprogress({total: total, loaded: done});
+                if (done < total) {
+                    setTimeout(progress, 200);
+                    done = Math.min(total, done + 254000);
+
+                } else if (!file.abort) {
+                    setTimeout(finish, 1000);
+                }
+            }
+            function finish() {
+                xhr.receive(200, '{"message":"OK"}');
+            }
+            start();
+        };
+        return xhr;
+    }
+
+    window.addEventListener('WebComponentsReady', function() {
+        // Monkey-patch vaadin-upload prototype to use MockHttpRequest
+        Object.getPrototypeOf(document.createElement('vaadin-upload'))._createXhr = mockXhrGenerator;
+        this.dispatchEvent(new CustomEvent('upload-success', {bubbles :  true, composed: true}));
+    });
 </script>

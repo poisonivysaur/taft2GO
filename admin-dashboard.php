@@ -52,7 +52,7 @@ if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isAdmin'] == 0)
             <div class="w3-container">
                 <p></p>
                 <p><?php echo " ". $_SESSION['fname'] ." ". $_SESSION['lname'];?></p>
-                <a href="#" class="w3-bar-item w3-button">Profile</a>
+                <!--<a href="#" class="w3-bar-item w3-button">Profile</a>-->
                 <a href="/taft2GO/Logout" class="w3-bar-item w3-button">Logout</a>
             </div>
         </div>

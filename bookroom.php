@@ -176,7 +176,7 @@
                 $('#photo').attr('src',photo);
                 $('#numPersons').html(numPersons+' guest(s)');
                 $('#duration').html('From <b>'+checkin + "</b> to <br><b>"+ checkout+"</b>");
-                $('#total').html(total);
+                //$('#total').html(total);
                 $('#rules').html('House Rules: <br>'+rules);
                 console.log('in ajax rules: '+rules);
                 $('#beds').html('No. of beds: '+beds);

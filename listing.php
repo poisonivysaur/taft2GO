@@ -70,7 +70,7 @@
                                 + '<div class="card">'
                                 + '<img class="img-fluid d-block" src="'+ jsonArray[i].photo +'"></div><br><br>'
                                 + '<a class="btn btn-outline-primary baloo" href="/taft2GO/Listings/'+ jsonArray[i]._id.$oid +'">View Listing</a><br><br>'
-                                + '<a class="btn btn-outline-primary baloo" href="/taft2GO/EditListings/'+ jsonArray[i]._id.$oid +'">Edit Listing</a>'
+                                + '<a class="btn btn-outline-primary baloo" href="/taft2GO/edit-listing.php?listingID='+ jsonArray[i]._id.$oid +'">Edit Listing</a>'
                                 + '</div>'
                                 + '<div class="col-md-6">'
                                 + '<p class="lead">' + jsonArray[i].title + '</p>'

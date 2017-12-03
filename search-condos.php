@@ -69,8 +69,8 @@
                         if(jsonArray[i].type == 'condo'){
                             console.log("added condo");
                             condos += '<div class="col-md-3">'
-                                //+ '<a href="room-page.php?listingID='+ jsonArray[i]._id.$oid +'">'
-                                + '<a href="/taft2GO/Listings/'+ jsonArray[i]._id.$oid +'">'
+                                + '<a href="room-page.php?listingID='+ jsonArray[i]._id.$oid +'">'
+                                //+ '<a href="/taft2GO/Listings/'+ jsonArray[i]._id.$oid +'">'
                                 + '<img class="img-fluid d-block" src="'+ jsonArray[i].photo +'"><br>'
                                 + '<h3>'+ jsonArray[i].title +'</h3>'
                                 + '<p>Monthy Rate of Php'+ jsonArray[i].monthlyRate +'</p>'
@@ -81,8 +81,8 @@
                         else if(jsonArray[i].type == 'dorm'){
                             console.log("added dorm");
                             dorms += '<div class="col-md-3">'
-                                //+ '<a href="room-page.php?listingID='+ jsonArray[i]._id.$oid +'">'
-                                + '<a href="/taft2GO/Listings/'+ jsonArray[i]._id.$oid +'">'
+                                + '<a href="room-page.php?listingID='+ jsonArray[i]._id.$oid +'">'
+                                //+ '<a href="/taft2GO/Listings/'+ jsonArray[i]._id.$oid +'">'
                                 + '<img class="img-fluid d-block" src="'+ jsonArray[i].photo +'"><br>'
                                 + '<h3>'+ jsonArray[i].title +'</h3>'
                                 + '<p>Monthy Rate of Php'+ jsonArray[i].monthlyRate +'</p>'
