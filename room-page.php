@@ -9,6 +9,10 @@
     <link rel="import" href="my-description.html">
     <link rel="import" href="bower_components/paper-button/paper-button.html">
     <link rel="import" href="bower_components/paper-input/paper-input.html">
+    <link rel="import" href="bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+    <link rel="import" href="bower_components/paper-item/paper-item.html">
+    <link rel="import" href="bower_components/paper-listbox/paper-listbox.html">
+
 
     <script src="https://cdn.vaadin.com/vaadin-elements/master/mock-http-request/lib/mock.js"></script>
     <link rel="import" href="bower_components/vaadin-upload/vaadin-upload.html">
@@ -33,6 +37,15 @@
         paper-button.primary {
             color: #fff;
             background: limegreen;/*var(--primary-color);*/
+        }
+        paper-dropdown-menu, paper-listbox {
+            width: 200px;
+        }
+        paper-dropdown-menu {
+            height: 70px;
+            margin: auto;
+            margin-left: 0;
+            display: block;
         }
 
     </style>
@@ -210,12 +223,20 @@
                     if(verified == 1){
                         $('#verified').html('<img width="50" src="'+verifiedPic+'"><p>  Verified Place</p>');
                     }
-
+                    /*
                     var numOfPeople = '<label>People Staying</label><br><select id="numPersons">';
                     for(var i = 1; i <= capacity; i++){
                         numOfPeople += '<option value="' + i + '">' + i + ' person(s)</option>';
                     }
                     numOfPeople += '</select>';
+                    */
+                    var numOfPeople = '<paper-dropdown-menu id="numPersons" label="People staying">' +
+                        '<paper-listbox slot="dropdown-content">';
+                    for(var i = 1; i <= capacity; i++){
+                        numOfPeople += "<paper-item>"+ i +"</paper-item>";
+                    }
+
+                    numOfPeople += '</paper-listbox></paper-dropdown-menu>';
                     $('#numOfPeople').html(numOfPeople);
 
 
@@ -314,8 +335,8 @@
             sessionStorage.setItem('listingID', listingID);
             sessionStorage.setItem('checkin', checkin);
             sessionStorage.setItem('checkout', checkout);
-            var numPersons = document.getElementById("numPersons");
-            numPersons = numPersons.options[numPersons.selectedIndex].value;
+            var numPersons = document.getElementById("numPersons").value;
+            //numPersons = numPersons.options[numPersons.selectedIndex].value;
             sessionStorage.setItem('numPersons', numPersons);
             sessionStorage.setItem('total', total);
             var url = window.location.href;
