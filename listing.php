@@ -33,6 +33,11 @@
 
 
             <?php startblock('menucontent') ?>
+
+            <div id="listings" class="col-md-8">
+
+            </div>
+
           <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
           <link rel="import" href="bower_components/vaadin-grid/vaadin-grid.html">
           <link rel="import" href="bower_components/vaadin-grid/vaadin-grid-filter.html">
@@ -51,9 +56,6 @@
                   <template>[[item.role]]</template>
               </vaadin-grid-column>
           </vaadin-grid>
-            <div id="listings" class="col-md-8">
-
-            </div>
             <?php endblock() ?>
       </div>
     </div>

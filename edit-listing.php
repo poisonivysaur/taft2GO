@@ -7,6 +7,10 @@
     <link rel="import" href="my-description.html">
     <link rel="import" href="bower_components/paper-button/paper-button.html">
     <link rel="import" href="bower_components/paper-input/paper-input.html">
+    <link rel="import" href="bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+    <link rel="import" href="bower_components/paper-item/paper-item.html">
+    <link rel="import" href="bower_components/paper-listbox/paper-listbox.html">
+
 
     <script src="https://cdn.vaadin.com/vaadin-elements/master/mock-http-request/lib/mock.js"></script>
     <link rel="import" href="bower_components/vaadin-upload/vaadin-upload.html">
@@ -31,6 +35,15 @@
         paper-button.primary {
             color: #fff;
             background: limegreen;/*var(--primary-color);*/
+        }
+        paper-dropdown-menu, paper-listbox {
+            width: 250px;
+        }
+        paper-dropdown-menu {
+            height: 70px;
+            margin: auto;
+            margin-left: 0;
+            display: block;
         }
 
     </style>
@@ -105,10 +118,17 @@
                                 <p class="lead text-right">Type of Place</p>
                             </div>
                             <div class="col-md-8" style="transition: all 0.25s;">
+                                <!--
                                 <select id="type">
                                     <option value="condo" selected>Condominium</option>
                                     <option value="dorm">Dormitory</option>
-                                </select>
+                                </select>-->
+                                <paper-dropdown-menu id="type" label="Type">
+                                    <paper-listbox slot="dropdown-content">
+                                        <paper-item>Condominium</paper-item>
+                                        <paper-item>Dormitory</paper-item>
+                                    </paper-listbox>
+                                </paper-dropdown-menu>
                             </div>
                         </div>
                     </div>
@@ -118,6 +138,7 @@
                                 <p class="lead text-right">Capacity</p>
                             </div>
                             <div class="col-md-8" style="transition: all 0.25s;">
+                                <!--
                                 <select id="capacity">
                                     <?php
                                     for($i = 1; $i < 16; $i++){
@@ -125,7 +146,16 @@
                                     }
                                     ?>
 
-                                </select>
+                                </select>-->
+                                <paper-dropdown-menu id="capacity" label="For how many guests">
+                                    <paper-listbox slot="dropdown-content" selected="1">
+                                        <?php
+                                        for($i = 1; $i < 16; $i++){
+                                            echo "<paper-item> {$i} </paper-item>";
+                                        }
+                                        ?>
+                                    </paper-listbox>
+                                </paper-dropdown-menu>
                             </div>
                         </div>
                     </div>
@@ -257,6 +287,7 @@ Wifi, Closet/drawers, TV, gymnasium etc."></textarea>
     }
     var listingID = getURLParameter("listingID");
     var verified = 0;
+
     $(document).ready(function(){
         $.ajax({
             type: "GET",
@@ -306,10 +337,15 @@ Wifi, Closet/drawers, TV, gymnasium etc."></textarea>
 
 
         var address = document.getElementById("address").value;
-        var type = document.getElementById("type");
-        var capacity = document.getElementById("capacity");
-        type = type.options[type.selectedIndex].value;
-        capacity = capacity.options[capacity.selectedIndex].value;
+        var type = document.getElementById("type").value;
+        var capacity = document.getElementById("capacity").value;
+        //type = type.options[type.selectedIndex].value;
+        //capacity = capacity.options[capacity.selectedIndex].value;
+
+        console.log("TYPE AFTER PAPER "+type);
+        if(type == 'Dormitory') type = 'dorm';
+        else type = 'condo';
+        console.log("TYPE AFTER PAPER "+type);
 
         var beds = parseInt(document.getElementById("beds").value);
         var bathrooms = parseFloat(document.getElementById("bathrooms").value);
