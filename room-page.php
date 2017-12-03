@@ -331,75 +331,90 @@
             //document.getElementById('bookingForm').submit();
             var checkin = document.getElementById("checkin").value;
             var checkout = document.getElementById("checkout").value;
-            console.log('in set session');
-            sessionStorage.setItem('listingID', listingID);
-            sessionStorage.setItem('checkin', checkin);
-            sessionStorage.setItem('checkout', checkout);
-            var numPersons = document.getElementById("numPersons").value;
-            //numPersons = numPersons.options[numPersons.selectedIndex].value;
-            sessionStorage.setItem('numPersons', numPersons);
-            sessionStorage.setItem('total', total);
-            var url = window.location.href;
-            url = url.substr(0, url.indexOf('O')+1);
-            console.log(url);
 
-            var isLoggedIn = <?php if(!empty($_SESSION['isLoggedIn'])) echo 'true'; else echo 'false';?>;
-            console.log(isLoggedIn);
-
-            if(isLoggedIn == true){
-
-                if(accountID == "<?php if(isset($_SESSION['objID'])) echo $_SESSION['objID']; else echo '';?>"){
-                    alert('You cannot book your own place.');
-                    window.location.href = url + '/Listings';
-                }
-                else{
-                    var noConflict = true;
-                    $.ajax({
-                        type: "GET",
-                        url: "http://localhost:8080/taft2GO/booking/?filter={'listingID': '"+listingID+"'}",
-                        dataType: "json",
-                        success: function(response){
-                            console.log('get bookings');
-                           console.log(response._embedded);
-
-                           var mgaBookings = response._embedded;
-                           var checkin2;
-                           var checkout2;
-                           for(var k = 0; k < mgaBookings.length; k++){
-                                checkin1 = new Date(checkin);
-                                checkout1 = new Date(checkout);
-                                checkin2 = new Date(mgaBookings[k].checkIn);
-                                checkout2 = new Date(mgaBookings[k].checkOut);
-                                console.log(checkin2);
-                               if(checkin1 <= checkout2 && checkout1 >= checkin2) {
-                                    noConflict = false;
-                               }
-
-                           }
-                        },
-                        async: false,
-                        error: function(jqXHR, exception){
-                            console.log("Error");
-                            console.log(jqXHR.responseText);
-                        }
-                    });
-                    if(noConflict) { // no conflict
-                        $('#total').html('');
-                        window.location.href = url + '/Booking';
-                    }
-                    else{
-                        total = '<h4><b>Sorry, but those dates are unavailable.</b></h4>';
-                        $('#total').html(total);
-                    }
-                }
-
+            if(checkin == '' || checkout == ''){
+                total = '<h4><b>Please choose a date range.</b></h4>';
+                $('#total').html(total);
             }
-            else{
-                var roompageURL = window.location.href;
-                roompageURL = roompageURL.substr(roompageURL.indexOf('O')+1)
-                console.log(roompageURL);
-                sessionStorage.setItem('roompage', roompageURL);
-                window.location.href = url + '/Login';
+            else if(checkin > checkout){
+                total = '<h4><b>Check-in date is sooner than checkout date.</b></h4>';
+                $('#total').html(total);
+            }
+            else if(document.getElementById('numOfPeople').value == undefined){
+                total = '<h4><b>How many people are staying?</b></h4>';
+                $('#total').html(total);
+            }
+            else {
+                console.log('in set session');
+                sessionStorage.setItem('listingID', listingID);
+                sessionStorage.setItem('checkin', checkin);
+                sessionStorage.setItem('checkout', checkout);
+                var numPersons = document.getElementById("numPersons").value;
+                //numPersons = numPersons.options[numPersons.selectedIndex].value;
+                sessionStorage.setItem('numPersons', numPersons);
+                sessionStorage.setItem('total', total);
+                var url = window.location.href;
+                url = url.substr(0, url.indexOf('O') + 1);
+                console.log(url);
+
+                var isLoggedIn = <?php if (!empty($_SESSION['isLoggedIn'])) echo 'true'; else echo 'false';?>;
+                console.log(isLoggedIn);
+
+                if (isLoggedIn == true) {
+
+                    if (accountID == "<?php if (isset($_SESSION['objID'])) echo $_SESSION['objID']; else echo '';?>") {
+                        alert('You cannot book your own place.');
+                        window.location.href = url + '/Listings';
+                    }
+                    else {
+                        var noConflict = true;
+                        $.ajax({
+                            type: "GET",
+                            url: "http://localhost:8080/taft2GO/booking/?filter={'listingID': '" + listingID + "'}",
+                            dataType: "json",
+                            success: function (response) {
+                                console.log('get bookings');
+                                console.log(response._embedded);
+
+                                var mgaBookings = response._embedded;
+                                var checkin2;
+                                var checkout2;
+                                for (var k = 0; k < mgaBookings.length; k++) {
+                                    checkin1 = new Date(checkin);
+                                    checkout1 = new Date(checkout);
+                                    checkin2 = new Date(mgaBookings[k].checkIn);
+                                    checkout2 = new Date(mgaBookings[k].checkOut);
+                                    console.log(checkin2);
+                                    if (checkin1 <= checkout2 && checkout1 >= checkin2) {
+                                        noConflict = false;
+                                    }
+
+                                }
+                            },
+                            async: false,
+                            error: function (jqXHR, exception) {
+                                console.log("Error");
+                                console.log(jqXHR.responseText);
+                            }
+                        });
+                        if (noConflict) { // no conflict
+                            $('#total').html('');
+                            window.location.href = url + '/Booking';
+                        }
+                        else {
+                            total = '<h4><b>Sorry, but those dates are unavailable.</b></h4>';
+                            $('#total').html(total);
+                        }
+                    }
+
+                }
+                else {
+                    var roompageURL = window.location.href;
+                    roompageURL = roompageURL.substr(roompageURL.indexOf('O') + 1)
+                    console.log(roompageURL);
+                    sessionStorage.setItem('roompage', roompageURL);
+                    window.location.href = url + '/Login';
+                }
             }
         }
 
