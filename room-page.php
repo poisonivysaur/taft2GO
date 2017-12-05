@@ -340,10 +340,10 @@
                 total = '<h4><b>Check-in date is sooner than checkout date.</b></h4>';
                 $('#total').html(total);
             }
-            else if(document.getElementById('numOfPeople').value == undefined){
+           /* else if(document.getElementById('numOfPeople').value == undefined){
                 total = '<h4><b>How many people are staying?</b></h4>';
                 $('#total').html(total);
-            }
+            }*/
             else {
                 console.log('in set session');
                 sessionStorage.setItem('listingID', listingID);

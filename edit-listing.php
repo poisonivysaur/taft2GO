@@ -23,7 +23,7 @@
         my-carousel::after {
             display: block;
             content: '';
-            padding-top: 40%; /* 4:3 = height is 75% of width */
+            padding-top: 40%;
         }
 
         my-carousel img {
@@ -254,14 +254,9 @@ Wifi, Closet/drawers, TV, gymnasium etc."></textarea>
                         </my-carousel>
 
                         <h1 class="baloo">Upload Image</h1>
-                        <vaadin-upload id="vaadin" class="thick-border" accept="image/*"></vaadin-upload>
+                        <vaadin-upload id="vaadin" name="vaadin" class="thick-border" accept="image/*"></vaadin-upload><br>
+                        <paper-button raised class="primary" onclick="addImage()">Preview</paper-button>
 
-                        <div class="card">
-                            <!--
-                            <h4>Image directory: <paper-input id = "imgPath"></paper-input></h4>-->
-                            <h4>Description: <paper-input id="imgDesc"></paper-input></h4>
-                            <paper-button raised class="primary" onclick="addImage()">Submit</paper-button>
-                        </div>
                     </div>
                 </div>
                 <h5 class="text-secondary">&nbsp; </h5>
@@ -413,11 +408,8 @@ Wifi, Closet/drawers, TV, gymnasium etc."></textarea>
             reader.readAsDataURL(file);
         }
 
-        console.log(document.querySelector('#imgDesc').value);
-        let imgDesc = document.querySelector('#imgDesc').value;
-        let desc = document.createElement('p');
-        desc.innerHTML = imgDesc;
-        descCarousel.appendChild(desc);
+
+
 
     }/*
     function savePhotos(){
@@ -444,6 +436,8 @@ Wifi, Closet/drawers, TV, gymnasium etc."></textarea>
 
     }*/
     function savePhotos() {
+
+
         var imgs = document.querySelectorAll(".obj");
 
         for (var i = 0; i < imgs.length; i++) {
@@ -472,10 +466,10 @@ Wifi, Closet/drawers, TV, gymnasium etc."></textarea>
         }, false);*/
         xhr.open("PATCH", "http://localhost:8080/taft2GO/listing/" + listingID,);
         xhr.overrideMimeType('application/json; charset=x-user-defined-binary');
-        xhr.setRequestHeader("Content-type", "application/json");
+        //xhr.setRequestHeader("Content-type", "application/json");
         reader.onload = function(evt) {
             console.log("WHAT IT LOOKS LIKE: "+'{"photo": "'+evt.target.result+'"}');
-            xhr.send(evt.target.result);
+            xhr.send('{"photo": "'+JSON.stringify(evt.target.result)+'"}');
         };
         reader.readAsBinaryString(file);
     }
