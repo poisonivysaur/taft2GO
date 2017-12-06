@@ -84,7 +84,8 @@ if (isset($_POST['email'])){
         else {
             $.ajax({
                 type: "GET",
-                url: "http://localhost:8080/taft2GO/account/?filter={'email': '" + email + "','password':'" + pw + "','isActive':'" + 1 + "'}",
+                url: "http://localhost:8080/taft2GO/account/?filter={'email': '" + email +
+                        "','password':'" + pw + "','isActive':'" + 1 + "'}",
                 dataType: "json",
                 success: function (response) {
                     console.log(response);

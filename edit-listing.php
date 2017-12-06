@@ -163,7 +163,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4" style="transition: all 0.25s;">
-                                <p class="lead text-right">No. of Bathrooms</p>
+                                <p class="lead text-right">No. of Beds</p>
                             </div>
                             <div class="col-md-8" style="transition: all 0.25s;">
                                 <input class="form-control  w-75" type="number" min="1" max="20" id="beds" placeholder="2">
@@ -174,7 +174,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4" style="transition: all 0.25s;">
-                                <p class="lead text-right">No. of Beds</p>
+                                <p class="lead text-right">No. of Bathrooms</p>
                             </div>
                             <div class="col-md-8" style="transition: all 0.25s;">
                                 <input class="form-control  w-75" type="number" min="1" max="20" step="0.5" id="bathrooms" placeholder="2">
