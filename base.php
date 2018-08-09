@@ -65,6 +65,7 @@
                                   <p></p>
                                   <p>{$_SESSION['fname']} {$_SESSION['lname']}</p>
                                   <!--<a href=\"#\" class=\"w3-bar-item w3-button\">Profile</a>-->
+                                  <a class=\"btn navbar-btn ml-2 btn-light text-primary baloo\" href=\"/taft2GO/call-logs.php\">Call logs</a>
                                   <a class=\"btn navbar-btn ml-2 btn-light text-primary baloo\" href=\"/taft2GO/Stays\">Stays</a>
                                     <a class=\"btn navbar-btn ml-2 btn-light text-primary baloo\" href=\"/taft2GO/Listings\">Listings</a>
                                   <button onclick='clearSession()' class=\"w3-bar-item w3-button\">Logout</button>
